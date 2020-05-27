@@ -42,6 +42,6 @@ var user2 = new Users({ // Create new document
 //insertUser(user1);
 //insertUser(user2);
 
-readUsers();
+readUsers('test');
 
 weather();

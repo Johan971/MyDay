@@ -7,9 +7,9 @@ var database = "mongoose" // Database name
 const Users = require("./Users"); // Model
 
 
-module.exports = function(user) {
+module.exports = function(user, dbName) {
 	// Connect to database
-	connectDB("mongodb://localhost:27017/"+database)
+	connectDB("mongodb://localhost:27017/"+dbName)
 
 	user.save(err => { // save document inside Users collection
 	    if(err) throw err // error handling
