@@ -11,5 +11,5 @@ var dailyWeatherSchema = new Schema({ // Create Schema
 })
 
 // Model
-var DailyWeather = mongoose.model("DailyWeather", dailyWeatherSchema) // Create collection model from schema
+var DailyWeather = mongoose.model("Weather", dailyWeatherSchema) // Create collection model from schema
 module.exports = DailyWeather // export model

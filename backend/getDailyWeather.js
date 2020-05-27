@@ -16,6 +16,7 @@ module.exports = {
         appid: "8d27d7288804e96ae08315da0e7570c7"
     });
     
+    
     let apiUrl = "http://api.openweathermap.org/data/2.5/weather?" + openWeatherParams;
  
     var req = request({ 
