@@ -1,17 +1,14 @@
 //Library
 const mongoose = require("mongoose");
-
 const connectDB = require("./connectDb"); // Database connection module
-var database = "mongoose" // Database name
-
-const Users = require("./Users"); // Model
+const DailyWeather = require("./DailyWeather"); // Model
 
 
-module.exports = function(user, dbName) {
-	// Connect to database
+module.exports = function(obj, dbName) {
+
 	connectDB("mongodb://localhost:27017/"+dbName)
 
-	user.save(err => { // save document inside Users collection
+	obj.save(err => { // save document inside collection
 	    if(err) throw err // error handling
 	    console.log("Document inserted!")
 	    mongoose.disconnect() // disconnect connection from database once document is saved
