@@ -4,7 +4,7 @@ const Schema = mongoose.Schema // Define Schema method
 // Schema
 var dailyWeatherSchema = new Schema({ // Create Schema
     temp: Number, // Absolute temperature
-    feelLike: Number,
+    feelsLike: Number,
     tempMin: Number,
     tempMax: Number,
     description: String // Ex : nuageux
