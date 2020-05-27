@@ -6,6 +6,7 @@ const path=require("path")
 const connectDb = require("./backend/connectDb") // Database connection module
 const insert = require("./backend/insert") // Database insert module
 const read = require("./backend/read") // Database insert module
+const remove = require("./backend/remove") // Database insert module
 const DailyWeather = require("./backend/DailyWeather"); // Models module
 const getDailyWeather = require("./backend/getDailyWeather");
 
@@ -31,8 +32,10 @@ var mondayWeather = new DailyWeather({
     description: "Ensoleillé"
 });
 
-insert(mondayWeather, "dailyWeatherTable");
+//insert(mondayWeather, 'dailyWeatherTable');
 
-read(DailyWeather, 'dwadsadwa');
+remove(DailyWeather, 'dailyWeatherTable');
+
+read(DailyWeather, 'dailyWeatherTable');
 
 //getDailyWeather();
