@@ -7,7 +7,7 @@ var dailyWeatherSchema = new Schema({ // Create Schema
     feelsLike: Number,
     tempMin: Number,
     tempMax: Number,
-    description: String // Ex : nuageux
+    description: String, // Ex : nuageux
 })
 
 // Model

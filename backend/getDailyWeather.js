@@ -18,7 +18,7 @@ module.exports = {
     
     let apiUrl = "http://api.openweathermap.org/data/2.5/weather?" + openWeatherParams;
  
-    var req = request({   
+    var req = request({ 
             url : apiUrl,
             json: true
         }, function (error, response, resp) {
@@ -31,7 +31,7 @@ module.exports = {
                         feelsLike: resp.main.feels_like,
                         tempMin: resp.main.temp_min,
                         tempMax: resp.main.temp_max,
-                        description: resp.weather.description, // TODO : issue here
+                        description: resp.weather[0].description, // TODO : issue here
                     });
 
                 callback(result);
