@@ -44,4 +44,4 @@ var user2 = new Users({ // Create new document
 
 readUsers('test');
 
-weather();
+dailyWeather();

@@ -21,7 +21,7 @@ module.exports = function(){
  
             if(!error && response.statusCode === 200){
                 let text = resp.main.temp;
-                console.log(text);
+                console.log(resp);
             }
         }
     );
