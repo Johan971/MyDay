@@ -28,8 +28,8 @@ app.use("/",routeur)
 app.listen(4200, console.log('Listening on port 4200...')); // Starting the server on port 4200
 
 
+//////// Test Field for the Bdd functions
 
-// Insert Test
 var mondayWeather = new DailyWeather({
 	temp: 150,
 	feelsLike: 25,
@@ -39,21 +39,17 @@ var mondayWeather = new DailyWeather({
 });
 
 //insert(mondayWeather, 'dailyWeatherTable');
-//remove(mondayWeather, 'dailyWeatherTable');
+//remove(DailyWeather, 'dailyWeatherTable');
+//read(DailyWeather, 'dailyWeatherTable')
+//replace(DailyWeather, mondayWeather,'dailyWeatherTable', {_id : '5ecf75287c4c8c2ce35b70e6'});
 
 dailyWeatherApi.getDailyWeather((result)=>{ 
+
+	//console.log(result);
 	//insert(result, 'dailyWeatherTable');
-	//Supprimer la clé _id et la clé __v
-	//a=delete result['temp']
-	console.log(result)
 
-	replace(DailyWeather,{temp:19.71}, mondayWeather,'dailyWeatherTable',)
-	console.log(result);
-
-	
 });
 
-//replace({temp:23.88},mondayWeather,'dailyWeatherTable')
-//remove(DailyWeather,{description:"Ensoleillé"},'dailyWeatherTable')
+
 
 

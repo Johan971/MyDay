@@ -11,7 +11,6 @@ module.exports = function(obj, dbName) {
 	obj.save(err => { // save document inside collection
 	    if(err) throw err // error handling
 	    console.log("Document inseré!")
-		console.log(obj)
 	    mongoose.disconnect() // disconnect connection from database once document is saved
 	})
 
