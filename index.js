@@ -12,17 +12,21 @@ const insert = require("./backend/insert") // Database insert module
 const read = require("./backend/read") // Database insert module
 const remove = require("./backend/remove") // Database insert module
 const dailyWeatherApi = require("./backend/getDailyWeather");
-const replace = require("./backend/replace")
+const replace = require("./backend/replace");
+const vLilleApi = require("./backend/getAvailableVLille");
 
 					///// Routes /////
-var dailyWeatherRoutes = require('./backend/routes/dailyWeatherRoutes');
+const dailyWeatherRoutes = require('./backend/routes/dailyWeatherRoutes');
+const vLilleRoutes = require('./backend/routes/vLilleRoutes');
 
 					///// Models /////
 const DailyWeather = require("./backend/models/DailyWeather"); // Models module
+const vLille = require("./backend/models/vLille"); //Coordinates model
 
 
 const app = express();
-const routeur = express.Router() 
+const routeur = express.Router();
+let coords= [];
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -35,7 +39,8 @@ app.use("/",express.static(__dirname+"/public"))
 app.use("/",routeur)
 
 
-dailyWeatherRoutes(app); 
+dailyWeatherRoutes(app);
+vLilleRoutes(app);
 
 app.listen(4200, console.log('Listening on port 4200...')); // Starting the server on port 4200
 
@@ -63,6 +68,5 @@ dailyWeatherApi.getDailyWeather((result)=>{
 
 });
 
-
-
+read(vLille, 'vLilleTable');
 
