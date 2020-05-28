@@ -1,6 +1,6 @@
 const request = require('request');
 const querystring = require('querystring');
-const DailyWeather = require("./Models/DailyWeather");
+const DailyWeather = require("./models/DailyWeather");
 
 //////// WARNING : This is an asyc function working with callback ////////
 // For more infos/understanding : https://stackoverflow.com/questions/14220321/how-do-i-return-the-response-from-an-asynchronous-call

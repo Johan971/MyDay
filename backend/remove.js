@@ -1,7 +1,7 @@
 //Library
 const mongoose = require("mongoose");
 const connectDb = require("./connectDb"); // Database connection module
-const DailyWeather = require("./Models/DailyWeather"); // Models
+const DailyWeather = require("./models/DailyWeather"); // Models
 
 
 // Remove all documents that match conditions from the collection.
