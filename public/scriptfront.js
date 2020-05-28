@@ -46,17 +46,26 @@ myAnchor.addEventListener("click",(event)=>{
 	//event.preventDefault()
 	var xhr=new XMLHttpRequest()
 	xhr.open("get",'/api/dailyWeather')
-	console.log("ll:",xhr.readyState)
-	xhr.send()
-
-	console.log("click")
 	
-	console.log("rr",xhr)
+	xhr.send()
+	
+	console.log("rr",xhr.responseText)
+
+
+	xhr.onreadystatechange=(event)=>{
+		if (xhr.readyState==4){
+			//mettre dans la page
+			console.log(xhr.response)
+
+		}
+	}
+
+	/*
 	if (xhr.responseText==undefined) {
-		console.log("NUl")
+		console.log("ok")
 	}
 	else if (xhr.responseText==""){
 		console.log("vide")
 	}
-
+	*/
 })
