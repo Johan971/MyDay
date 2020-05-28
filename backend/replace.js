@@ -7,9 +7,9 @@ const remove = require("./remove") // Database insert module
 
 
 
-module.exports= function(obj, newObj, dbName, filter){ // filter have to select one obj
+module.exports= function(model, newObj, dbName, filter){ // filter have to select one obj
 	// get 
 	//obj = read()
-	remove(obj, dbName, filter);
+	remove(model, dbName, filter);
 	insert(newObj, dbName);
 }

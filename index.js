@@ -41,7 +41,7 @@ var mondayWeather = new DailyWeather({
 //insert(mondayWeather, 'dailyWeatherTable');
 //remove(DailyWeather, 'dailyWeatherTable');
 //read(DailyWeather, 'dailyWeatherTable')
-//replace(DailyWeather, mondayWeather,'dailyWeatherTable', {_id : '5ecf75287c4c8c2ce35b70e6'});
+replace(DailyWeather, mondayWeather,'dailyWeatherTable', {_id : '5ecf75287c4c8c2ce35b70e6'});
 
 dailyWeatherApi.getDailyWeather((result)=>{ 
 
