@@ -33,6 +33,7 @@ routeur.get("/",(req,res)=>{
 app.use("/",express.static(__dirname+"/public"))
 app.use("/",routeur)
 
+
 dailyWeatherRoutes(app); 
 
 app.listen(4200, console.log('Listening on port 4200...')); // Starting the server on port 4200
@@ -47,6 +48,7 @@ var mondayWeather = new DailyWeather({
     tempMax: 27,
     description: "Ensoleillé"
 });
+
 
 //insert(mondayWeather, 'dailyWeatherTable');
 //remove(DailyWeather, 'dailyWeatherTable');
