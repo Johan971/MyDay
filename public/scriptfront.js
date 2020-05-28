@@ -45,9 +45,18 @@ myAnchor.addEventListener("click",(event)=>{
 	//2: modifier le html 
 	//event.preventDefault()
 	var xhr=new XMLHttpRequest()
-	xhr.open("GET",'/api/dailyWeather')
+	xhr.open("get",'/api/dailyWeather')
+	console.log("ll:",xhr.readyState)
 	xhr.send()
 
 	console.log("click")
-	console.log(xhr)
+	
+	console.log("rr",xhr)
+	if (xhr.responseText==undefined) {
+		console.log("NUl")
+	}
+	else if (xhr.responseText==""){
+		console.log("vide")
+	}
+
 })
