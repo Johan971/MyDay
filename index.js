@@ -14,14 +14,17 @@ const remove = require("./backend/remove") // Database insert module
 const dailyWeatherApi = require("./backend/getDailyWeather");
 const replace = require("./backend/replace");
 const vLilleApi = require("./backend/getAvailableVLille");
+const coordinatesApi = require("./backend/getCoordinates");
 
 					///// Routes /////
 const dailyWeatherRoutes = require('./backend/routes/dailyWeatherRoutes');
 const vLilleRoutes = require('./backend/routes/vLilleRoutes');
+const coordinatesRoutes = require('./backend/routes/coordinatesRoutes');
 
 					///// Models /////
 const DailyWeather = require("./backend/models/DailyWeather"); // Models module
 const vLille = require("./backend/models/vLille"); //Coordinates model
+const Coordinates = require("./backend/models/Coordinates");
 
 
 const app = express();
@@ -69,4 +72,6 @@ dailyWeatherApi.getDailyWeather((result)=>{
 });
 
 read(vLille, 'vLilleTable');
+
+read(Coordinates, 'coordinatesTables');
 
