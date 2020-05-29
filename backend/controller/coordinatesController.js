@@ -1,17 +1,23 @@
 
 const mongoose = require('mongoose');
+
 const replace = require("../replace");
+const read = require("../read"); // Database read module
+const insert = require("../insert"); // Database read module
+
 const Coordinates = require('../models/Coordinates');
-const coordinatesApi = require("../getCoordinates");
+const DailyWeather = require('../models/DailyWeather');
+const dailyWeatherApi = require("../getDailyWeather");
 
-exports.getCoordinates = function(req, res) {
+exports.storeCoordinates = function(req, res) {
 
-    console.log(req.body);
+	// TODO : store coordonates with replace
 
-    // update the available vLille and send it
-    /*coordinatesApi.getCoordinates(req.body, (result)=>{
-        replace(Coordinates, result, 'coordinatesTable'); // update the old table
-        res.json(result);
-    });*/
+	// update weather
+    dailyWeatherApi.getDailyWeather(req.body.lat, req.body.lon, (result)=>{
+		//replace(DailyWeather, result, 'dailyWeatherTable');
+		insert(result, 'dailyWeatherTable');
+		read(DailyWeather, 'dailyWeatherTable');
+    });
 
 };

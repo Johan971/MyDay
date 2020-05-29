@@ -7,22 +7,26 @@ const DailyWeather = require("./models/DailyWeather");
 
 module.exports = {
 
-    getDailyWeather: (callback) => {
+    getDailyWeather: (la, lo, callback) => {
  
     let openWeatherParams = querystring.stringify({
-        q: "Lille",
+        lat: la,
+        lon: lo,
         lang: "fr",
         units: "metric",
         appid: "8d27d7288804e96ae08315da0e7570c7"
     });
-    
-    
+
     let apiUrl = "http://api.openweathermap.org/data/2.5/weather?" + openWeatherParams;
  
     var req = request({ 
             url : apiUrl,
             json: true
         }, function (error, response, resp) {
+
+            if(error){
+                console.log(error.code)
+            }
  
             if(!error && response.statusCode === 200){
 
@@ -32,12 +36,11 @@ module.exports = {
                         feelsLike: resp.main.feels_like,
                         tempMin: resp.main.temp_min,
                         tempMax: resp.main.temp_max,
-                        description: resp.weather[0].description, // TODO : issue here
                     });
 
                 callback(result);
             }
         }
     );
-    },
+    }
 }

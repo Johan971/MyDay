@@ -25,13 +25,14 @@ let tableau=["willy",12,lartDeLaGuerre]
 console.log(tableau.length)
 
 
-/*______________________FONCTIONS_____________________________*/
+/*______________________FUNCTIONS_____________________________*/
 
-function getConsole(pathApi){
+function getReq(pathApi){
+    
     var xhr=new XMLHttpRequest()
-    xhr.open("get",pathApi)
 
-    xhr.send()
+    xhr.open("get",pathApi)
+    xhr.send();
 
     xhr.onreadystatechange=(event)=>{
         if (xhr.readyState==4){
@@ -40,6 +41,15 @@ function getConsole(pathApi){
 
         }
     }
+}
+
+function postReq(pathApi, obj){
+    
+    var xhr=new XMLHttpRequest();
+    
+    xhr.open("POST",pathApi, true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify(obj));
 }
 
 
@@ -65,20 +75,20 @@ window.onload = function() {
     startPos = position;
     document.getElementById('startLat').innerHTML = startPos.coords.latitude;
     document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+
+    let coord = {lat:  startPos.coords.latitude, lon: startPos.coords.longitude};
+    postReq("/api/coordinates", coord);
   };
 
   var geoError = function(error) {
   	console.log(error);
   };
 
-  var geoOptions = {
-     timeout: 10 * 1000
-  }
-
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
 
 };
-//________________________________________________________________________________________
+
+//___________________________________________________________________________________
 //__________________________________________________________________________________________
 
 
@@ -89,7 +99,7 @@ myAnchor.addEventListener("click",(event)=>{
 	//2: modifier le html 
 	//event.preventDefault()
 
-	getConsole('/api/dailyWeather')
+	getReq('/api/dailyWeather')
 
 	//OUTIL DEBUG
 	/*
