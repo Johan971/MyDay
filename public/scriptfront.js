@@ -30,9 +30,8 @@ console.log(tableau.length)
  //                 GEOLOCALISATION                    //
 //----------------------------------------------------//
 
-var geoButton = document.getElementById("geo")
 
-geoButton.onclick = function() {
+window.onload = function() {
 
   var startPos;
 
