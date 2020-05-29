@@ -23,6 +23,26 @@ let lartDeLaGuerre=new livre("L'Art De La Guerre",322,"Sun Tzu")
 
 let tableau=["willy",12,lartDeLaGuerre]
 console.log(tableau.length)
+
+
+/*______________________FONCTIONS_____________________________*/
+
+function getConsole(pathApi){
+    var xhr=new XMLHttpRequest()
+    xhr.open("get",pathApi)
+
+    xhr.send()
+
+    xhr.onreadystatechange=(event)=>{
+        if (xhr.readyState==4){
+            //mettre dans la page
+            console.log(xhr.response)
+
+        }
+    }
+}
+
+
 //----------------------------------------------------------------
 
 
@@ -54,30 +74,20 @@ window.onload = function() {
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
 
 };
+//________________________________________________________________________________________
+//__________________________________________________________________________________________
 
 
 var myAnchor= document.getElementById("Bouton")
 
 myAnchor.addEventListener("click",(event)=>{
-	//1:ajouter donnnée avec console log
+	
 	//2: modifier le html 
 	//event.preventDefault()
-	var xhr=new XMLHttpRequest()
-	xhr.open("get",'/api/dailyWeather')
-	
-	xhr.send()
-	
-	console.log("rr",xhr.responseText)
 
+	getConsole('/api/dailyWeather')
 
-	xhr.onreadystatechange=(event)=>{
-		if (xhr.readyState==4){
-			//mettre dans la page
-			console.log(xhr.response)
-
-		}
-	}
-
+	//OUTIL DEBUG
 	/*
 	if (xhr.responseText==undefined) {
 		console.log("ok")
