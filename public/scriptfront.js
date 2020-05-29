@@ -55,6 +55,10 @@ window.onload = function() {
 
   var startPos;
 
+  var geoOptions = {
+    enableHighAccuracy: true
+  }
+
   var geoSuccess = function(position) {
 
     // Do magic with location
