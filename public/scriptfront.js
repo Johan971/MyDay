@@ -1,17 +1,7 @@
 
-
-
-
-
-
 //PARTIE USELESS POUR LE FONCTIONNEMENT DU PROJET
 //-------------------------------------------------
 let age=24
-
-const nom= prompt("Entrez votre prenom:")
-console.log(`Tu es ${nom} et tu as ${age} ans`)
-console.log("lol")
-
 
 //FIRST CLASS
 
@@ -36,6 +26,35 @@ console.log(tableau.length)
 //----------------------------------------------------------------
 
 
+  //----------------------------------------------------//
+ //                 GEOLOCALISATION                    //
+//----------------------------------------------------//
+
+var geoButton = document.getElementById("geo")
+
+geoButton.onclick = function() {
+
+  var startPos;
+
+  var geoSuccess = function(position) {
+
+    // Do magic with location
+    startPos = position;
+    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+  };
+
+  var geoError = function(error) {
+  	console.log(error);
+  };
+
+  var geoOptions = {
+     timeout: 10 * 1000
+  }
+
+  navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+
+};
 
 
 var myAnchor= document.getElementById("Bouton")
@@ -69,3 +88,4 @@ myAnchor.addEventListener("click",(event)=>{
 	}
 	*/
 })
+
