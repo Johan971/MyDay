@@ -1,4 +1,4 @@
-	
+
 
 					///// Library /////
 const mongoose = require("mongoose");
@@ -46,26 +46,30 @@ dailyWeatherRoutes(app);
 coordinatesRoutes(app);
 vLilleRoutes(app);
 
+
 app.listen(4200, console.log('Listening on port 4200...')); // Starting the server on port 4200
 
 
 //////// Test Field for the Bdd functions
 
 var mondayWeather = new DailyWeather({
-	temp: 150,
+	temp: 120,
 	feelsLike: 25,
 	tempMin: 19,
     tempMax: 27,
     description: "Ensoleillé"
-});
+})
 
 
 //insert(mondayWeather, 'dailyWeatherTable');
-//remove(DailyWeather, 'dailyWeatherTable');
+//remove(DailyWeather, 'dailyWeatherTable',{temp:20.34});
 
-//replace(DailyWeather, mondayWeather,'dailyWeatherTable', {_id : '5ecf75287c4c8c2ce35b70e6'});
+replace(DailyWeather, mondayWeather,'dailyWeatherTable', {temp: 12})
 
-read(vLille, 'vLilleTable');
+
+
+//BUG ça LIT PAS QUAND ON INSERT PAS 
+read(vLille, 'vLilleTable')
 read(DailyWeather, 'dailyWeatherTable')
-read(Coordinates, 'coordinatesTables');
+read(Coordinates, 'coordinatesTables')
 
