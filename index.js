@@ -15,16 +15,19 @@ const dailyWeatherApi = require("./backend/getDailyWeather");
 const replace = require("./backend/replace");
 const vLilleApi = require("./backend/getAvailableVLille");
 const coordinatesApi = require("./backend/getCoordinates");
+const newsApi = require("./backend/getNews");
 
 					///// Routes /////
 const dailyWeatherRoutes = require('./backend/routes/dailyWeatherRoutes');
 const vLilleRoutes = require('./backend/routes/vLilleRoutes');
 const coordinatesRoutes = require('./backend/routes/coordinatesRoutes');
+const newsRoutes = require('./backend/routes/newsRoutes');
 
 					///// Models /////
 const DailyWeather = require("./backend/models/DailyWeather"); // Models module
 const vLille = require("./backend/models/vLille"); //Coordinates model
 const Coordinates = require("./backend/models/Coordinates");
+const News = require("./backend/models/News");
 
 
 const app = express();
@@ -43,8 +46,10 @@ app.use("/",routeur)
 
 
 dailyWeatherRoutes(app);
-coordinatesRoutes(app);
 vLilleRoutes(app);
+coordinatesRoutes(app);
+newsRoutes(app);
+
 
 
 app.listen(4200, console.log('Listening on port 4200...')); // Starting the server on port 4200
@@ -72,4 +77,4 @@ replace(DailyWeather, mondayWeather,'dailyWeatherTable', {temp: 12})
 read(vLille, 'vLilleTable')
 read(DailyWeather, 'dailyWeatherTable')
 read(Coordinates, 'coordinatesTables')
-
+read(News, 'newsTable');
