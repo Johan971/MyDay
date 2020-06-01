@@ -58,7 +58,7 @@ app.listen(4200, console.log('Listening on port 4200...')); // Starting the serv
 //////// Test Field for the Bdd functions
 
 var mondayWeather = new DailyWeather({
-	temp: 120,
+	temp: 70,
 	feelsLike: 25,
 	tempMin: 19,
     tempMax: 27,
@@ -69,7 +69,7 @@ var mondayWeather = new DailyWeather({
 //insert(mondayWeather, 'dailyWeatherTable');
 //remove(DailyWeather, 'dailyWeatherTable',{temp:20.34});
 
-replace(DailyWeather, mondayWeather,'dailyWeatherTable', {temp: 12})
+replace(DailyWeather, mondayWeather,'dailyWeatherTable', {temp: 10})
 
 
 
