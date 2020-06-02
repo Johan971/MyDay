@@ -11,15 +11,15 @@ module.exports = function(model, dbName, filter={}){ // filter doc https://mongo
 	
 	connectDb("mongodb://localhost:27017/"+dbName) // Connect to database
 
-	model.deleteOne(filter, (err,doc)=>{ 
+	model.deleteMany(filter, (err,doc)=>{ 
 	    if(err){
 	    	throw err // error handling
 	    	mongoose.disconnect();
 	    } 
 
 	    else if (doc){
-	    console.log("Removed")
-	    mongoose.disconnect();
+		    console.log("Removed")
+		    mongoose.disconnect();
 	    }
 	    
 	});

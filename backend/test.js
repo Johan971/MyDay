@@ -18,10 +18,10 @@ const remove = (model,filter)=> new Promise ((succ,rej)=>{
 
 			}
 		})
-}) // On promisifie deletone
+}) // On promisifie delete
 
 
-const remplace=(newObj)=> new Promise ((succ,rej)=>{
+const remplace = (newObj) => new Promise ((succ,rej)=>{
 	newObj.save(err=>{
 		console.log("Essai sauvegarde")
 		if (err) return rej(err)

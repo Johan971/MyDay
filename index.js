@@ -17,6 +17,9 @@ const vLilleApi = require("./backend/getAvailableVLille");
 const coordinatesApi = require("./backend/getCoordinates");
 const newsApi = require("./backend/getNews");
 
+// test 
+const readCb = require("./backend/readCallback") // Database read module
+
 					///// Routes /////
 const dailyWeatherRoutes = require('./backend/routes/dailyWeatherRoutes');
 const vLilleRoutes = require('./backend/routes/vLilleRoutes');
@@ -65,16 +68,23 @@ var mondayWeather = new DailyWeather({
     description: "Ensoleillé"
 })
 
+function testCb(cb){
+  	readCb(DailyWeather, 'dailyWeatherTable', (callback) => {
+		console.log("In index")
+		cb();
+	});
+}
+
+testCb((callback) => {
+		console.log("In testCb")
+});
 
 //insert(mondayWeather, 'dailyWeatherTable');
-//remove(DailyWeather, 'dailyWeatherTable',{temp:20.34});
+//remove(DailyWeather, 'dailyWeatherTable', {temp : 70});
 
-replace(DailyWeather, mondayWeather,'dailyWeatherTable', {temp: 10})
+//replace(DailyWeather, mondayWeather,'dailyWeatherTable', {temp: 10})
 
-
-
-//BUG ça LIT PAS QUAND ON INSERT PAS 
-read(vLille, 'vLilleTable')
-read(DailyWeather, 'dailyWeatherTable')
-read(Coordinates, 'coordinatesTables')
-read(News, 'newsTable');
+//read(vLille, 'vLilleTable')
+//read(DailyWeather, 'dailyWeatherTable')
+//read(Coordinates, 'coordinatesTables')
+//read(News, 'newsTable');
