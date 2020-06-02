@@ -12,9 +12,9 @@ const util = require("util");
 module.exports= function(model, newObj, callback, filter = {}){ // filter have to select one obj
 	remove(DailyWeather, () => {
 		insert(newObj, ()=>{
-			read(DailyWeather, () =>{
+			//read(DailyWeather, () =>{
 
-			});
+			//});
 		});
 	}, filter);
 }

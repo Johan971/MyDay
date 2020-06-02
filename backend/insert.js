@@ -8,7 +8,7 @@ module.exports = function(model, callback) {
 
 	model.save(err => { // save document inside collection
 	    if(err) throw err // error handling
-	    console.log("Document inseré!")
+	    console.log("Inserted")
 	    callback();
 	})
 

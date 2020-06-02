@@ -17,9 +17,6 @@ const vLilleApi = require("./backend/getAvailableVLille");
 const coordinatesApi = require("./backend/getCoordinates");
 const newsApi = require("./backend/getNews");
 
-// test 
-const readCb = require("./backend/readCallback") // Database read module
-
 					///// Routes /////
 const dailyWeatherRoutes = require('./backend/routes/dailyWeatherRoutes');
 const vLilleRoutes = require('./backend/routes/vLilleRoutes');
@@ -68,22 +65,10 @@ var mondayWeather = new DailyWeather({
     description: "Ensoleillé"
 })
 
-/*function testCb(cb){
-  	readCb(DailyWeather, 'dailyWeatherTable', (callback) => {
-		console.log("In index")
-		cb();
-	});
-}
-testCb((callback) => {
-		console.log("In testCb")
-});*/
+// Read Exemple
 
-//insert(mondayWeather, 'dailyWeatherTable');
-//remove(DailyWeather, 'dailyWeatherTable', {temp : 70});
+connectDb("mongodb://localhost:27017/" + 'dailyWeatherTable');
 
-//replace(DailyWeather, mondayWeather,'dailyWeatherTable', {temp: 10})
-
-//read(vLille, 'vLilleTable')
-//read(DailyWeather, 'dailyWeatherTable')
-//read(Coordinates, 'coordinatesTables')
-//read(News, 'newsTable');
+read(DailyWeather, () => {
+	mongoose.disconnect();
+});
