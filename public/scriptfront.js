@@ -29,7 +29,7 @@ console.log(tableau.length)
 
 function getReq(pathApi){
     
-    var xhr=new XMLHttpRequest()
+    var xhr = new XMLHttpRequest()
 
     xhr.open("get",pathApi)
     xhr.send();

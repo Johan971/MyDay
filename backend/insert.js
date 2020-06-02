@@ -4,14 +4,12 @@ const connectDb = require("./connectDb"); // Database connection module
 const DailyWeather = require("./models/DailyWeather"); // Model
 
 
-module.exports = function(model, dbName) {
-
-	connectDb("mongodb://localhost:27017/"+dbName)
+module.exports = function(model, callback) {
 
 	model.save(err => { // save document inside collection
 	    if(err) throw err // error handling
 	    console.log("Document inseré!")
-	    mongoose.disconnect() // disconnect connection from database once document is saved
+	    callback();
 	})
 
 }

@@ -68,16 +68,15 @@ var mondayWeather = new DailyWeather({
     description: "Ensoleillé"
 })
 
-function testCb(cb){
+/*function testCb(cb){
   	readCb(DailyWeather, 'dailyWeatherTable', (callback) => {
 		console.log("In index")
 		cb();
 	});
 }
-
 testCb((callback) => {
 		console.log("In testCb")
-});
+});*/
 
 //insert(mondayWeather, 'dailyWeatherTable');
 //remove(DailyWeather, 'dailyWeatherTable', {temp : 70});

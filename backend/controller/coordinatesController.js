@@ -16,34 +16,13 @@ exports.storeCoordinates = function(req, res) {
 
 	// update weather
     dailyWeatherApi.getDailyWeather(req.body.lat, req.body.lon, (result)=>{
-		//replace(DailyWeather, result, 'dailyWeatherTable');
-		//insert(result, 'dailyWeatherTable');
-		//read(DailyWeather, 'dailyWeatherTable');
 
-	connectDb("mongodb://localhost:27017/"+'dailyWeatherTable') // Connect to database
+    	connectDb("mongodb://localhost:27017/"+'dailyWeatherTable')
 
-		DailyWeather.deleteMany({}, (err,doc)=>{ 
-		    if(err){
-		    	throw err; // error handling
-		    	mongoose.disconnect();
-		    } 
-		    else if (doc){
-		    	console.log("Removed");
-		    	//mongoose.disconnect();
-		    }
-		    result.save(err => { // save document inside collection
-			    if(err) throw err;
-			    else {
-			    	console.log("Document inserted");
-			    	//mongoose.disconnect();
-			    }
-		    	DailyWeather.find({}, (err, founded)=>{ //find and return all documents inside obj collection
-				    if(err) throw err; // error handling
-				    console.log(founded);
-				    mongoose.disconnect();
-				});
-			});
+		replace(DailyWeather, result, () => {
+			mongoose.disconnect();
 		});
+		
     });
 
 };
