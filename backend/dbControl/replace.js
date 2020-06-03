@@ -6,15 +6,14 @@ const remove = require("./remove");
 const read = require("./read");
 const insert = require("./insert");
 
-const DailyWeather = require("../models/DailyWeather"); // Models
-const util = require("util");
+const WeeklyWeather = require("../models/WeeklyWeather"); // Model
 
 module.exports= function(model, newObj, callback, filter = {}){ // filter have to select one obj
-	remove(DailyWeather, () => {
+	remove(model, () => {
 		insert(newObj, ()=>{
-			//read(DailyWeather, () =>{
+			read(model, () =>{
 
-			//});
+			});
 		});
 	}, filter);
 }

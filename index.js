@@ -25,7 +25,7 @@ const coordinatesRoutes = require('./backend/routes/coordinatesRoutes');
 const newsRoutes = require('./backend/routes/newsRoutes');
 
 					///// Models /////
-const DailyWeather = require("./backend/models/DailyWeather"); // Models module
+const WeeklyWeather = require("./backend/models/DailyWeather"); // Models module
 const vLille = require("./backend/models/vLille"); //Coordinates model
 const Coordinates = require("./backend/models/Coordinates");
 const News = require("./backend/models/News");
@@ -58,18 +58,10 @@ app.listen(4200, console.log('Listening on port 4200...')); // Starting the serv
 
 //////// Test Field for the Bdd functions
 
-var mondayWeather = new DailyWeather({
-	temp: 70,
-	feelsLike: 25,
-	tempMin: 19,
-    tempMax: 27,
-    description: "Ensoleillé"
-})
-
 // Read Exemple
 
-connectDb("mongodb://localhost:27017/" + 'dailyWeatherTable');
+connectDb("mongodb://localhost:27017/" + 'weeklyWeatherTable');
 
-read(DailyWeather, () => {
+read(WeeklyWeather, () => {
 	mongoose.disconnect();
 });

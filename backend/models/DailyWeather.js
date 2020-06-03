@@ -3,10 +3,13 @@ const Schema = mongoose.Schema // Define Schema method
 
 // Schema
 var dailyWeatherSchema = new Schema({ // Create Schema
-    temp: Number, // Absolute temperature
+    timeStamp: Number,
+    sunrise: Number,
+    sunset: Number,
+    cloud: Number,
+    temp: Number,
     feelsLike: Number,
-    tempMin: Number,
-    tempMax: Number,
+    description: String,
 })
 
 // Model
