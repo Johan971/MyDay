@@ -14,6 +14,4 @@ module.exports = function(model, callback, filter = {}){ // filter doc https://m
 	    console.log("Removed")
 	    callback();
 	});
-
-
 }

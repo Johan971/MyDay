@@ -13,7 +13,7 @@ const dailyWeatherApi = require("../getWeeklyWeather");
 
 exports.storeCoordinates = function(req, res) {
 
-	connectDb("mongodb://localhost:27017/"+'coordinatesTable');
+	connectDb();
 	
     const coords = new Coordinates({
 		lat: req.body.lat,

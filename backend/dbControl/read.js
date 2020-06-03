@@ -5,10 +5,11 @@ const WeeklyWeather = require("../models/WeeklyWeather"); // Models
 const Coordinates = require('../models/Coordinates');
 // Console log all documents that match conditions from the collection.
 
-module.exports = function(model, callback){ // filter doc https://mongoosejs.com/docs/api.html#model_Model.find
+module.exports = function(model, callback, filter={}){ // filter doc https://mongoosejs.com/docs/api.html#model_Model.find
 
-	model.find({}, (err, founded)=>{ //find and return all documents inside obj collection
+	model.find(filter, (err, founded)=>{ //find and return all documents inside obj collection
 	    if(err) throw err // error handling
-	    console.log(founded);
+		console.log(founded);
+		callback();
 	});
 }
