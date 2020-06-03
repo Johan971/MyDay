@@ -99,7 +99,7 @@ myAnchor.addEventListener("click",(event)=>{
 	//2: modifier le html 
 	//event.preventDefault()
 
-	getReq('/api/weeklyWeather')
+	getReq('/api/vLille')
 
 	//OUTIL DEBUG
 	/*

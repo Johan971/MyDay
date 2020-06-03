@@ -24,7 +24,7 @@ module.exports = {
                     if (!error && response.statusCode === 200) {
                         for(let i = 0; i < resp.records.length; i++) {
                             if (resp.records[0].fields.etat === "EN SERVICE") {
-                                informationsArray.push("Adresse : " + resp.records[i].fields.adresse, "Nombre de vélos disponibles : " + resp.records[i].fields.nbvelosdispo, "Nombre de places disponibles : " + resp.records[i].fields.nbplacesdispo, "\n");
+                                informationsArray.push({"Adresse ":  resp.records[i].fields.adresse, "Nombre de vélos disponibles": resp.records[i].fields.nbvelosdispo, "Nombre de places disponibles ":resp.records[i].fields.nbplacesdispo});
                                 //console.log("Adresse : " + resp.records[0].fields.adresse, "Nombre de vélos disponibles : " + resp.records[0].fields.nbvelosdispo, "Nombre de places disponibles : " + resp.records[0].fields.nbplacesdispo, "\n");
                                 result = new vLille({
                                     activeStations: informationsArray
