@@ -28,7 +28,7 @@ console.log(tableau.length)
 /*______________________FUNCTIONS_____________________________*/
 
 function getReq(pathApi){
-    
+
     var xhr = new XMLHttpRequest()
 
     xhr.open("get",pathApi)
@@ -37,21 +37,38 @@ function getReq(pathApi){
     xhr.onreadystatechange=(event)=>{
         if (xhr.readyState==4){
             //mettre dans la page
-            console.log(xhr.response)
+						var data = xhr.responseText;
+						var jsonResponse = JSON.parse(data);
+						return jsonResponse;
+						///var date = new Date(jsonResponse[0]["timeStamp"]*1000) test date
+						///console.log(date);
 
         }
     }
 }
 
+
 function postReq(pathApi, obj){
-    
+
     var xhr=new XMLHttpRequest();
-    
+
     xhr.open("POST",pathApi, true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify(obj));
 }
 
+
+function timeStampToDate(timeStamp){
+	var date = new Date(timeStamp*1000)
+	return Date
+}
+
+
+function showWeather(){
+	var todayDate = timeStampToDate(jsonResponse[0]["timeStamp"]);
+	var todayTemp = jsonResponse[0]["temp"]["day"];
+	var todayDes = jsonResponse[0]["temp"]["description"];
+}
 
 //----------------------------------------------------------------
 
@@ -95,8 +112,8 @@ window.onload = function() {
 var myAnchor= document.getElementById("Bouton")
 
 myAnchor.addEventListener("click",(event)=>{
-	
-	//2: modifier le html 
+
+	//2: modifier le html
 	//event.preventDefault()
 
 	getReq('/api/vLille')
@@ -111,4 +128,3 @@ myAnchor.addEventListener("click",(event)=>{
 	}
 	*/
 })
-
