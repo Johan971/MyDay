@@ -6,7 +6,7 @@ const remove = require("./remove");
 const read = require("./read");
 const insert = require("./insert");
 
-const WeeklyWeather = require("../models/WeeklyWeather"); // Model
+const WeeklyWeather = require("../models/WeeklyWeather");
 const Coordinates = require('../models/Coordinates');
 
 module.exports= function(model, newObj, callback, filter = {}){ // filter have to select one obj

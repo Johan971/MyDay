@@ -13,19 +13,19 @@ const read = require("./backend/dbControl/read") // Database read module
 const remove = require("./backend/dbControl/remove") // Database remove module
 const replace = require("./backend/dbControl/replace");
 
-const dailyWeatherApi = require("./backend/getDailyWeather");
+const dailyWeatherApi = require("./backend/getWeeklyWeather");
 const vLilleApi = require("./backend/getAvailableVLille");
 const coordinatesApi = require("./backend/getCoordinates");
 const newsApi = require("./backend/getNews");
 
 					///// Routes /////
-const dailyWeatherRoutes = require('./backend/routes/dailyWeatherRoutes');
+const dailyWeatherRoutes = require('./backend/routes/weeklyWeatherRoutes');
 const vLilleRoutes = require('./backend/routes/vLilleRoutes');
 const coordinatesRoutes = require('./backend/routes/coordinatesRoutes');
 const newsRoutes = require('./backend/routes/newsRoutes');
 
 					///// Models /////
-const WeeklyWeather = require("./backend/models/DailyWeather"); // Models module
+const WeeklyWeather = require("./backend/models/WeeklyWeather"); // Models module
 const vLille = require("./backend/models/vLille"); //Coordinates model
 const Coordinates = require("./backend/models/Coordinates");
 const News = require("./backend/models/News");
@@ -58,10 +58,3 @@ app.listen(4200, console.log('Listening on port 4200...')); // Starting the serv
 
 //////// Test Field for the Bdd functions
 
-// Read Exemple
-
-connectDb("mongodb://localhost:27017/" + 'coordinatesTable');
-
-read(Coordinates, () => {
-	mongoose.disconnect();
-});

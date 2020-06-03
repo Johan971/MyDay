@@ -3,40 +3,39 @@ const mongoose = require('mongoose');
 
 const replace = require("../dbControl/replace");
 const read = require("../dbControl/read"); // Database read module
-const insert = require("../dbControl/insert"); // Database read module
+const insert = require("../dbControl/insert"); 
+const remove = require("../dbControl/remove"); 
 const connectDb = require("../dbControl/connectDb");
 
 const Coordinates = require('../models/Coordinates');
 const WeeklyWeather = require('../models/WeeklyWeather');
-const dailyWeatherApi = require("../getDailyWeather");
+const dailyWeatherApi = require("../getWeeklyWeather");
 
 exports.storeCoordinates = function(req, res) {
 
-	// TODO : store coordonates with replace
-
-    connectDb("mongodb://localhost:27017/"+'coordinatesTable');
+	connectDb("mongodb://localhost:27017/"+'coordinatesTable');
+	
     const coords = new Coordinates({
-      lat: req.body.lat,
-      lon: req.body.lon
-    })
-    replace(Coordinates,coords,()=>{
-      mongoose.disconnect();
-    });
-
-
-
-
-
+		lat: req.body.lat,
+		lon: req.body.lon
+	});
+	
+    replace(Coordinates, coords, ()=>{ });
 
 	// update weather
-    dailyWeatherApi.getDailyWeather(req.body.lat, req.body.lon, (result)=>{
+    dailyWeatherApi.getWeeklyWeather(req.body.lat, req.body.lon, (result)=>{
 
-    	connectDb("mongodb://localhost:27017/"+'weeklyWeatherTable')
-
-		replace(WeeklyWeather, result[0], () => {
-			mongoose.disconnect();
+		remove(WeeklyWeather, () => {
+			for(const elt in result){
+				insert(result[elt], ()=>{
+					if(elt == 7){ 
+						read(WeeklyWeather, () => {
+							mongoose.disconnect();
+						});
+					}
+				})
+			};
 		});
-
     });
 
 };

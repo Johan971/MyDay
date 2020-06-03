@@ -7,7 +7,7 @@ const WeeklyWeather = require("./models/WeeklyWeather");
 
 module.exports = {
 
-    getDailyWeather: (la, lo, callback) => {
+    getWeeklyWeather: (la, lo, callback) => {
  
     let openWeatherParams = querystring.stringify({
         lat: la,

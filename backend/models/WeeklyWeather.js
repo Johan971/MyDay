@@ -21,7 +21,7 @@ var weeklyWeatherSchema = new Schema({ // Create Schema
         max: Number,
     },
     description: String,
-})
+});
 
 // Model
 var WeeklyWeather = mongoose.model("WeeklyWeather", weeklyWeatherSchema) // Create collection model from schema
