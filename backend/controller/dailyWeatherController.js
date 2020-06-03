@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-const replace = require("../replace");
+const replace = require("../dbControl/replace");
 const DailyWeather = require('../models/DailyWeather');
 const dailyWeatherApi = require("../getDailyWeather");
 

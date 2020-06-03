@@ -1,10 +1,10 @@
 
 const mongoose = require('mongoose');
 
-const replace = require("../replace");
-const read = require("../read"); // Database read module
-const insert = require("../insert"); // Database read module
-const connectDb = require("../connectDb");
+const replace = require("../dbControl/replace");
+const read = require("../dbControl/read"); // Database read module
+const insert = require("../dbControl/insert"); // Database read module
+const connectDb = require("../dbControl/connectDb");
 
 const Coordinates = require('../models/Coordinates');
 const DailyWeather = require('../models/DailyWeather');

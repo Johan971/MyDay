@@ -7,12 +7,13 @@ const path=require("path")
 const bodyParser = require('body-parser');
 
 					///// Modules /////
-const connectDb = require("./backend/connectDb") // Database connection module
-const insert = require("./backend/insert") // Database insert module
-const read = require("./backend/read") // Database read module
-const remove = require("./backend/remove") // Database remove module
+const connectDb = require("./backend/dbControl/connectDb") // Database connection module
+const insert = require("./backend/dbControl/insert") // Database insert module
+const read = require("./backend/dbControl/read") // Database read module
+const remove = require("./backend/dbControl/remove") // Database remove module
+const replace = require("./backend/dbControl/replace");
+
 const dailyWeatherApi = require("./backend/getDailyWeather");
-const replace = require("./backend/replace");
 const vLilleApi = require("./backend/getAvailableVLille");
 const coordinatesApi = require("./backend/getCoordinates");
 const newsApi = require("./backend/getNews");

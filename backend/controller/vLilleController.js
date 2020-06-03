@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-const replace = require("../replace");
+const replace = require("../dbControl/replace");
 const vLille = require('../models/vLille');
 const vLilleApi = require("../getAvailableVLille");
 
