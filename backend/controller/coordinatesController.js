@@ -14,6 +14,20 @@ exports.storeCoordinates = function(req, res) {
 
 	// TODO : store coordonates with replace
 
+    connectDb("mongodb://localhost:27017/"+'coordinatesTable');
+    const coords = new Coordinates({
+      lat: req.body.lat,
+      lon: req.body.lon
+    })
+    replace(Coordinates,coords,()=>{
+      mongoose.disconnect();
+    });
+
+
+
+
+
+
 	// update weather
     dailyWeatherApi.getDailyWeather(req.body.lat, req.body.lon, (result)=>{
 
@@ -22,7 +36,7 @@ exports.storeCoordinates = function(req, res) {
 		replace(WeeklyWeather, result[0], () => {
 			mongoose.disconnect();
 		});
-		
+
     });
 
 };

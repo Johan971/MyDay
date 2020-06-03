@@ -60,8 +60,8 @@ app.listen(4200, console.log('Listening on port 4200...')); // Starting the serv
 
 // Read Exemple
 
-connectDb("mongodb://localhost:27017/" + 'weeklyWeatherTable');
+connectDb("mongodb://localhost:27017/" + 'coordinatesTable');
 
-read(WeeklyWeather, () => {
+read(Coordinates, () => {
 	mongoose.disconnect();
 });

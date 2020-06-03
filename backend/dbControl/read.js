@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const connectDb = require("./connectDb"); // Database connection module
 const WeeklyWeather = require("../models/WeeklyWeather"); // Models
-
+const Coordinates = require('../models/Coordinates');
 // Console log all documents that match conditions from the collection.
 
 module.exports = function(model, callback){ // filter doc https://mongoosejs.com/docs/api.html#model_Model.find
