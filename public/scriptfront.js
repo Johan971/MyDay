@@ -58,12 +58,16 @@ function postReq(pathApi, obj){
 }
 
 
+function ChooseDate(timeStamp) {
+	let dayNameArray = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+	let monthDayArray = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
-function chooseDate(timeStamp) {
   this.ts =  timeStamp;
 	this.date = new Date(timeStamp*1000);
   this.dayNumber = this.date.getDate();		// number of the day
-	this.monthNumber = this.date.getMonth()+1;
+	this.monthName = monthDayArray[this.date.getMonth()];
+	this.dayName = dayNameArray[this.date.getDay()];
+	this.yearNumber = this.date.getFullYear();
 }
 
 
@@ -120,6 +124,10 @@ myAnchor.addEventListener("click",(event)=>{
     console.log(result);
     getReq('/api/vLille', (result) => {
       console.log(result);
+
+
+			var today = new ChooseDate(1591277045)  // test avec un timestamp fixe
+			console.log(today)
 
     });
   });
