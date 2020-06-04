@@ -1,0 +1,102 @@
+*{
+ 
+  box-sizing: border-box;
+  list-style: none;
+  font-family: "Montserrat",sans-serif;
+  --text-primary : #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary : #C633FF;
+  --bg-secondary: #141418;
+  font-size: 16px;
+}
+
+body{
+  color:white;
+  background-color: #16CF4E;
+  margin:0px;
+  padding:0px;
+}
+/*
+::-webkit-scrollbar{
+  width :1rem;
+}
+::-webkit-scrollbar-track{
+  background: #1e1e24;
+}
+::-webkit-scrollbar{
+  background: #6649b8;
+}*/
+
+.navbar{
+
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  min-height: 7vh;
+  background-color: #23232e;
+}
+
+.navbar-list{
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  width:100%;
+  list-style: none;
+  margin:auto;
+}
+
+.onglet{
+  color:white;
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-size: 30px;
+  transition: all 0.2s ease;
+}
+.onglet:hover{
+  color: #27ae60;
+  font-size: 35px;
+}
+
+
+.affiche{
+  display:block;
+}
+
+.non-affiche{
+  display:none;
+}
+.sousnavbar {
+  width : 7rem;
+  height : 100vh;
+  position : fixed;
+  background-color : var(--bg-primary);
+   list-style: none;
+  padding : 0;
+  margin : 0;
+  display : flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contenu{
+  margin-left: 7rem;
+  height: 93vh;
+  /*overflow: auto;*/
+}
+/*
+.app {
+    overflow: hidden;
+    height: 100vh;
+}*/
+
+.sousnavonglet{
+  list-style: none;
+  padding : 0;
+  margin : 0;
+  display : flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+.selected .sousnavlink{
+  color : red;
+}
