@@ -22,15 +22,28 @@ module.exports = {
                 }, function (error, response, resp) {
 
                     if (!error && response.statusCode === 200) {
-                        for(let i = 0; i < resp.records.length; i++) {
-                            if (resp.records[0].fields.etat === "EN SERVICE") {
-                                informationsArray.push({"Adresse ":  resp.records[i].fields.adresse, "Nombre de vélos disponibles": resp.records[i].fields.nbvelosdispo, "Nombre de places disponibles ":resp.records[i].fields.nbplacesdispo});
-                                //console.log("Adresse : " + resp.records[0].fields.adresse, "Nombre de vélos disponibles : " + resp.records[0].fields.nbvelosdispo, "Nombre de places disponibles : " + resp.records[0].fields.nbplacesdispo, "\n");
-                                result = new vLille({
-                                    activeStations: informationsArray
-                                })
+
+                        var result = [];
+                            
+                        for(const elt in resp.records){
+                            
+                            if (resp.records[elt].fields.etat === "EN SERVICE") {
+
+                                result.push(new vLille({
+                                    name: resp.records[elt].fields.nom,
+                                    adress: resp.records[elt].fields.adresse,
+                                    state: resp.records[elt].fields.etat,
+                                    bikeAvaliable: resp.records[elt].fields.nbvelosdispo,
+                                    slotAvaliable: resp.records[elt].fields.nbplacesdisp,
+                                    town: resp.records[elt].fields.commune,
+                                    lat: resp.records[elt].fields.localisation[0],
+                                    lon: resp.records[elt].fields.localisation[1],
+                                }));
                             }
+                            
                         }
+
+                        console.log(result)
                         // Create and fullfil the schema with infos
                         callback(result);
                     }

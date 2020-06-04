@@ -29,9 +29,7 @@ exports.storeCoordinates = function(req, res) {
 			for(const elt in result){
 				insert(result[elt], ()=>{
 					if(elt == 7){ 
-						read(WeeklyWeather, () => {
-							mongoose.disconnect();
-						});
+						mongoose.disconnect();
 					}
 				})
 			};

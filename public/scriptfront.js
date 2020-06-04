@@ -22,7 +22,6 @@ let lartDeLaGuerre=new livre("L'Art De La Guerre",322,"Sun Tzu")
 
 
 let tableau=["willy",12,lartDeLaGuerre]
-console.log(tableau.length)
 
 
 /*______________________FUNCTIONS_____________________________*/
@@ -54,6 +53,8 @@ function postReq(pathApi, obj){
     xhr.open("POST",pathApi, true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify(obj));
+
+    console.log("posted");
 }
 
 
@@ -112,12 +113,12 @@ var myAnchor= document.getElementById("Bouton")
 
 myAnchor.addEventListener("click",(event)=>{
 
-  getReq('/api/vLille', (result) => {
-    console.log(result);
-  });
-
   getReq('/api/weeklyWeather', (result) => {
     console.log(result);
+    getReq('/api/vLille', (result) => {
+      console.log(result);
+    });
   });
 
+  
 });
