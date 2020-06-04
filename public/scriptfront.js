@@ -58,9 +58,12 @@ function postReq(pathApi, obj){
 }
 
 
-function timeStampToDate(timeStamp){
-	var date = new Date(timeStamp*1000)
-	return Date
+
+function chooseDate(timeStamp) {
+  this.ts =  timeStamp;
+	this.date = new Date(timeStamp*1000);
+  this.dayNumber = this.date.getDate();		// number of the day
+	this.monthNumber = this.date.getMonth()+1;
 }
 
 
@@ -117,8 +120,9 @@ myAnchor.addEventListener("click",(event)=>{
     console.log(result);
     getReq('/api/vLille', (result) => {
       console.log(result);
+
     });
   });
 
-  
+
 });
