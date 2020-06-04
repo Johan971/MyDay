@@ -1,12 +1,4 @@
-API key:
-rolUl6pd4rgDrhiXslRLDV9TY
 
-API secret key:
-DiBNF8gvl2MJALPEdN6b6RWdltFP8u8OPJTbn2doPo3L57rG3Q
-
-Access token :1268637071830368256-TL9jhp9z3pEp5wb9u5RnVJbjW1Y4mJ
-
-Access token secret :H4IPVUU9RRUFBaccRfbfJPDJUcGvy496y9QrsI9v1Za5M
 
 
 ##Exemple 
