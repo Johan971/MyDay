@@ -22,6 +22,7 @@ exports.getVLille = function(req, res) {
 
                         vLille.find({}, (err, founded) => { //find and return all documents inside obj collection
                             if (err) throw err 
+                            
                             //console.log(founded)
                             res.json(founded);
                             mongoose.disconnect();

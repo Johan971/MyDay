@@ -32,10 +32,11 @@ function getReq(pathApi, callback){
 
     xhr.open("get",pathApi)
     xhr.send();
-
+    
+    
     xhr.onreadystatechange=(event)=>{
         if (xhr.readyState==4){
-            //console.log(xhr.response)
+            console.log(xhr.response)
             var data = JSON.parse(xhr.response);
 						callback(data);
 						///var date = new Date(jsonResponse[0]["timeStamp"]*1000) test date
@@ -116,6 +117,7 @@ var myAnchor= document.getElementById("Bouton")
 
 myAnchor.addEventListener("click",(event)=>{
 
+  /*
   getReq('/api/weeklyWeather', (result) => {
     console.log(result);
     getReq('/api/vLille', (result) => {
@@ -123,6 +125,9 @@ myAnchor.addEventListener("click",(event)=>{
 
     });
   });
+  */
+  getReq('/api/news')
+
 
 
 });

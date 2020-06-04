@@ -2,8 +2,13 @@ const mongoose = require("mongoose"); // Import mongoose library
 const Schema = mongoose.Schema // Define Schema method
 
 // Schema
-var NewsScheme = new Schema({ // Create Schema
-    news: Array
+var NewsScheme= new Schema({
+     source: String,
+     author: String,
+     title: String,
+     description: String,
+     content: String,
+     imageUrl:String,
 })
 
 // Model

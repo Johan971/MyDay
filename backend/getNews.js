@@ -22,15 +22,21 @@ module.exports = {
                 json: true
             }, function (error, response, resp) {
 
-                if (!error && response.statusCode === 200) {
+                if (!error && resp.status == "ok") {
+                    result=[]
                     for(let i = 0; i < resp.articles.length; i++) {
-                            informationArray.push("Provenance : " + resp.articles[i].source.name, "Date de parution : " + resp.articles[i].publishedAt , "Titre : " + resp.articles[i].title, "Description : " + resp.articles[i].description, "URL : " + resp.articles[i].url, "\n");
-                            result = new News({
-                                news: informationArray
-                            })
+                            result.push(new News({
+                                source: resp.articles[i].source.name,
+                                author: resp.articles[i].author,
+                                title: resp.articles[i].title,
+                                description: resp.articles[i].description,
+                                content: resp.articles[i].content,
+                                imageUrl:resp.articles[i].urlToImage,
+                            }))
                     }
-                    // Create and fulfill the schema with infos
-                    callback(result);
+
+                    console.log(result)
+                    callback(result)
                 }
             }
         );
