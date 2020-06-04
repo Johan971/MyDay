@@ -27,7 +27,7 @@ console.log(tableau.length)
 
 /*______________________FUNCTIONS_____________________________*/
 
-function getReq(pathApi){
+function getReq(pathApi, callback){
 
     var xhr = new XMLHttpRequest()
 
@@ -36,10 +36,9 @@ function getReq(pathApi){
 
     xhr.onreadystatechange=(event)=>{
         if (xhr.readyState==4){
-            //mettre dans la page
-						var data = xhr.responseText;
-						var jsonResponse = JSON.parse(data);
-						return jsonResponse;
+            //console.log(xhr.response)
+            var data = JSON.parse(xhr.response);
+						callback(data);
 						///var date = new Date(jsonResponse[0]["timeStamp"]*1000) test date
 						///console.log(date);
 
@@ -113,18 +112,12 @@ var myAnchor= document.getElementById("Bouton")
 
 myAnchor.addEventListener("click",(event)=>{
 
-	//2: modifier le html
-	//event.preventDefault()
+  getReq('/api/vLille', (result) => {
+    console.log(result);
+  });
 
-	getReq('/api/vLille')
+  getReq('/api/weeklyWeather', (result) => {
+    console.log(result);
+  });
 
-	//OUTIL DEBUG
-	/*
-	if (xhr.responseText==undefined) {
-		console.log("ok")
-	}
-	else if (xhr.responseText==""){
-		console.log("vide")
-	}
-	*/
-})
+});
