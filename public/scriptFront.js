@@ -151,18 +151,16 @@ document.getElementById("main").onclick = function (){
     console.log(result);
     getReq('/api/vLille', (result) => {
       console.log(result);
-
-
-      var today = new ChooseDate(1591277045) // test avec un timestamp fixe
-      console.log(today)
-
+      getReq('/api/news', (result) => {
+        console.log(result);
+        getReq('/api/kraken', (result) => {
+          console.log(result);
+        });
+      });
     });
   });
 
 }
-
-
-
 
 ///////////// Onglet gestion /////////////
 

@@ -19,7 +19,7 @@ date.setUTCHours(-4);
         var req = request({
             url: apiUrl,
             json: true
-        }, function(error, repsonse, resp) {
+        }, function(error, response, resp) {
             if(!error && response.statusCode === 200){
                 let apiResponseString = "X" + coinName.toUpperCase() + "Z" + fiatName.toUpperCase();
 
@@ -29,7 +29,7 @@ date.setUTCHours(-4);
     }
 
 
-exports.getKraken = function(){
+exports.getKraken = function(callback){
         getKrakenPrice("xbt","eur", (resp) => {
             let result = [];
             for(const elt in resp){
@@ -38,5 +38,6 @@ exports.getKraken = function(){
                     price: resp[elt][4]
                 }));
             }
+            callback(result);
         })
 }
