@@ -1,5 +1,6 @@
 const request = require('request');
 const queryString = require('querystring');
+const BTCPrice = require('./models/BTCPrice');
 
 let date = new Date();
 date.setMonth(2);
@@ -27,6 +28,15 @@ date.setUTCHours(-4);
         })
     }
 
-module.exports = {
-        
+
+exports.getKraken = function(){
+        getKrakenPrice("xbt","eur", (resp) => {
+            let result = [];
+            for(const elt in resp){
+                result.push(new BTCPrice({
+                    time: resp[elt][0],
+                    price: resp[elt][4]
+                }));
+            }
+        })
 }
