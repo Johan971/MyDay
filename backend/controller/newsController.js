@@ -14,12 +14,25 @@ exports.getNews = function(req, res) {
 
     
     connectDb();
-    remove(News, ()=>{
-    	newsApi.getNews((result) => {
-    	    result.forEach(elmnt=>insert(elmnt, ()=>{console.log("Inserted")}))
-    	})
-    })
-    
-    
 
+    newsApi.getNews((result) => {
+
+        remove(News, ()=>{
+
+            for (const elt in result) {
+                insert(result[elt], () => {
+                    if (elt == (result.length - 1)) { // once the insertion is over
+
+                        News.find({}, (err, founded) => { //find and return all documents inside obj collection
+                            if (err) throw err
+                            //console.log(founded)
+                            res.json(founded);
+                            mongoose.disconnect();
+                        });
+                    }
+                })
+            };
+        })
+    });
+    
 }

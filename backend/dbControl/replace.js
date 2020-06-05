@@ -12,9 +12,9 @@ const Coordinates = require('../models/Coordinates');
 module.exports= function(model, newObj, callback, filter = {}){ // filter have to select one obj
 	remove(model, () => {
 		insert(newObj, ()=>{
-			read(model, () =>{
+			//read(model, () =>{
 
-			});
+			//});
 		});
 	}, filter);
 }

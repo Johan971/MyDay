@@ -1,5 +1,6 @@
 const request = require('request');
 const queryString = require('querystring');
+const BTCPrice = require('./models/BTCPrice');
 
 let date = new Date();
 date.setMonth(2);
@@ -18,7 +19,7 @@ date.setUTCHours(-4);
         var req = request({
             url: apiUrl,
             json: true
-        }, function(error, repsonse, resp) {
+        }, function(error, response, resp) {
             if(!error && response.statusCode === 200){
                 let apiResponseString = "X" + coinName.toUpperCase() + "Z" + fiatName.toUpperCase();
 
@@ -27,6 +28,16 @@ date.setUTCHours(-4);
         })
     }
 
-module.exports = {
-        
+
+exports.getKraken = function(callback){
+        getKrakenPrice("xbt","eur", (resp) => {
+            let result = [];
+            for(const elt in resp){
+                result.push(new BTCPrice({
+                    time: resp[elt][0],
+                    price: resp[elt][4]
+                }));
+            }
+            callback(result);
+        })
 }
