@@ -80,13 +80,13 @@ body{
 .contenu{
   margin-left: 7rem;
   height: 93vh;
-  /*overflow: auto;*/
+  overflow: auto;
 }
-/*
+
 .app {
     overflow: hidden;
     height: 100vh;
-}*/
+}
 
 .sousnavonglet{
   list-style: none;

@@ -93,28 +93,28 @@ function getOffset( el ) {
     return { top: _y, left: _x };
 }
 
-
+/*
 var doc = document.documentElement;
 
 
 document.onscroll = function(){
-  var top = (window.pageYOffset||doc.scrollTop)  - (doc.clientTop || 0);
-  console.log(top);
-}
-
-document.onscroll = function(){
-  var content=document.getElementsByClassName('active')
-  var currentSection=content.classList[1]
+  var contentWindow=document.getElementsByClassName('affiche')
+  console.log(contentWindow);
+  var currentSection=contentWindow.classList[1]
+  onsole.log(currentWindow);
+  var listAttributs=Onglet[currentSection]
   var listPos=[]
-  for(var i=0;i<Onglet[currentSection].length;i++){
-    listPos
+  /*
+  for(var i=0;i<listAttributs.length;i++){
+    listPos=getOffset( document.getElementById(listAttributs[i]) ).top;
   }
+  console.log(listPos);
 
 
 
 
 
-}
+}*/
 
 
 /*
