@@ -93,10 +93,15 @@ function getOffset( el ) {
     return { top: _y, left: _x };
 }
 
+///////// Scroll Listener /////////
+
+function letsScroll(element) {
+  var top = element.scrollTop;
+  console.log(top);
+}
+
+
 /*
-var doc = document.documentElement;
-
-
 document.onscroll = function(){
   var contentWindow=document.getElementsByClassName('affiche')
   console.log(contentWindow);
@@ -110,10 +115,6 @@ document.onscroll = function(){
   }
   console.log(listPos);
 
-
-
-
-
 }*/
 
 
@@ -121,12 +122,15 @@ document.onscroll = function(){
 // changement d'onglet via scroll
 var doc = document.documentElement;
 document.onscroll = function(){
+
   //récupération des positions
   var PosTennis = getOffset( document.getElementById('tennis') ).top; 
   var PosBasket = getOffset( document.getElementById('basket') ).top; 
   var PosFoot = getOffset( document.getElementById('foot') ).top; 
+
   //récupération de la position de la barre de scroll
   var top = (window.pageYOffset||doc.scrollTop)  - (doc.clientTop || 0);
+
   //on établit quel onglet est actif en fonction de la position du scroll
   if (top<PosFoot&&top>PosBasket){
     var div = tabs[1].parentNode.parentNode.parentNode
