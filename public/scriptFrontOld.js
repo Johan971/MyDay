@@ -24,7 +24,7 @@ let lartDeLaGuerre=new livre("L'Art De La Guerre",322,"Sun Tzu")
 let tableau=["willy",12,lartDeLaGuerre]
 
 
-/*______________________FUNCTIONS_____________________________*/
+/*______________________REQUEST FUNCTIONS_____________________________*/
 
 function getReq(pathApi, callback){
 
@@ -121,7 +121,7 @@ var myAnchor= document.getElementById("Bouton")
 
 myAnchor.addEventListener("click",(event)=>{
 
-  /*
+  
   getReq('/api/weeklyWeather', (result) => {
     console.log(result);
     getReq('/api/vLille', (result) => {
@@ -133,8 +133,8 @@ myAnchor.addEventListener("click",(event)=>{
 
     });
   });
-  */
-  getReq('/api/news')
+  
+  //getReq('/api/news')
 
 
 

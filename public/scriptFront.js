@@ -30,6 +30,141 @@ const tableauLiens = document.querySelectorAll(".navbar-list li a");        //On
 const tableauDivs = document.querySelectorAll(".tab-div");        //On recupere toutes les <div> qui contiennent les <p> à afficher dans une liste
 //console.log(tableauDivs);
 
+function ChooseDate(timeStamp) {
+  let dayNameArray = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+  let monthDayArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+  this.ts = timeStamp;
+  this.date = new Date(timeStamp * 1000);
+  this.dayNumber = this.date.getDate(); // number of the day
+  this.monthName = monthDayArray[this.date.getMonth()];
+  this.dayName = dayNameArray[this.date.getDay()];
+  this.yearNumber = this.date.getFullYear();
+}
+
+
+function showWeather() {
+  var todayDate = timeStampToDate(jsonResponse[0]["timeStamp"]);
+  var todayTemp = jsonResponse[0]["temp"]["day"];
+  var todayDes = jsonResponse[0]["temp"]["description"];
+}
+
+
+/*______________________REQUEST FUNCTIONS_____________________________*/
+
+function getReq(pathApi, callback) {
+
+  var xhr = new XMLHttpRequest()
+
+  xhr.open("get", pathApi)
+  xhr.send();
+
+
+  xhr.onreadystatechange = (event) => {
+    if (xhr.readyState == 4) {
+      //console.log(xhr.response)
+      var data = JSON.parse(xhr.response);
+      callback(data);
+      ///var date = new Date(jsonResponse[0]["timeStamp"]*1000) test date
+      ///console.log(date);
+
+    }
+  }
+}
+
+function postReq(pathApi, obj) {
+
+  var xhr = new XMLHttpRequest();
+
+  xhr.open("POST", pathApi, true);
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhr.send(JSON.stringify(obj));
+
+  console.log("posted");
+}
+
+
+/*____________________________________________________________________*/
+
+
+//recupération de la position de l'élement el
+function getOffset(el) {
+  var _x = 0;
+  var _y = 0;
+  while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+    _x += el.offsetLeft - el.scrollLeft;
+    _y += el.offsetTop - el.scrollTop;
+    el = el.offsetParent;
+  }
+  return {
+    top: _y,
+    left: _x
+  };
+}
+
+///////// Scroll Listener /////////
+
+function letsScroll(element) {
+  var top = element.scrollTop;
+  console.log(top);
+}
+
+
+
+//----------------------------------------------------//
+//                 GEOLOCALISATION                    //
+//----------------------------------------------------//
+
+
+window.onload = function () {
+
+  var startPos;
+
+  var geoOptions = {
+    enableHighAccuracy: true
+  }
+
+  var geoSuccess = function (position) {
+
+    // Do magic with location
+    startPos = position;
+
+    let coord = {
+      lat: startPos.coords.latitude,
+      lon: startPos.coords.longitude
+    };
+
+    postReq("/api/coordinates", coord);
+  };
+
+  var geoError = function (error) {
+    console.log(error);
+  };
+
+  navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+
+};
+
+document.getElementById("main").onclick = function (){
+
+  getReq('/api/weeklyWeather', (result) => {
+    console.log(result);
+    getReq('/api/vLille', (result) => {
+      console.log(result);
+
+
+      var today = new ChooseDate(1591277045) // test avec un timestamp fixe
+      console.log(today)
+
+    });
+  });
+
+}
+
+
+
+
+///////////// Onglet gestion /////////////
 
 for (let liens of tableauLiens){                                  //On boucle dans la liste des <li>
 
@@ -81,24 +216,6 @@ for (let liens of tableauLiens){                                  //On boucle da
 
 }
 
-//recupération de la position de l'élement el
-function getOffset( el ) {
-    var _x = 0;
-    var _y = 0;
-    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
-        _x += el.offsetLeft - el.scrollLeft;
-        _y += el.offsetTop - el.scrollTop;
-        el = el.offsetParent;
-    }
-    return { top: _y, left: _x };
-}
-
-///////// Scroll Listener /////////
-
-function letsScroll(element) {
-  var top = element.scrollTop;
-  console.log(top);
-}
 
 
 /*
