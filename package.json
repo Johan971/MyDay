@@ -13,6 +13,8 @@
     "express": "^4.17.1",
     "mkcert": "^1.2.0",
     "mongoose": "^5.9.16",
+    "passport": "^0.4.1",
+    "passport-twitter": "^1.0.4",
     "path": "^0.12.7",
     "request": "^2.88.2",
     "twit": "^2.2.11"
