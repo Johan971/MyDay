@@ -10,6 +10,11 @@
   font-size: 16px;
 }
 
+
+html{
+  scroll-behavior: smooth;
+}
+
 body{
   color:white;
   background-color: #16CF4E;
@@ -59,7 +64,8 @@ body{
 
 
 .affiche{
-  display:block;
+  display:flex;
+  flex-wrap: wrap;
 }
 
 .non-affiche{
@@ -99,4 +105,25 @@ body{
 }
 .selected .sousnavlink{
   color : red;
+}
+
+
+
+.zone{
+  display:flex;
+  width:400px;
+  height:500px;
+  color:white;
+  background-color: black;
+  margin:20px;
+  transition: 0.5s;
+  overflow:hidden;
+  /*min-width: 0px;*/
+}
+
+
+.large{
+  width:600px;
+  height:700px;
+  background-color: green;
 }

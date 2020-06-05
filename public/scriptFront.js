@@ -29,6 +29,7 @@ const tableauLiens = document.querySelectorAll(".navbar-list li a");        //On
 
 const tableauDivs = document.querySelectorAll(".tab-div");        //On recupere toutes les <div> qui contiennent les <p> à afficher dans une liste
 //console.log(tableauDivs);
+let zoneEltList = document.getElementsByClassName("zone")// récupartion d'une liste constituée de tous les élements "zone"
 
 function ChooseDate(timeStamp) {
   let dayNameArray = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -103,11 +104,22 @@ function getOffset(el) {
 }
 
 ///////// Scroll Listener /////////
-
+/*
 function letsScroll(element) {
   var top = element.scrollTop;
+  var contentWindow=document.getElementsByClassName('affiche')
+  console.log(contentWindow);
+  var currentSection=contentWindow.classList[1]
+  onsole.log(currentWindow);
+  var listAttributs=Onglet[currentSection]
+  var listPos=[]
+  for(var i=0;i<listAttributs.length;i++){
+    listPos=getOffset( document.getElementById(listAttributs[i]) ).top;
+  }
+  console.log(listPos);
+
   console.log(top);
-}
+}*/
 
 
 
@@ -285,5 +297,21 @@ document.onscroll = function(){
 };*/
 
 
+////////AGRANDISSEMENT DES BLOCS///////////////
 
 
+for (let zoneElt of zoneEltList){
+  zoneElt.onclick = function(){
+    let childFullview = this.getElementsByClassName(this.id+" fullview")[0]
+    if (this.classList.contains("large")===false){
+      this.classList.add("large")
+      let self=this
+      setTimeout(function(){self.scrollIntoView({block:"start"})},500)
+      childFullview.style.display = "block"
+    }
+    else{
+      this.classList.remove("large")
+      childFullview.style.display ="none"
+    }
+  }
+}
