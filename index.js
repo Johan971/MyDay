@@ -18,12 +18,14 @@ const vLilleApi = require("./backend/getAvailableVLille");
 const coordinatesApi = require("./backend/getCoordinates");
 const newsApi = require("./backend/getNews");
 
+
 					///// Routes /////
 const dailyWeatherRoutes = require('./backend/routes/weeklyWeatherRoutes');
 const vLilleRoutes = require('./backend/routes/vLilleRoutes');
 const coordinatesRoutes = require('./backend/routes/coordinatesRoutes');
 const newsRoutes = require('./backend/routes/newsRoutes');
 const krakenRoutes = require('./backend/routes/krakenRoutes');
+//const twitterRoutes = require('./backend/routes/twitterRoutes')
 
 					///// Models /////
 const WeeklyWeather = require("./backend/models/WeeklyWeather"); // Models module
@@ -31,6 +33,7 @@ const vLille = require("./backend/models/vLille"); //Coordinates model
 const Coordinates = require("./backend/models/Coordinates");
 const News = require("./backend/models/News");
 const BTCPrice = require("./backend/models/BTCPrice");
+
 
 
 const app = express();
@@ -48,11 +51,13 @@ app.use("/",express.static(__dirname+"/public"))
 app.use("/",routeur)
 
 
+
 dailyWeatherRoutes(app);
 vLilleRoutes(app);
 coordinatesRoutes(app);
 newsRoutes(app);
 krakenRoutes(app);
+//twitterRoutes(app)
 
 app.listen(4200, console.log('Listening on port 4200...')); // Starting the server on port 4200
 

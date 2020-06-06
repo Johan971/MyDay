@@ -7,6 +7,20 @@ module.exports = function(app){
 
     const twitterController = require('../controller/twitterController');
 
-    app.route('/api/twitter').post(twitterController.XXXXX);
 
-};
+    
+    app.get('/auth/twitter', passport.authenticate('twitter')
+    
+    /*app.get('/auth/twitter/callback',
+      passport.authenticate('twitter', { successRedirect: '/',
+                                         failureRedirect: '/login' }),
+      function(req,res){
+      	console.log("succesful authentication",res) //rres.JSON
+
+      }*/
+
+      )
+    app.get(twitterController.newGet)
+
+
+}
