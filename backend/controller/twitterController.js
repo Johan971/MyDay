@@ -15,7 +15,7 @@ exports.newGet = function(req, res) {
 	//connectDb()
 
     twitterApi.newGet((result)=>{
-    	console.log("test: "result)
+    	console.log("test: ",result)
 		
     })
 

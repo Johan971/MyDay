@@ -11,12 +11,12 @@ const Strategy = require('passport-twitter').Strategy //Oauth Authentication
 //////// WARNING : This is an asyc function working with callback ////////
 // For more infos/understanding : https://stackoverflow.com/questions/14220321/how-do-i-return-the-response-from-an-asynchronous-call
 
-const APIkey= "HV3fo4SNlBMjAqGI1V1kBE1S5"
-const APIkeySecret= "guFQt6rLGaTU10WQyj4DEtFLuTfazTzeH13HFMOK8Bhqi9QnSz"
+const APIkey= ""
+const APIkeySecret= ""
 
 
-const AccessToken ="1268637071830368256-h2mG0MxjT8W4ClPUbJk0V9Xb3diLVj"
-const AccessTokenSecret ="W5TaWNSa09XEplbqPfNBsB3oiAmiH88RxbNdefAAiGaKC"
+const AccessToken ="-"
+const AccessTokenSecret =""
 
 
 const Newget = ()=>{
@@ -58,12 +58,12 @@ const Newget = ()=>{
 
 
             passport.use(new Strategy({
-                consumerKey: process.env['yyIH7chOXkPBRcZMovk8CoWR1'],
-                consumerSecret: process.env['PPXjGjxN3zOg3aNLod6b0NDV4kEzvGRNkbVsnhRIDhJx7G5sbc'],
+                consumerKey: process.env[''],
+                consumerSecret: process.env[''],
                 callbackURL: 'http://localhost:4200/auth/twitter/callback', //Either del callback
                 proxy: trustProxy
             },
-            function(token='1268637071830368256-JOxjrhQoF8zDSqZzlVV3dRXamkcSK7', tokenSecret='BDnko3cSPVH8MrZjvVPRnHuhrM51INlQC5s1uoHccNBr8', profile, cb) {
+            function(token='', tokenSecret='', profile, cb) {
 
                 User.findOrCreate(..., function(err, user) {
                       if (err) { return done(err); }

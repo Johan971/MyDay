@@ -1,4 +1,4 @@
-const passport=resquire('passport')
+const passport=require('passport')
 var Strategy = require('passport-twitter').Strategy
 
 
