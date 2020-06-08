@@ -2,10 +2,9 @@
 const mongoose = require('mongoose');
 const connectDb = require("../dbControl/connectDb");
 const EuronextIndexInformation = require('../models/EuronextIndexInformation');
-const EuronextIndexInformationApi = require("../getEuronextInformation");
+const EuronextIndexInformationApi = require("../getEuronextIndexInformation");
 
 exports.getEuronextIndexInformation = function(req, res) {
-
 
     connectDb();
 

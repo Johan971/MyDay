@@ -17,7 +17,7 @@ const dailyWeatherApi = require("./backend/getWeeklyWeather");
 const vLilleApi = require("./backend/getAvailableVLille");
 const coordinatesApi = require("./backend/getCoordinates");
 const newsApi = require("./backend/getNews");
-const EuronextIndexInformationApi = require("./backend/getEuronextInformation");
+const EuronextIndexInformationApi = require("./backend/getEuronextIndexInformation");
 
 
 
@@ -61,7 +61,7 @@ coordinatesRoutes(app);
 newsRoutes(app);
 krakenRoutes(app);
 //twitterRoutes(app);
-//EuronextIndexInformationRoutes(app);
+EuronextIndexInformationRoutes(app);
 
 app.listen(4200, console.log('Listening on port 4200...')); // Starting the server on port 4200
 

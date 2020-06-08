@@ -1,8 +1,8 @@
 
 module.exports = function(app){
 
-    const EuronextIndexInformationController = require('./EuronextIndexInformationRoutes');
+    const EuronextIndexInformationController = require('../controller/EuronextIndexInformationController');
 
-    app.route('/api/EuronextIndexInformation').get(EuronextIndexInformationController.getEuronextIndexInformation());
+    app.route('/api/EuronextIndexInformation').get(EuronextIndexInformationController.getEuronextIndexInformation);
 
 };
