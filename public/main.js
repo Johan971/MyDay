@@ -5,10 +5,10 @@
 window.onload = function () {
 
   var startPos;
-  
+
   var geoOptions = {
     enableHighAccuracy: true
-    
+
   }
 
   var geoSuccess = function (position) {
@@ -47,12 +47,10 @@ document.getElementById("main").onclick = function (){
       });
     });
   });
-  
+
 }
 
 
 
-navbarController()
-
-
-
+startBar()
+startZone()

@@ -1,4 +1,3 @@
-
 var Onglet={
   media : ['Twitter','Facebook','LeTelegrame'],
   sport : ['Tennis','Basket','Foot'],
@@ -109,9 +108,9 @@ var doc = document.documentElement;
 document.onscroll = function(){
 
   //récupération des positions
-  var PosTennis = getOffset( document.getElementById('tennis') ).top; 
-  var PosBasket = getOffset( document.getElementById('basket') ).top; 
-  var PosFoot = getOffset( document.getElementById('foot') ).top; 
+  var PosTennis = getOffset( document.getElementById('tennis') ).top;
+  var PosBasket = getOffset( document.getElementById('basket') ).top;
+  var PosFoot = getOffset( document.getElementById('foot') ).top;
 
   //récupération de la position de la barre de scroll
   var top = (window.pageYOffset||doc.scrollTop)  - (doc.clientTop || 0);
@@ -127,7 +126,7 @@ document.onscroll = function(){
     div.querySelector('.tabs .active').classList.remove('active')
     li.classList.add('active')
     console.log(li.classList)
-  
+
   }else if(top>PosBasket){
     var div = tabs[2].parentNode.parentNode.parentNode
     var li = tabs[2].parentNode
@@ -149,21 +148,28 @@ document.onscroll = function(){
     li.classList.add('active')
     console.log(li.classList)
   }
-  
+
 };*/
 
 ///////////// Onglet gestion /////////////
-
-function navbarController(){
+function startBar(){
+  // changement dans la navbar principal et affichage des contenus ( texte/module et sousnav) :
+  const tableauLiens = document.querySelectorAll("#tabbar-list li a");        //On recupere tous les <a> dans les <li> dans une liste
+  //console.log(tableauLiens);
+  const tableauDivs = document.querySelectorAll(".tab-div");        //On recupere toutes les <div> qui contiennent les <p> à afficher dans une liste
+  //console.log(tableauDivs);
   for (let liens of tableauLiens){                                  //On boucle dans la liste des <li>
 
     liens.addEventListener("click",function(event){                 //On regarde si on clique sur liens <a>
       event.preventDefault();
-      
-      let nomClasse = liens.parentNode.getAttribute("id");          //On recupere l'id du parent du <a> (soit le <li>) et on le stocke dans une variable                                     //A savoir que l'id des <li> correpond a un nom de classe dans les <div>
+
+      let nomClasse = liens.parentNode.getAttribute("id");          //On recupere l'id du parent du <a> (soit le <li>) et on le stocke dans une variable
+      console.log(nomClasse);                                       //A savoir que l'id des <li> correpond a un nom de classe dans les <div>
 
       let divActive = document.getElementsByClassName(nomClasse)[0];  //On recupere donc la div en fonction de son nom de classe (qui est nomClasse)
-      
+
+      console.log(tableauDivs);
+      console.log(divActive.classList)
       if(divActive.classList[2]=="non-affiche"){                     //On regarde déja si la <div> n'est pas déja affiche grâce à son 3e nom de classe (soit non-affiche soit affiche)
 
         console.log("Cette div n'est pas encore affichée");
@@ -177,33 +183,32 @@ function navbarController(){
         divActive.classList.add("affiche");                          //On lui met une classe affiche
 
         // gestion de la sous barre de navigation :
-       
-        let sousNavbar=document.querySelectorAll(".sousnavonglet")
-        
-        var ecritureOnglet=""
-        var ecritureOngletComplet=""
+        let sidebarElt=document.getElementById("sidebar-list")
+        let ecritureOnglet=""
+        let ecritureOngletComplet=""
         for(var i=0;i<Onglet[nomClasse].length;i++){
+        let classSelectValue
           if(i==0){
-            ecritureOnglet="<li  class=\"selected\"><a onclick='onclickNavbar(this)'' class='sousnavlink' href=\'#"+Onglet[nomClasse][i]+"\'</a>"+Onglet[nomClasse][i]+"</li>"
-          }else{
-            ecritureOnglet="<li class=\"no-selected\"><a onclick='onclickNavbar(this)' class='sousnavlink' href=\'#"+Onglet[nomClasse][i]+"\'</a>"+Onglet[nomClasse][i]+"</li>"
+            classSelectValue="'selected'"
           }
-         ecritureOngletComplet=ecritureOngletComplet+ecritureOnglet
+          else{
+            classSelectValue="'no-selected'"
+          }
+          ecritureOnglet="<li class="+classSelectValue+"><a onclick='onclickNavbar(this)' class='sousnavlink' href=\'#"+Onglet[nomClasse][i]+"\'</a>"+Onglet[nomClasse][i]+"</li>"
+          ecritureOngletComplet+=ecritureOnglet
         }
-
-        sousNavbar[0].innerHTML=ecritureOngletComplet
+        sidebarElt.innerHTML=ecritureOngletComplet
       }
       else{
         console.log("La div est déja affichée");
-
       }
-
     })
-
   }
+}
 
-  ////////AGRANDISSEMENT DES BLOCS///////////////
-
+////////AGRANDISSEMENT DES BLOCS///////////////
+function startZone(){
+  let zoneEltList = document.getElementsByClassName("zone")// récupartion d'une liste constituée de tous les élements "zone"
   for (let zoneElt of zoneEltList){
     zoneElt.onclick = function(){
       let childFullview = this.getElementsByClassName(this.id+" fullview")[0]
