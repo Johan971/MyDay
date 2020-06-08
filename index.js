@@ -60,8 +60,8 @@ vLilleRoutes(app);
 coordinatesRoutes(app);
 newsRoutes(app);
 krakenRoutes(app);
-twitterRoutes(app);
-EuronextIndexInformationRoutes(app);
+//twitterRoutes(app);
+//EuronextIndexInformationRoutes(app);
 
 app.listen(4200, console.log('Listening on port 4200...')); // Starting the server on port 4200
 
