@@ -37,3 +37,14 @@ exports.storeCoordinates = function(req, res) {
     });
 
 };
+
+exports.getCoordinates = function (req, res) {
+
+	connectDb();
+
+	Coordinates.find({}, (err, founded) => { //find and return all documents inside obj collection
+		if (err) throw err // error handling
+		res.json(founded);
+	});
+
+};

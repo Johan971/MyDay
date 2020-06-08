@@ -19,8 +19,6 @@ function showWeather() {
 }
 
 
-
-
 function afficheMeteo() {
   var tabMeteo=[]
   console.log("execute")

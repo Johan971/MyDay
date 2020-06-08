@@ -42,7 +42,6 @@ document.getElementById("main").onclick = function (){
         console.log(result);
         getReq('/api/kraken', (result) => {
           console.log(result);
-          afficheMeteo();
         });
       });
     });
