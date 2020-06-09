@@ -26,7 +26,7 @@ document.getElementById("media").onclick = function(){
 
 
 			
-			descriptionArtcicle=document.createElement("h2")//titre preView
+			descriptionArtcicle=document.createElement("p")//titre preView
 			descriptionArtcicle.appendChild(document.createTextNode(tabNews[i].description))
 			preView[0].appendChild(descriptionArtcicle)
 

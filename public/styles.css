@@ -10,8 +10,8 @@
 }
 
 body{
-  color:white;
-  background-color: #16CF4E;
+  color: white;
+  background-color: #52528C;
   margin:0px;
   padding:0px;
 }
@@ -20,13 +20,41 @@ body{
   overflow: hidden;
   height: 100vh;
 }
-
 #contenu{
-  margin-left: 7rem;
+  margin-left: 10rem;
   height: 93vh;
   overflow: auto;
   scroll-behavior: smooth;
 }
+
+/*apparence de la scrollbar*/
+#contenu::-webkit-scrollbar{
+  width:10px;
+  background-color:#52528C;
+}
+
+#contenu::-webkit-scrollbar-thumb{
+  background-color:#27ae60;
+  border-radius: 4px;
+
+}
+
+#contenu::-webkit-scrollbar-thumb:hover{ 
+  background-color:#BF4649;
+  border:0.5px solid #333333;
+}
+
+#contenu::-webkit-scrollbar-thumb:active{
+  background-color:#A6393D;
+  border:0.5px solid #333333;
+}
+/*
+#contenu::-webkit-scrollbar-track{
+  border:1px gray solid;
+  border-radius:10px;
+  -webkit-box-shadow:0 0 6px gray inset;
+}*/
+
 
 #tabbar{
   display:flex;
@@ -44,39 +72,6 @@ body{
   list-style: none;
   margin:auto;
 }
-
-#sidebar{
-  width : 7rem;
-  height : 100vh;
-  position : fixed;
-  background-color : var(--bg-primary);
-  list-style: none;
-  padding : 0;
-  margin : 0;
-  display : flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#sidebar-list{
-  list-style: none;
-  padding : 0;
-  margin : 0;
-  display : flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/*
-::-webkit-scrollbar{
-  width :1rem;
-}
-::-webkit-scrollbar-track{
-  background: #1e1e24;
-}
-::-webkit-scrollbar{
-  background: #6649b8;
-}*/
 
 .onglet{
   color:white;
@@ -100,29 +95,107 @@ body{
   display:none;
 }
 
+/* texte sidebar*/
 .selected .sousnavlink{
-  color : red;
+   font-size: 20px;
+   color :#27ae60;
 }
+
+.sousnavlink  {
+  letter-spacing: 2px;
+  color: white;
+  padding: auto;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  /*transition: all 0.2s ease;*/
+}
+
+.sousnavlink:hover{
+  color :#27ae60;
+  cursor: pointer;
+  font-size: 20px;
+}
+/* apparance sidebar*/
+#sidebar{
+  width : 10rem;
+  height : 100vh;
+  position : fixed;
+  background-color : #372554;
+  list-style: none;
+  padding : 0;
+  margin : 0;
+  display : flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#sidebar-list{
+  list-style: none;
+  padding : 0;
+  margin : 0;
+  display : flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* apparence zone*/
 
 .zone{
-  width:400px;
+  width:375px;
   height:500px;
   color:white;
-  background-color: black;
-  margin:20px;
+  background-color: #7C9EB2;
+  margin: 20px;
+  border-radius:5px;
   transition: 0.5s;
   overflow:auto;
-  /*min-width: 0px;*/
+  min-width: 0px;
+  border: 2px blue dashed;
 }
+.zone:hover{
+  border: 2px red solid;
+}
+.zone::-webkit-scrollbar{
+  width:10px;
+  background-color:#52528C;
 
+}
+/*ecart du texte par rapport au bord de la zone*/
+.preview{
+  margin : 4px;
+}
+.fullview{
+  margin :4px;
+}
+/*élargissement de la zone sur click*/
 .large{
   width:600px;
   height:700px;
-  background-color: blue;
+  background-color: #7C9EB2;
 }
 
+/*image des arcticles dans l'onglet media*/
 .imgArcticle{
+  margin:0;
   width: 100%;
   height: auto;
   object-fit: cover;
+}
+
+/* scroll bar de la zone*/
+.zone::-webkit-scrollbar-thumb{
+  background-color:#27ae60;
+  border-radius: 4px;
+
+}
+
+.zone::-webkit-scrollbar-thumb:hover{ 
+  background-color:#BF4649;
+  border:0.5px solid #333333;
+}
+
+.zone::-webkit-scrollbar-thumb:active{
+  background-color:#A6393D;
+  border:0.5px solid #333333;
 }
