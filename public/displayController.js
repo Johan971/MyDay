@@ -166,12 +166,11 @@ function startBar(){
       event.preventDefault();
 
       let nomClasse = liens.parentNode.getAttribute("id");          //On recupere l'id du parent du <a> (soit le <li>) et on le stocke dans une variable
-      console.log(nomClasse);                                       //A savoir que l'id des <li> correpond a un nom de classe dans les <div>
+                                         //A savoir que l'id des <li> correpond a un nom de classe dans les <div>
 
       let divActive = document.getElementsByClassName(nomClasse)[0];  //On recupere donc la div en fonction de son nom de classe (qui est nomClasse)
 
-      console.log(tableauDivs);
-      console.log(divActive.classList)
+  
       if(divActive.classList[2]=="non-affiche"){                     //On regarde déja si la <div> n'est pas déja affiche grâce à son 3e nom de classe (soit non-affiche soit affiche)
 
         console.log("Cette div n'est pas encore affichée");
@@ -240,12 +239,10 @@ function addNewzone(currentTab,numZone){// condition : à lancer avant startZone
   var selecZone=".zone."+className
 
   var allZone= document.querySelectorAll(selecZone)
-  console.log(allZone)
 
   var tabElement=[]
 
   for (var i=0;i<numZone;i++){
-    console.log(i)
     var zoneNumber=allZone.length+i+1;
     var focusTab=document.querySelector(".media")
     
@@ -269,7 +266,6 @@ function addNewzone(currentTab,numZone){// condition : à lancer avant startZone
     tabElement.push(myDivzone)
     }
     startZone()
-    console.log('Les élements ajoutés sont :')
     return(tabElement)
 }
 

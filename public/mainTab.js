@@ -21,22 +21,6 @@ function showWeather() {
 
 
 
-function afficheMeteo() {
-  var tabMeteo=[]
-  console.log("execute")
-  getReq('/api/weeklyWeather', (result) => {
-  	tabMeteo=result;
-  	console.log(tabMeteo)
-  	for(var i=0; i<tabMeteo.length;i++){
-    console.log("les différentes infos de l'élement"+i+" sont :")
-    console.log(new ChooseDate(tabMeteo[i].timeStamp).dayName);
-  	}
-  })
-  var zoneMain=document.querySelectorAll(".zone.main")
-  console.log(zoneMain[0])
-  
-}
-
 
 
 
