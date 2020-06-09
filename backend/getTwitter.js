@@ -9,12 +9,12 @@ const Trend = require("./models/Trends");
 //////// WARNING : This is an asyc function working with callback ////////
 // For more infos/understanding : https://stackoverflow.com/questions/14220321/how-do-i-return-the-response-from-an-asynchronous-call
 
-const APIkey= "DOR85Agow5sRC351uB59RD615"
-const APIkeySecret= "R3R54xtQ5YVF1e2ik35rUdAAMSUmjSSUUXjL84Kwm7IZqzvEYB"
+const APIkey= "Uszcu6clBx7Om95C8nJQ94icS"
+const APIkeySecret= "R4ei263Y2Dj3vyIuQvhg7ICT8G1pTV3iLzwC25BSXWCDOYs2iN"
 
 
-const AccessToken ="1268637071830368256-Lqb8poJGDvbzb1zyYkbaPAt8ouHbxe"
-const AccessTokenSecret ="IDdmVX6FuO692Gm3pw2bN54dGpKYe3lwDEGWw0plFbrny"
+const AccessToken ="1268637071830368256-yEzJv5kmPLdplBBuzA2zunK4f7T6Ai"
+const AccessTokenSecret ="LboSKv85opYuiut7diwZixfBF6GBUnmxLSOSnUBAKNI8G"
 
 	//======================Authentication
 	// Configure the Twitter strategy for use by Passport.
@@ -127,6 +127,7 @@ module.exports ={
 								if(data[0].trends[f]==undefined){
 									break
 								}
+								
 								else{
 									//console.log(data[0].trends[f].name)
 									result.push(new Trend({
