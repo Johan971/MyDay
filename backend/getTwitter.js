@@ -1,102 +1,154 @@
-const request = require('request')
-const querystring = require('querystring')
-const News = require("./models/News")
-const jwt = require ('jsonwebtoken')
-const fetch = require('node-fetch')
+const mongoose = require("mongoose"); // Import mongoose library
+const read=require('./dbControl/read')
+const connectdB=require('./dbControl/connectDb')
 const Twit= require('twit')
-const passport = require('passport')
-const Strategy = require('passport-twitter').Strategy //Oauth Authentication
-
+const coordinates=require('./models/Coordinates')
+const geolib=require('geolib')
+const Trend = require("./models/Trends");
 
 //////// WARNING : This is an asyc function working with callback ////////
 // For more infos/understanding : https://stackoverflow.com/questions/14220321/how-do-i-return-the-response-from-an-asynchronous-call
 
-const APIkey= ""
-const APIkeySecret= ""
+const APIkey= "DOR85Agow5sRC351uB59RD615"
+const APIkeySecret= "R3R54xtQ5YVF1e2ik35rUdAAMSUmjSSUUXjL84Kwm7IZqzvEYB"
 
 
-const AccessToken ="-"
-const AccessTokenSecret =""
+const AccessToken ="1268637071830368256-Lqb8poJGDvbzb1zyYkbaPAt8ouHbxe"
+const AccessTokenSecret ="IDdmVX6FuO692Gm3pw2bN54dGpKYe3lwDEGWw0plFbrny"
+
+	//======================Authentication
+	// Configure the Twitter strategy for use by Passport.
+	//
+	// OAuth 1.0-based strategies require a `verify` function which receives the
+	// credentials (`token` and `tokenSecret`) for accessing the Twitter API on the
+	// user's behalf, alon with the user's profile.  The function must invoke `cb`
+	// with a user object, which will be set at `req.user` in route handlers after
+	// authentication.
+// Newget()
 
 
-const Newget = ()=>{
-
-    var trustProxy = false;
-    if (process.env.DYNO) {
-      // Apps on heroku are behind a trusted proxy
-      trustProxy = true;
-  }
-
-    /*        TWIT = API WAPPER
-    const T = new Twit({
-        consumer_key: APIkey,
-        consumer_secret: APIkeySecret,
-        access_token: AccessToken,
-        access_token_secret: AccessTokenSecret,
-    })
-    
-    T.get('/search/tweets',{q: '#maco since:2020-04-15',count:1000}, (err,data,response)=>{
-        console.log(data)
-    })*/
+module.exports ={
 
 
-    //======================Authentication
-    // Configure the Twitter strategy for use by Passport.
-    //
-    // OAuth 1.0-based strategies require a `verify` function which receives the
-    // credentials (`token` and `tokenSecret`) for accessing the Twitter API on the
-    // user's behalf, along with the user's profile.  The function must invoke `cb`
-    // with a user object, which will be set at `req.user` in route handlers after
-    // authentication.
+	newGet: (callback) => {
+		//var result=[]
+
+
+		const T = new Twit({
+			consumer_key: APIkey,
+			consumer_secret: APIkeySecret,
+			access_token: AccessToken,
+			access_token_secret: AccessTokenSecret,
+		})
+
+		const WOEIDs=[ {"name":"Lille","WOEID":608105,"lat":50.636227,"lon":3.075033} , {"name":"Lyon","WOEID":609125,"lat":45.746696,"lon":4.876320} ,{ "name":"Marseille","WOEID":610264,"lat":43.310077,"lon":5.370266} , {"name":"Montpellier","WOEID":612977,"lat":43.607995,"lon":3.881624} , {"name":"Nantes","WOEID":613858,"lat":47.218475,"lon":-1.554084} , {"name":"Paris","WOEID":615702,"lat":48.863356,"lon":2.343813} , {"name":"Rennes","WOEID":619163,"lat":48.108388,"lon":-1.679420} , {"name":"Strasbourg","WOEID":627791,"lat":48.577370,"lon":7.750068} , {"name":"Toulouse","WOEID":628886,"lat":43.602645,"lon":1.440712} ]
+
+		/*==========================Recherche coordonnées BDD===========================*/
+
+		connectdB()
+		var tabDistance=[]
+		var founde
+		
+		const lectureBDD=(succ,rej)=>{      //Cette fonction sors les coordonnées nécéssaire à l'affichage 
+			
+			coordinates.find((err,founded)=>{
+
+				if(err) rej (err) // error handling
+
+
+				if  (founded) {
+			
+					
+					succ(founded)
+				}
+
+
+				else {
+					console.log("pas de coordonnées")
+					succ({_id:"012d",lat:48.863356,lon:2.343813})
+				}
+
+			})
+				//mongoose.disconnect()
+			
+		}
 
 
 
-    module.exports = {
-
-
-        newGet: (callback) => {
-
-
-            passport.use(new Strategy({
-                consumerKey: process.env[''],
-                consumerSecret: process.env[''],
-                callbackURL: 'http://localhost:4200/auth/twitter/callback', //Either del callback
-                proxy: trustProxy
-            },
-            function(token='', tokenSecret='', profile, cb) {
-
-                User.findOrCreate(..., function(err, user) {
-                      if (err) { return done(err); }
-                      done(null, user);
-                })
-                console.log(profile)
-
-                /*
-                const body = { a: 1 }
-                fetch('https://api.twitter.com/1.1/trends/place.json',{
-                    method: 'post',
-                    body:    JSON.stringify(body),
-                    //headers: { 'authorization': 'OAuth oauth_consumer_key="CONSUMER_API_KEY", oauth_nonce="kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg", oauth_signature="OAUTH_SIGNATURE", oauth_signature_method="HMAC-SHA1", oauth_timestamp="OAUTH_TIMESTAMP", oauth_token="ACCESS_TOKEN", oauth_version="1.0"' },
-                })
-                .then(res => res.json())
-                .then(json=>console.log(json))*/
-                
-                // In this example, the user's Twitter profile is supplied as the user
-                // record.  In a production-quality application, the Twitter profile should
-                // be associated with a user record in the application's database, which
-                // allows for account linking and authentication with other identity
-                // providers.
-                return cb(null, profile);
-            }))
-            callback()
+		
 
 
 
 
-            
-            
-        }
-    }
 
-    //1268637071830368256-JOxjrhQoF8zDSqZzlVV3dRXamkcSK7
-    //BDnko3cSPVH8MrZjvVPRnHuhrM51INlQC5s1uoHccNBr8
+		const calculDistance=(founde)=>{   //Quand on a les coord on cherche la ville la plus proche
+			
+			return new Promise(function(res,rej){
+				console.log("dis:",founde)
+				WOEIDs.forEach((elt)=>{
+
+					tabDistance.push(geolib.getDistance({latitude:founde[0].lat, longitude:founde[0].lon},{latitude:elt.lat,longitude:elt.lon},(err)=>{
+						if (err) rej(err)
+					}))
+
+
+				})
+				res(tabDistance)
+
+
+			})
+		}
+
+
+
+		const PPT=(tab)=>{
+			return new Promise((res,rej)=>{
+
+				var posVilleProche=0
+				var ppt=tab[0]
+				
+
+				for (var j=0;j<tab.length-1;j++){
+
+					if(ppt>tab[j+1]){
+						ppt=tab[j+1]
+						posVilleProche=j+1
+
+					}
+					
+
+					if (tab[j+1]==tab[tab.length-1]){
+						var villePP=WOEIDs[posVilleProche]
+						var result=[]
+						T.get('/trends/place',{id: villePP.WOEID}, (err,data,response)=>{
+							if (err) rej(err) 
+							for (var f=0;f<50;f++){ //data[0].length-1
+
+								if(data[0].trends[f]==undefined){
+									break
+								}
+								else{
+									//console.log(data[0].trends[f].name)
+									result.push(new Trend({
+										name: data[0].trends[f].name,
+										urlTwitter: data[0].trends[f].url
+									}))
+								}
+							}
+							res(result)
+							callback(result)
+							
+						})
+					}
+
+				}
+			})
+		}
+		lectureBDD ((succ)=>{
+			calculDistance(succ).catch(err=>console.error(err)).then(PPT(tabDistance)).catch(er=>{console.log(er)})
+		},(rej)=>{
+			if (rej) throw rej
+		})
+		//lectureBDD().then(calculDistance(tabDistance,nfounde)).catch(err=>console.error(err)).then(PPT(tabDistance)).catch(errx=>{console.error(errx)})
+	},
+}
