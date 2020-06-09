@@ -48,12 +48,12 @@ body{
   background-color:#A6393D;
   border:0.5px solid #333333;
 }
-/*
+
 #contenu::-webkit-scrollbar-track{
   border:1px gray solid;
   border-radius:10px;
   -webkit-box-shadow:0 0 6px gray inset;
-}*/
+}
 
 
 #tabbar{
@@ -156,11 +156,7 @@ body{
 .zone:hover{
   border: 2px red solid;
 }
-.zone::-webkit-scrollbar{
-  width:10px;
-  background-color:#52528C;
 
-}
 /*ecart du texte par rapport au bord de la zone*/
 .preview{
   margin : 4px;
@@ -184,6 +180,11 @@ body{
 }
 
 /* scroll bar de la zone*/
+.zone::-webkit-scrollbar{
+  width:10px;
+  background-color:#7C9EB2;
+
+}
 .zone::-webkit-scrollbar-thumb{
   background-color:#27ae60;
   border-radius: 4px;
@@ -198,4 +199,9 @@ body{
 .zone::-webkit-scrollbar-thumb:active{
   background-color:#A6393D;
   border:0.5px solid #333333;
+}
+.zone::-webkit-scrollbar-track{
+  border:1px gray solid;
+  border-radius:10px;
+  -webkit-box-shadow:0 0 6px gray inset;
 }
