@@ -6,7 +6,7 @@ let date = new Date();
 date.setMonth(2);
 date.setUTCHours(-4);
 
-    function getKrakenPrice(coinName, fiatName, callback){
+    function getKrakenPrice(coinName, fiatName, callback) { // https://support.kraken.com/hc/en-us/articles/201893658-Currency-pairs-available-for-trading-on-Kraken
 
         let apiParams = queryString.stringify({
             pair: coinName + fiatName,
@@ -35,9 +35,28 @@ exports.getKraken = function(callback){
             for(const elt in resp){
                 result.push(new BTCPrice({
                     time: resp[elt][0],
-                    price: resp[elt][4]
+                    priceBTC: resp[elt][4]
                 }));
             }
-            callback(result);
+            getKrakenPrice("eth", "eur", (resp) => {
+                for (const elt in result) {
+                    result[elt].priceETH = resp[elt][4]
+                }
+                getKrakenPrice("xrp", "eur", (resp) => {
+    
+                    for (const elt in result) {
+                        result[elt].priceXRP = resp[elt][4]
+                    }
+                    getKrakenPrice("ltc", "eur", (resp) => {
+                        console.log(resp[0])
+                        for (const elt in result) {
+                            
+                            result[elt].priceLTC = resp[elt][4]
+                        }
+                        callback(result);
+                    })
+                })
+            })
         })
+        
 }

@@ -4,7 +4,10 @@ const Schema = mongoose.Schema // Define Schema method
 //Scheme
 let BTCScheme = new Schema({
     time: Number,
-    price: Number
+    priceBTC: Number,
+    priceETH: Number,
+    priceXRP: Number,
+    priceLTC: Number,
 });
 
 // Model

@@ -24,8 +24,6 @@ module.exports = {
                     if (!error && response.statusCode === 200) {
 
                         var result = [];
-
-                        console.log(resp.records.length)
                             
                         for(const elt in resp.records){
                             
