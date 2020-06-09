@@ -51,9 +51,18 @@ document.getElementById("proximite").onclick = function () {
 
     // preview static display
     title = document.createElement("h1");
-    title.setAttribute("id", "vLilleTitle");
+    vlilleLogo = document.createElement("img");
+
+    title.setAttribute("class", "titlePreview");
+    title.setAttribute("class", "imgPreview");
+    vlilleLogo.setAttribute("src", "https://upload.wikimedia.org/wikipedia/fr/thumb/5/52/Logo-vlille.svg/1200px-Logo-vlille.svg.png");
+    vlilleLogo.setAttribute("height", "175px");
+    vlilleLogo.setAttribute("width", "350px");
+
     title.appendChild(document.createTextNode("Liste des stations VLille les plus proches"));
-    preview.appendChild(title)
+
+    preview.appendChild(title);
+    preview.appendChild(vlilleLogo);
     
     getReq('/api/vLille', (result) => {
 
@@ -70,7 +79,8 @@ document.getElementById("proximite").onclick = function () {
             // sorting nearest stations
             result = result.sort(compare);
 
-            // preview dynamic display
+            // preview dynamic display 
+
 
             // fullview dynamic display
             for(const elt in result){
