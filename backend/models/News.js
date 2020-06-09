@@ -9,6 +9,7 @@ var NewsScheme= new Schema({
      description: String,
      content: String,
      imageUrl:String,
+     articleUrl: String
 })
 
 // Model

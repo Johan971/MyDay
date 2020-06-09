@@ -23,7 +23,7 @@ exports.getNBAPlayerInformation = function(req, res) {
                 insert(result[elt], () => {
                     if (elt == (result.length - 1)) { // once the insertion is over
 
-                        News.find({}, (err, founded) => { //find and return all documents inside obj collection
+                        NBAPlayer.find({}, (err, founded) => { //find and return all documents inside obj collection
                             if (err) throw err
                             //console.log(founded)
                             res.json(founded);

@@ -32,7 +32,7 @@ module.exports = {
                         
                         let result = [];
 
-                        for(let i = 0; i < JSON.stringify(jSonResp.FantasyBasketballNerd.Player.length); i++){
+                        for(let i = 0; i < 30; i++){
                             result.push(new NBAPlayer({
                                 playerName: JSON.stringify(jSonResp.FantasyBasketballNerd.Player[i].name),
                                 playerTeam: JSON.stringify(jSonResp.FantasyBasketballNerd.Player[i].team),
