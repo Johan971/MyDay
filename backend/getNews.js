@@ -31,6 +31,7 @@ module.exports = {
                                 description: resp.articles[i].description,
                                 content: resp.articles[i].content,
                                 imageUrl:resp.articles[i].urlToImage,
+                                articleUrl: resp.articles[i].url
                             }))
                     }
 
