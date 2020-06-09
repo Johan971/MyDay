@@ -5,6 +5,8 @@ const Twit= require('twit')
 const coordinates=require('./models/Coordinates')
 const geolib=require('geolib')
 const Trend = require("./models/Trends");
+const fetch= require('node-fetch')
+const request=require("request")
 
 //////// WARNING : This is an asyc function working with callback ////////
 // For more infos/understanding : https://stackoverflow.com/questions/14220321/how-do-i-return-the-response-from-an-asynchronous-call
@@ -12,10 +14,59 @@ const Trend = require("./models/Trends");
 const APIkey= "Uszcu6clBx7Om95C8nJQ94icS"
 const APIkeySecret= "R4ei263Y2Dj3vyIuQvhg7ICT8G1pTV3iLzwC25BSXWCDOYs2iN"
 
+const requireAccessToken=(/*param?*/)=>{return new Promise((succ,rej)=>{
 
+	
+	const urlCallabck= encodeURI("http://localhost:4200/auth/twitter/callback")
+	
+	console.log(urlCallabck)
+	const obj = { oauth_callback: urlCallabck, oauth_consumer_key:APIkey };
+	
 
-const AccessToken ="1268637071830368256-yEzJv5kmPLdplBBuzA2zunK4f7T6Ai"
-const AccessTokenSecret ="LboSKv85opYuiut7diwZixfBF6GBUnmxLSOSnUBAKNI8G"
+	
+	var pathApi='https://api.twitter.com/oauth/authorize'
+	/*
+	var options = {
+	  url: 'https://api.twitter.com/oauth/request_token',
+	  method: "POST",
+	  headers: {
+	    'Content-type': 'application/json'
+	  },
+	  body: urlCallabck}
+	
+	function callback(error, response, body) {
+	  console.log("callback function");
+	  if (!error) {
+	    console.log("non erreur");
+	    console.log("body",body);
+	    var info = (JSON.parse(body));
+	    console.log("inf",info);
+
+	    
+
+	  }
+	  else {
+	  	console.log("err",error)
+	    console.log(JSON.parse(body));
+	  }
+	}
+	request.post(options, callback);*/
+
+	
+	fetch('https://api.twitter.com/oauth/request_token', {
+	        method: 'post',
+	        body:    urlCallabck,
+	        headers: { 'Content-Type': 'application/json' },
+	    })
+	    .then(res => res.json())
+	    .then(json => console.log(json))
+	    .then(res => succ(res),res=>console.log(res))
+	    .catch(err=>rej(err))
+	    
+	})}
+
+const AccessToken ="1268637071830368256-krQWMKj9GLhqMd3aWTSbT8SIyCw3s9"
+const AccessTokenSecret ="hfxDmwRxli0RuyBnzXKLHcTWsS0iufIatK4FzZZlOO1yR"
 
 	//======================Authentication
 	// Configure the Twitter strategy for use by Passport.
@@ -52,32 +103,32 @@ module.exports ={
 		var founde
 		
 		const lectureBDD=(succ,rej)=>{      //Cette fonction sors les coordonnées nécéssaire à l'affichage 
-			
-			coordinates.find((err,founded)=>{
+
+		coordinates.find((err,founded)=>{
 
 				if(err) rej (err) // error handling
 
 
-				if  (founded) {
-			
-					
-					succ(founded)
-				}
+					if  (founded) {
 
 
-				else {
-					console.log("pas de coordonnées")
-					succ({_id:"012d",lat:48.863356,lon:2.343813})
-				}
+						succ(founded)
+					}
 
-			})
+
+					else {
+						console.log("pas de coordonnées")
+						succ({_id:"012d",lat:48.863356,lon:2.343813})
+					}
+
+				})
 				//mongoose.disconnect()
-			
-		}
+
+			}
 
 
 
-		
+
 
 
 
@@ -149,11 +200,11 @@ module.exports ={
 				}
 			})
 		}
-		lectureBDD ((succ)=>{
+		requireAccessToken().then(lectureBDD ((succ)=>{
 			calculDistance(succ).catch(err=>console.error(err)).then(PPT(tabDistance)).catch(er=>{console.log(er)})
 		},(rej)=>{
 			if (rej) throw rej
-		})
+		}))
 		//lectureBDD().then(calculDistance(tabDistance,nfounde)).catch(err=>console.error(err)).then(PPT(tabDistance)).catch(errx=>{console.error(errx)})
 	},
 }
