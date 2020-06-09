@@ -151,6 +151,8 @@ document.onscroll = function(){
 
 };*/
 
+
+
 ///////////// Onglet gestion /////////////
 function startBar(){
   // changement dans la navbar principal et affichage des contenus ( texte/module et sousnav) :
@@ -266,6 +268,9 @@ function addNewzone(currentTab,numZone){// condition : à lancer avant startZone
 
     tabElement.push(myDivzone)
     }
+    startZone()
     console.log('Les élements ajoutés sont :')
     return(tabElement)
 }
+
+
