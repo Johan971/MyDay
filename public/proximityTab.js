@@ -65,7 +65,6 @@ document.getElementById("proximite").onclick = function () {
             // computing the distance between user and stations
             for (const elt in result) {
                 result[elt].dist = distance(userLat, userLon, result[elt].lat, result[elt].lon, 'K')
-                console.log(result[elt]);
             }
 
             // sorting nearest stations
