@@ -1,22 +1,38 @@
 
 const mongoose = require('mongoose');
-
+const connectDb = require("../dbControl/connectDb");
 const replace = require("../dbControl/replace");
 const read = require("../dbControl/read"); // Database read module
-const insert = require("../dbControl/insert"); 
-const remove = require("../dbControl/remove"); 
-const connectDb = require("../dbControl/connectDb");
+const insert = require("../dbControl/insert"); // Database read module
+const Trend = require('../models/Trends');
+const TwitterApi = require("../getTwitter");
+const remove = require("../dbControl/remove");
 
 
-const twitterApi = require("../getTwitter");
 
-exports.newGet = function(req, res) {
+exports.getTwitter = function(req, res) {
 
-	//connectDb()
+    console.log("conroller")
+    connectDb();
 
-    twitterApi.newGet((result)=>{
-    	console.log("test: ",result)
-		
-    })
+    TwitterApi.newGet((result) => {
+    	console.log("conroller")
+        remove(Trend, ()=>{
 
+            for (const elt in result) {
+                insert(result[elt], () => {
+                    if (elt == (result.length - 1)) { // once the insertion is over
+
+                        Trend.find({}, (err, founded) => { //find and return all documents inside obj collection
+                            if (err) throw err
+                            //console.log(founded)
+                            res.json(founded);
+                            mongoose.disconnect();
+                        });
+                    }
+                })
+            };
+        })
+    });
+    
 }

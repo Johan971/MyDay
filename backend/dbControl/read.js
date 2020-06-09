@@ -10,6 +10,6 @@ module.exports = function(model, callback, filter={}){ // filter doc https://mon
 	model.find(filter, (err, founded)=>{ //find and return all documents inside obj collection
 	    if(err) throw err // error handling
 		console.log(founded);
-		callback();
+		callback(); //founded added
 	});
 }
