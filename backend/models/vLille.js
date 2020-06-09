@@ -11,6 +11,7 @@ var vLilleScheme = new Schema({
      town: String,
      lat: Number,
      lon: Number,
+     dist: Number,
 })
 
 // Model

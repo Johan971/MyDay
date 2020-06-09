@@ -212,15 +212,18 @@ function startZone(){
   for (let zoneElt of zoneEltList){
     zoneElt.onclick = function(){
       let childFullview = this.getElementsByClassName(this.id+" fullview")[0]
+      let childPreview = this.getElementsByClassName(this.id+" preview")[0]
       if (this.classList.contains("large")===false){
         this.classList.add("large")
         let self=this
         setTimeout(function(){self.scrollIntoView({block:"start"})},500)
         childFullview.style.display = "block"
+        childPreview.style.display = "none"
       }
       else{
         this.classList.remove("large")
         childFullview.style.display ="none"
+        childPreview.style.display = "block"
       }
     }
   }

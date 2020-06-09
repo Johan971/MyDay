@@ -52,5 +52,7 @@ document.getElementById("main").onclick = function (){
 
 
 
+
+console.log(addNewzone(media,2))
 startBar()
 startZone()
