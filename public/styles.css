@@ -111,7 +111,7 @@ body{
   background-color: black;
   margin:20px;
   transition: 0.5s;
-  overflow:hidden;
+  overflow:auto;
   /*min-width: 0px;*/
 }
 
