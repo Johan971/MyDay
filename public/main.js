@@ -38,7 +38,7 @@ document.getElementById("main").onclick = function (){
     console.log(result);
     getReq('/api/vLille', (result) => {
       console.log(result);
-      getReq('/api/news', (result) => {
+      getReq('/api/nba', (result) => {
         console.log(result);
         getReq('/api/kraken', (result) => {
           console.log(result);
