@@ -26,18 +26,18 @@ module.exports = {
 
                 if(!error && response.statusCode === 200){
 
-                    parseString(resp, function(err, notStringifiedjSonResp){
+                    parseString(resp, function(err, jSonResp){
 
-                        let stringifiedJSonResp = JSON.stringify(notStringifiedjSonResp);
+                        let stringifiedJSonResp = JSON.stringify(jSonResp);
                         
                         let result = [];
 
-                        for(const i in stringifiedJSonResp.FantasyBasketballNerd.Player){
+                        for(let i = 0; i < JSON.stringify(jSonResp.FantasyBasketballNerd.Player.length); i++){
                             result.push(new NBAPlayer({
-                                playerName: name,
-                                playerTeam: team,
-                                playerPosition: position,
-                                playerRank: rank
+                                playerName: JSON.stringify(jSonResp.FantasyBasketballNerd.Player[i].name),
+                                playerTeam: JSON.stringify(jSonResp.FantasyBasketballNerd.Player[i].team),
+                                playerPosition: JSON.stringify(jSonResp.FantasyBasketballNerd.Player[i].position),
+                                playerRank: JSON.stringify(jSonResp.FantasyBasketballNerd.Player[i].rank)
                             }));
                         }
                         callback(result);
