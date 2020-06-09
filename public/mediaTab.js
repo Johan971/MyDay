@@ -7,6 +7,7 @@ document.getElementById("media").onclick = function(){
         tabNews=result;
         var contenuArticle=""
         var descriptionArtcicle=""
+        var articleLink=""
         var newZone=addNewzone(media,tabNews.length)// newZone is an array with all the new HTML element "zone"
 		for (var i= 0; i<tabNews.length;i++){
 
@@ -40,6 +41,12 @@ document.getElementById("media").onclick = function(){
 			contenuArticle=document.createElement("p")//titre preView
 			contenuArticle.appendChild(document.createTextNode(tabNews[i].content))
 			fullView[0].appendChild(contenuArticle)
+
+			articleLink=document.createElement("a")//titre preView
+			articleLink.setAttribute("href", tabNews[i].articleUrl);
+			articleLink.setAttribute("target", "_blank");
+			articleLink.appendChild(document.createTextNode(tabNews[i].articleUrl))
+			fullView[0].appendChild(articleLink)
 
 		}
         
