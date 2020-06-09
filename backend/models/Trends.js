@@ -4,7 +4,8 @@ const Schema = mongoose.Schema // Define Schema method
 //Scheme
 let TrendScheme = new Schema({
     name: String,
-    urlTwitter: String
+    urlTwitter: String,
+    tweetVolume: Number
 });
 
 // Model

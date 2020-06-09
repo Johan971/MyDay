@@ -13,6 +13,7 @@ const APIkey= "Uszcu6clBx7Om95C8nJQ94icS"
 const APIkeySecret= "R4ei263Y2Dj3vyIuQvhg7ICT8G1pTV3iLzwC25BSXWCDOYs2iN"
 
 
+
 const AccessToken ="1268637071830368256-yEzJv5kmPLdplBBuzA2zunK4f7T6Ai"
 const AccessTokenSecret ="LboSKv85opYuiut7diwZixfBF6GBUnmxLSOSnUBAKNI8G"
 
@@ -25,6 +26,7 @@ const AccessTokenSecret ="LboSKv85opYuiut7diwZixfBF6GBUnmxLSOSnUBAKNI8G"
 	// with a user object, which will be set at `req.user` in route handlers after
 	// authentication.
 // Newget()
+
 
 
 module.exports ={
@@ -127,12 +129,14 @@ module.exports ={
 								if(data[0].trends[f]==undefined){
 									break
 								}
-								
+
 								else{
-									//console.log(data[0].trends[f].name)
+									console.log(data[0].trends[f])
 									result.push(new Trend({
 										name: data[0].trends[f].name,
-										urlTwitter: data[0].trends[f].url
+										urlTwitter: data[0].trends[f].url,
+										tweetVolume: data[0].trends[f].tweet_volume
+
 									}))
 								}
 							}
