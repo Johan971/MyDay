@@ -45,6 +45,10 @@ document.getElementById("proximite").onclick = function () {
     let preview = zoneMain[0].children[0];
     let fullview = zoneMain[0].children[1];
 
+    // clean the previous content
+    preview.innerHTML = "";
+    fullview.innerHTML = "";
+
     // preview static display
     title = document.createElement("h1");
     title.setAttribute("id", "vLilleTitle");
@@ -61,7 +65,6 @@ document.getElementById("proximite").onclick = function () {
             // computing the distance between user and stations
             for (const elt in result) {
                 result[elt].dist = distance(userLat, userLon, result[elt].lat, result[elt].lon, 'K')
-                console.log(result[elt]);
             }
 
             // sorting nearest stations

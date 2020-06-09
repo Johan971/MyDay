@@ -11,10 +11,10 @@ module.exports = {
     getAvailableVLille: (callback) => {
 
             let apiParams = querystring.stringify({
-                apikey: "ffa359ac936aa08ca35fc56bab8ed36a1f2bcd2545e64f80faf3bca4"
+                apikey: "ffa359ac936aa08ca35fc56bab8ed36a1f2bcd2545e64f80faf3bca4",
             })
 
-            let apiUrl = "https://opendata.lillemetropole.fr/api/records/1.0/search/?dataset=vlille-realtime&" + apiParams;
+            let apiUrl = "https://opendata.lillemetropole.fr/api/records/1.0/search/?dataset=vlille-realtime&" + apiParams + "&q=&rows=268";
 
             var req = request({
                     url: apiUrl,
@@ -24,6 +24,8 @@ module.exports = {
                     if (!error && response.statusCode === 200) {
 
                         var result = [];
+
+                        console.log(resp.records.length)
                             
                         for(const elt in resp.records){
                             
@@ -43,9 +45,11 @@ module.exports = {
                             
                         }
 
-                        console.log(result)
                         // Create and fullfil the schema with infos
                         callback(result);
+                    }
+                    else{
+                        console.log(apiUrl)
                     }
                 }
             );
