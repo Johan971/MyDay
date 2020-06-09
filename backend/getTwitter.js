@@ -1,6 +1,6 @@
 const mongoose = require("mongoose"); // Import mongoose library
 const read=require('./dbControl/read')
-const connectdB=require('./dbControl/connectdB')
+const connectdB=require('./dbControl/connectDb')
 const Twit= require('twit')
 const coordinates=require('./models/Coordinates')
 const geolib=require('geolib')
