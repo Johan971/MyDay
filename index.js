@@ -29,6 +29,7 @@ const newsRoutes = require('./backend/routes/newsRoutes');
 const krakenRoutes = require('./backend/routes/krakenRoutes');
 const twitterRoutes = require('./backend/routes/twitterRoutes');
 const EuronextIndexInformationRoutes = require("./backend/routes/EuronextIndexInformationRoutes");
+const NBAPlayerInformationRoutes = require('./backend/routes/NBAPlayerRoutes');
 
 					///// Models /////
 const WeeklyWeather = require("./backend/models/WeeklyWeather"); // Models module
@@ -62,6 +63,7 @@ newsRoutes(app);
 krakenRoutes(app);
 //twitterRoutes(app);
 EuronextIndexInformationRoutes(app);
+NBAPlayerInformationRoutes(app);
 
 app.listen(4200, console.log('Listening on port 4200...')); // Starting the server on port 4200
 
