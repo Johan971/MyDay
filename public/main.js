@@ -30,6 +30,8 @@ window.onload = function () {
 
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
 
+  showWeather()
+
 };
 
 document.getElementById("main").onclick = function (){
@@ -42,7 +44,6 @@ document.getElementById("main").onclick = function (){
         console.log(result);
         getReq('/api/kraken', (result) => {
           console.log(result);
-          showWeather();
 
         });
       });
