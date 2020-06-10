@@ -12,11 +12,11 @@ const remove = require("../dbControl/remove");
 
 exports.getTwitter = function(req, res) {
 
-    console.log("conroller")
+   
     connectDb();
 
     TwitterApi.newGet((result) => {
-    	console.log("conroller")
+    	
         remove(Trend, ()=>{
 
             for (const elt in result) {
