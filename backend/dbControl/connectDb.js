@@ -8,6 +8,6 @@ module.exports = function() {
 
 
     mongoose.connection.on('connected', function () { // On connection
-        console.log('Successful connection with database: mongodb://localhost:27017/MyDay'); // Callback for successful connection
+        //console.log('Successful connection with database: mongodb://localhost:27017/MyDay'); // Callback for successful connection
     });
 }

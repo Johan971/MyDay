@@ -6,12 +6,12 @@ let date = new Date();
 date.setMonth(2);
 date.setUTCHours(-4);
 
-    function getKrakenPrice(coinName, fiatName, callback) { // https://support.kraken.com/hc/en-us/articles/201893658-Currency-pairs-available-for-trading-on-Kraken
+    function getKrakenPrice(coinName, fiatName, inter, since, callback) { // https://support.kraken.com/hc/en-us/articles/201893658-Currency-pairs-available-for-trading-on-Kraken
 
         let apiParams = queryString.stringify({
             pair: coinName + fiatName,
-            interval: 240,
-            since: date.getTime()/1000
+            interval: inter, //240 (minutes)
+            since: since //date.getTime()/1000 (seconds)
         });
 
         let apiUrl = "https://api.kraken.com/0/public/OHLC?" + apiParams;
@@ -29,8 +29,8 @@ date.setUTCHours(-4);
     }
 
 
-exports.getKraken = function(callback){
-        getKrakenPrice("xbt","eur", (resp) => {
+exports.getKraken = function (interval, since, callback) {
+        getKrakenPrice("xbt", "eur", interval, since, (resp) => {
             let result = [];
             for(const elt in resp){
                 result.push(new BTCPrice({
@@ -38,17 +38,16 @@ exports.getKraken = function(callback){
                     priceBTC: resp[elt][4]
                 }));
             }
-            getKrakenPrice("eth", "eur", (resp) => {
+            getKrakenPrice("eth", "eur", interval, since, (resp) => {
                 for (const elt in result) {
                     result[elt].priceETH = resp[elt][4]
                 }
-                getKrakenPrice("xrp", "eur", (resp) => {
+                getKrakenPrice("xrp", "eur", interval, since, (resp) => {
     
                     for (const elt in result) {
                         result[elt].priceXRP = resp[elt][4]
                     }
-                    getKrakenPrice("ltc", "eur", (resp) => {
-                        console.log(resp[0])
+                    getKrakenPrice("ltc", "eur", interval, since, (resp) => {
                         for (const elt in result) {
                             
                             result[elt].priceLTC = resp[elt][4]

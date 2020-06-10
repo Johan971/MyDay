@@ -9,6 +9,7 @@ document.getElementById("economie").onclick = function (){
     cryptoZone("XRP", result);
     cryptoZone("LTC", result);
   });
+
 }
 
 
