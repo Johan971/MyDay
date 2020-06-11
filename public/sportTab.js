@@ -53,10 +53,6 @@ document.getElementById("sport").onclick = function () {
         // fullview dynamic display
         var classement=0;
         for (let elt in result) {
-<<<<<<< HEAD
-=======
-        	
->>>>>>> 3e57134a7e55a26156c9d697e7ab42e2af39b39b
         	classement+=1;
 
             playerName = document.createElement("h1");
