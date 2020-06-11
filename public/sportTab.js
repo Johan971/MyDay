@@ -34,8 +34,11 @@ document.getElementById("sport").onclick = function () {
         // preview dynamic display 
 
         // fullview dynamic display
-        for (const elt in result) {
-
+        var classement=0;
+        for (let elt in result) {
+        	console.log(elt);
+        	
+        	classement+=1;
             playerName = document.createElement("h1");
             playerTeam = document.createElement("h2");
             playerPosition = document.createElement("p");
@@ -44,7 +47,7 @@ document.getElementById("sport").onclick = function () {
             playerTeam.classList.add("playerTeam");
             playerPosition.classList.add("playerPosition");
 
-            playerName.appendChild(document.createTextNode(purgeChar(result[elt].playerName)));
+            playerName.appendChild(document.createTextNode(purgeChar("Top "+classement+" : "+result[elt].playerName)));
             playerTeam.appendChild(document.createTextNode("Equipe : " + purgeChar(result[elt].playerTeam)));
             playerPosition.appendChild(document.createTextNode("Position : " + purgeChar(result[elt].playerPosition)));
 

@@ -54,10 +54,9 @@ document.getElementById("proximite").onclick = function () {
     vlilleLogo = document.createElement("img");
 
     title.setAttribute("class", "titlePreview");
-    title.setAttribute("class", "imgPreview");
+    vlilleLogo.setAttribute("class", "imgPreview imgVlille");
     vlilleLogo.setAttribute("src", "https://upload.wikimedia.org/wikipedia/fr/thumb/5/52/Logo-vlille.svg/1200px-Logo-vlille.svg.png");
-    vlilleLogo.setAttribute("height", "175px");
-    vlilleLogo.setAttribute("width", "350px");
+    
 
     title.appendChild(document.createTextNode("Liste des stations VLille les plus proches"));
 

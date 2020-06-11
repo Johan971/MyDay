@@ -244,7 +244,7 @@ function addNewzone(currentTab,numZone){// condition : à lancer avant startZone
 
   for (var i=0;i<numZone;i++){
     var zoneNumber=allZone.length+i+1;
-    var focusTab=document.querySelector(".media")
+    var focusTab=document.querySelector("."+className)
     
     var myDivzone=document.createElement("div");
     myDivzone.setAttribute("class", "zone " +className);
