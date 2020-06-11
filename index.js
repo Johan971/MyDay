@@ -19,8 +19,6 @@ const coordinatesApi = require("./backend/getCoordinates");
 const newsApi = require("./backend/getNews");
 const EuronextIndexInformationApi = require("./backend/getEuronextIndexInformation");
 
-
-
 					///// Routes /////
 const dailyWeatherRoutes = require('./backend/routes/weeklyWeatherRoutes');
 const vLilleRoutes = require('./backend/routes/vLilleRoutes');
@@ -30,6 +28,7 @@ const krakenRoutes = require('./backend/routes/krakenRoutes');
 const twitterRoutes = require('./backend/routes/twitterRoutes');
 const EuronextIndexInformationRoutes = require("./backend/routes/EuronextIndexInformationRoutes");
 const NBAPlayerInformationRoutes = require('./backend/routes/NBAPlayerRoutes');
+const candidateInterestEvolution = require('./backend/routes/candidateInterestEvolutionRoutes');
 
 					///// Models /////
 const WeeklyWeather = require("./backend/models/WeeklyWeather"); // Models module
@@ -75,6 +74,7 @@ krakenRoutes(app);
 twitterRoutes(app);
 EuronextIndexInformationRoutes(app);
 NBAPlayerInformationRoutes(app);
+candidateInterestEvolution(app);
 
 app.listen(4200, console.log('Listening on port 4200...')); // Starting the server on port 4200
 

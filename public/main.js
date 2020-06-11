@@ -54,7 +54,7 @@ document.getElementById("main").onclick = function (){
 
 }
 
+startBar();
+startZone();
 
-
-startBar()
-startZone()
+setInterval(clockAnimation, 40);
