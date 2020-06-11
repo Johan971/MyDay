@@ -34,7 +34,7 @@ exports.getCandidatesInterestEvolution = function (callback) {
             result.push(new CandidateInterestEvolution({
                 candidateName: "Anne Hidalgo",
                 date: resp[elt].formattedTime,
-                interestRateNumber: resp[elt].value
+                interestRateAtDate: resp[elt].value[0]
             }));
         }
         getGoogleTrendsInformation("Agnès Buzyn", currentElectionStartingDate, currentDate, (resp) => {
@@ -42,7 +42,7 @@ exports.getCandidatesInterestEvolution = function (callback) {
                 result.push(new CandidateInterestEvolution({
                     candidateName: "Agnès Buzyn",
                     date: resp[elt].formattedTime,
-                    interestRateNumber: resp[elt].value
+                    interestRateAtDate: resp[elt].value[0]
                 }));
             }
             getGoogleTrendsInformation("Rachida Dati", currentElectionStartingDate, currentDate, (resp) => {
@@ -50,7 +50,7 @@ exports.getCandidatesInterestEvolution = function (callback) {
                     result.push(new CandidateInterestEvolution({
                         candidateName: "Rachida Dati",
                         date: resp[elt].formattedTime,
-                        interestRateNumber: resp[elt].value
+                        interestRateAtDate: resp[elt].value[0]
                     }));
                 }
                 getGoogleTrendsInformation("Anne Hidalgo", previousElectionStartingDate, previousElectionEndDate, (resp) => {
@@ -58,7 +58,7 @@ exports.getCandidatesInterestEvolution = function (callback) {
                         result.push(new CandidateInterestEvolution({
                             candidateName: "Anne Hidalgo",
                             date: resp[elt].formattedTime,
-                            interestRateNumber: resp[elt].value
+                            interestRateAtDate: resp[elt].value[0]
                         }));
                     }
                     callback(result);

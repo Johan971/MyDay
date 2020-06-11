@@ -7,9 +7,6 @@ document.getElementById("sport").onclick = function () {
     let zoneMain = document.querySelectorAll(".zone.sport");
     let preview = zoneMain[0].children[0];
     let fullview = zoneMain[0].children[1];
-
-    console.log("ere")
-
     // clean the previous content
     preview.innerHTML = "";
     fullview.innerHTML = "";
@@ -36,7 +33,6 @@ document.getElementById("sport").onclick = function () {
         // fullview dynamic display
         var classement=0;
         for (let elt in result) {
-        	console.log(elt);
         	
         	classement+=1;
             playerName = document.createElement("h1");

@@ -19,8 +19,6 @@ const coordinatesApi = require("./backend/getCoordinates");
 const newsApi = require("./backend/getNews");
 const EuronextIndexInformationApi = require("./backend/getEuronextIndexInformation");
 
-
-
 					///// Routes /////
 const dailyWeatherRoutes = require('./backend/routes/weeklyWeatherRoutes');
 const vLilleRoutes = require('./backend/routes/vLilleRoutes');
