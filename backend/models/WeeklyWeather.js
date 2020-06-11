@@ -21,6 +21,7 @@ var weeklyWeatherSchema = new Schema({ // Create Schema
         max: Number,
     },
     description: String,
+    icon: String,
 });
 
 // Model
