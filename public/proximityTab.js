@@ -54,7 +54,7 @@ document.getElementById("proximite").onclick = function () {
     vlilleLogo = document.createElement("img");
 
     title.setAttribute("class", "titlePreview");
-    vlilleLogo.setAttribute("class", "imgPreview imgVlille");
+    vlilleLogo.setAttribute("class", "imgPreview");
     vlilleLogo.setAttribute("src", "https://upload.wikimedia.org/wikipedia/fr/thumb/5/52/Logo-vlille.svg/1200px-Logo-vlille.svg.png");
     
 
@@ -79,7 +79,26 @@ document.getElementById("proximite").onclick = function () {
             result = result.sort(compare);
 
             // preview dynamic display 
+            for(var i=0;i<3;i++){
+                stationName = document.createElement("h1");
+                bikeAvaliable = document.createElement("h2");
+                adress = document.createElement("p");
+                separator=document.createElement("hr")
 
+                
+                stationName.classList.add("stationName");
+                bikeAvaliable.classList.add("bikeAvaliable");
+                adress.classList.add("adress");
+
+                stationName.appendChild(document.createTextNode(result[i].name));
+                bikeAvaliable.appendChild(document.createTextNode(result[i].bikeAvaliable + " VLille disponibles"));
+                adress.appendChild(document.createTextNode(result[i].adress + ", " + result[i].town));
+
+                preview.appendChild(stationName);
+                preview.appendChild(bikeAvaliable);
+                preview.appendChild(adress);
+                preview.appendChild(separator);
+            }
 
             // fullview dynamic display
             for(const elt in result){
@@ -87,7 +106,9 @@ document.getElementById("proximite").onclick = function () {
                 stationName = document.createElement("h1");
                 bikeAvaliable = document.createElement("h2");
                 adress = document.createElement("p");
+                separator=document.createElement("hr")
 
+                
                 stationName.classList.add("stationName");
                 bikeAvaliable.classList.add("bikeAvaliable");
                 adress.classList.add("adress");
@@ -99,6 +120,7 @@ document.getElementById("proximite").onclick = function () {
                 fullview.appendChild(stationName);
                 fullview.appendChild(bikeAvaliable);
                 fullview.appendChild(adress);
+                fullview.appendChild(separator);
             }
 
         });

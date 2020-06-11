@@ -15,7 +15,7 @@ body{
   margin:0px;
   padding:0px;
 }
-
+/*///////////////////////////////////////////////ID////////////////////////////////////////*/
 #app{
   overflow: hidden;
   height: 100vh;
@@ -27,7 +27,7 @@ body{
   scroll-behavior: smooth;
 }
 
-/*apparence de la scrollbar*/
+/*////////////APPARENCE DE LA SCROLL BAR SUR CONTENU////////////////*/
 #contenu::-webkit-scrollbar{
   width:10px;
   background-color:#52528C;
@@ -56,6 +56,7 @@ body{
 }
 
 
+
 #tabbar{
   display:flex;
   justify-content: center;
@@ -73,6 +74,14 @@ body{
   margin:auto;
 }
 
+
+
+/*////////////////////////////////CLASSE////////////////////////*/
+
+
+
+
+/*/////////////BARRE DE NAV PRINCIPALE////////////*/
 .onglet{
   color:white;
   text-decoration: none;
@@ -94,6 +103,10 @@ body{
 .non-affiche{
   display:none;
 }
+
+
+/*////////////////////SOUS-BARRE DE NAVIGATION////////////////////////////////*/
+
 
 /* texte sidebar*/
 .selected .sousnavlink{
@@ -139,20 +152,22 @@ body{
   align-items: center;
 }
 
-/* apparence zone*/
+
+
+/*/////////////////////////////////ZONE GENERALE///////////////////////*/
+
+
 
 .zone{
-  width:375px;
-  height:500px;
   color:white;
   background-color: #7C9EB2;
-  margin: 20px;
+  margin: 1%;
   border-radius:5px;
   transition: 0.5s;
   overflow:auto;
   min-width: 0px;
-  border: 2px blue dashed;
 }
+
 .zone:hover{
   border: 2px red solid;
 }
@@ -164,12 +179,8 @@ body{
 .fullview{
   margin :4px;
 }
-/*élargissement de la zone sur click*/
-.large{
-  width:600px;
-  height:700px;
-  background-color: #7C9EB2;
-}
+
+
 
 /*image des arcticles dans l'onglet media*/
 .imgArcticle{
@@ -204,4 +215,74 @@ body{
   border:1px gray solid;
   border-radius:10px;
   -webkit-box-shadow:0 0 6px gray inset;
+}
+
+
+/*///////IMAGE PREVIEW/////////////*/
+.imgPreview{
+  margin:0;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/*////////////////////////////////// ZONE MEDIA///////////////////////*/
+.zone.media{
+  width:375px;
+  height:425px;
+
+}
+/*élargissement de la zone sur click*/
+.large.media{
+  width:400px;
+  height:300px;
+  background-color: #7C9EB2;
+}
+/*/////////////////////////////ZONE PROXIMITE///////////////////////*/
+.zone.proximite{
+  width:375px;
+  height:525px;
+
+}
+/*élargissement de la zone sur click*/
+.large.proximite{
+  width:400px;
+  height:600px;
+  background-color: #7C9EB2;
+}
+/*/////////////////////////ZONE SPORT/////////////////////////////*/
+.zone.sport{
+  width:375px;
+  height:600px;
+
+}
+/*élargissement de la zone sur click*/
+.large.sport{
+  width:400px;
+  height:700px;
+  background-color: #7C9EB2;
+}
+/*/////////////////////////////ZONE MAIN//////////////////////////////*/
+.zone.main{
+  width:375px;
+  height:500px;
+
+}
+/*élargissement de la zone sur click*/
+.large.main{
+  width:400px;
+  height:600px;
+  background-color: #7C9EB2;
+}
+/*/////////////////////////////ZONE ECONOMIE//////////////////////////////*/
+.zone.economie{
+  width:375px;
+  height:350px;
+
+}
+/*élargissement de la zone sur click*/
+.large.economie{
+  width:450px;
+  height:300px;
+  background-color: #7C9EB2;
 }
