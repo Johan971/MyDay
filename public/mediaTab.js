@@ -1,9 +1,12 @@
 
 document.getElementById("media").onclick = function(){
 	var tabNews=[]
+	var ongletMedia=document.querySelector(".media.tab-div")
+    ongletMedia.innerHTML=""
+
+
 	getReq('/api/news', (result) => {
-		var ongletMedia=document.querySelector(".media.tab-div")
-        ongletMedia.innerHTML=""
+		
         tabNews=result;
         var contenuArticle=""
         var descriptionArtcicle=""
@@ -50,5 +53,35 @@ document.getElementById("media").onclick = function(){
 
 		}
         
+    })
+
+    getReq('/api/twitter', (result)=>{
+
+    	
+        var newZone2=addNewzone(media,1)
+        let preview = zoneMain[0].children[0]
+    	let fullview = zoneMain[0].children[1]
+
+    	preview.innerHTML = ""
+   		fullview.innerHTML = ""
+
+        var logotwitter=document.createElement("img")
+
+        title = document.createElement("h1")
+        title.setAttribute("class", "titlePreview")
+        
+        title.appendChild(document.createTextNode("Tendances"))
+
+
+		logotwitter.setAttribute("src", "https://upload.wikimedia.org/wikipedia/fr/thumb/5/52/Logo-vlille.svg/1200px-Logo-vlille.svg.png")
+		logotwitter.setAttribute("class", "imgPreview")
+		preview.appendChild(logotwitter)
+
+
+		
+
+
+
+
     })
 }

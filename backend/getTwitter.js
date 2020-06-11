@@ -76,7 +76,7 @@ module.exports ={
 		const calculDistance=(founde)=>{   //Quand on a les coord on cherche la ville la plus proche
 			
 			return new Promise(function(res,rej){
-				console.log("dis:",founde)
+				//console.log("dis:",founde)
 				WOEIDs.forEach((elt)=>{
 
 					tabDistance.push(geolib.getDistance({latitude:founde[0].lat, longitude:founde[0].lon},{latitude:elt.lat,longitude:elt.lon},(err)=>{
