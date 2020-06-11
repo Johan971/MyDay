@@ -123,7 +123,7 @@ function showWeather(){
 
 
       weather = document.createElement("p");
-      weather.appendChild(document.createTextNode(tabMeteo[i].description+" temperature du jour : "+tabMeteo[i].temp["day"]+" ressenti :"+tabMeteo[i].temp["dayFl"]));
+      weather.appendChild(document.createTextNode("Le temps est : "+tabMeteo[i].description+" avec une temperature de : "+tabMeteo[i].temp["day"]+" et un ressenti de : "+tabMeteo[i].temp["dayFl"]));
       fullview[0].appendChild(weather);
 
       weather2 = document.createElement("p");
