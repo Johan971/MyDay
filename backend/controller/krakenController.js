@@ -14,7 +14,7 @@ exports.updateKraken = function (req, res) {
 
 
 
-    connectDb();
+    //connectDb();
 
     krakenAPI.getKraken((result) => {
 
@@ -34,7 +34,7 @@ exports.updateKraken = function (req, res) {
 
 exports.getKraken = function (req, res) {
 
-    connectDb();
+    //connectDb();
     currentTimeStamp = Date.now();
     var march = new Date("02 March 2020 00:00:00");
 
@@ -59,7 +59,7 @@ exports.getKraken = function (req, res) {
                                         if (err) throw err
                                         console.log(founded.length)
                                         res.json(founded);
-                                        mongoose.disconnect();
+                                        //mongoose.disconnect();
                                     });
                                 }
                             })
@@ -80,7 +80,7 @@ exports.getKraken = function (req, res) {
                                     if (err) throw err
                                     //console.log(founded)
                                     res.json(founded);
-                                    mongoose.disconnect();
+                                    //mongoose.disconnect();
                                 });
                             }
                         })
@@ -96,7 +96,7 @@ exports.getKraken = function (req, res) {
                     if (err) throw err
                     //console.log(founded)
                     res.json(founded);
-                    mongoose.disconnect();
+                    //mongoose.disconnect();
                 });
             }
 

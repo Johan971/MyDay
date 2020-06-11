@@ -4,6 +4,8 @@
 //----------------------------------------------------//
 window.onload = function () {
 
+  // Connect to the database
+
   var startPos;
 
   var geoOptions = {

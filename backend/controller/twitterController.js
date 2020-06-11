@@ -13,7 +13,7 @@ const remove = require("../dbControl/remove");
 exports.getTwitter = function(req, res) {
 
    
-    connectDb();
+    //connectDb();
 
     TwitterApi.newGet((result) => {
     	
@@ -27,7 +27,7 @@ exports.getTwitter = function(req, res) {
                             if (err) throw err
                             //console.log(founded)
                             res.json(founded);
-                            mongoose.disconnect();
+                            //mongoose.disconnect();
                         });
                     }
                 })

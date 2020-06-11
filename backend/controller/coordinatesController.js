@@ -13,7 +13,7 @@ const dailyWeatherApi = require("../getWeeklyWeather");
 
 exports.storeCoordinates = function(req, res) {
 
-	connectDb();
+	
 	
     const coords = new Coordinates({
 		lat: req.body.lat,
@@ -29,7 +29,7 @@ exports.storeCoordinates = function(req, res) {
 			for(const elt in result){
 				insert(result[elt], ()=>{
 					if(elt == 7){ 
-						mongoose.disconnect();
+						//mongoose.disconnect();
 					}
 				})
 			};
@@ -40,7 +40,7 @@ exports.storeCoordinates = function(req, res) {
 
 exports.getCoordinates = function (req, res) {
 
-	connectDb();
+	//connectDb();
 
 	Coordinates.find({}, (err, founded) => { //find and return all documents inside obj collection
 		if (err) throw err // error handling

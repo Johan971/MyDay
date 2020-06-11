@@ -11,7 +11,7 @@ const vLilleApi = require("../getAvailableVLille");
 
 exports.getVLille = function(req, res) {
 
-    connectDb();
+    //connectDb();
 
     vLilleApi.getAvailableVLille((result) => {
 
@@ -25,7 +25,7 @@ exports.getVLille = function(req, res) {
                             
                             //console.log(founded)
                             res.json(founded);
-                            mongoose.disconnect();
+                            //mongoose.disconnect();
                         });
                     }
                 })

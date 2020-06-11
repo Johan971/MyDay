@@ -13,7 +13,7 @@ const remove = require("../dbControl/remove");
 exports.getNews = function(req, res) {
 
     
-    connectDb();
+    //connectDb();
 
     newsApi.getNews((result) => {
 
@@ -27,7 +27,7 @@ exports.getNews = function(req, res) {
                             if (err) throw err
                             //console.log(founded)
                             res.json(founded);
-                            mongoose.disconnect();
+                            //mongoose.disconnect();
                         });
                     }
                 })

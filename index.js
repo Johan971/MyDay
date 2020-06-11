@@ -38,7 +38,18 @@ const Coordinates = require("./backend/models/Coordinates");
 const News = require("./backend/models/News");
 const BTCPrice = require("./backend/models/BTCPrice");
 
+mongoose.connect("mongodb://localhost:27017/MyDay", {
+	useNewUrlParser: true, // Recommended, insures support for future MongoDB drivers
+	useUnifiedTopology: true // Recommended, uses new MongoDB topology engine
+}).catch(error => console.log(error))
 
+// If the Node process ends, close the Mongoose connection
+process.on('SIGINT', function () {
+	mongoose.connection.close(function () {
+		console.log('Mongoose disconnected on app termination');
+		process.exit(0);
+	});
+});
 
 const app = express();
 const routeur = express.Router();

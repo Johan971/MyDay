@@ -6,12 +6,12 @@ const EuronextIndexInformationApi = require("../getEuronextIndexInformation");
 
 exports.getEuronextIndexInformation = function(req, res) {
 
-    connectDb();
+    //connectDb();
 
     EuronextIndexInformation.find({}, (err, founded) => { //find and return all documents inside obj collection
         if (err) throw err // error handling
         res.json(founded);
-        mongoose.disconnect();
+        //mongoose.disconnect();
     });
 
 };

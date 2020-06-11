@@ -13,7 +13,7 @@ const remove = require("../dbControl/remove");
 exports.getNBAPlayerInformation = function(req, res) {
 
 
-    connectDb();
+    //connectDb();
 
     NBAPlayerInformationApi.getNBAPlayerInformation((result) => {
 
@@ -27,7 +27,7 @@ exports.getNBAPlayerInformation = function(req, res) {
                             if (err) throw err
                             //console.log(founded)
                             res.json(founded);
-                            mongoose.disconnect();
+                            //mongoose.disconnect();
                         });
                     }
                 })
