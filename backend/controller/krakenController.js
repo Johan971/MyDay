@@ -36,7 +36,8 @@ exports.getKraken = function (req, res) {
 
     //connectDb();
     currentTimeStamp = Date.now();
-    var march = new Date("02 March 2020 00:00:00");
+    var firstMarch = new Date("01 March 2020 00:00:00");
+    var twoMarch = new Date("02 March 2020 00:00:00");
 
     // test if data are too old with one update each 4 hours (14400)
     BTCPrice.find((err, maxFounded) => { // si il n'y a rien prendre since = il y a 2 mois
@@ -44,20 +45,21 @@ exports.getKraken = function (req, res) {
         BTCPrice.find((err, minFounded) => {
 
             //console.log(minFounded[0].time);
-            //console.log(march.getTime() / 1000);
+            //console.log(twoMarch.getTime() / 1000);
+            //console.log(minFounded.length)
 
-            if (minFounded[0].time > march.getTime()/1000) {
+            if (minFounded.length == 0 || minFounded[0].time > twoMarch.getTime() / 1000) {
 
                 console.log("Updating data since March 2020");
 
-                krakenAPI.getKraken(240, march.getTime()/1000, (result) => {
+                krakenAPI.getKraken(240, firstMarch.getTime()/1000, (result) => {
                     remove(BTCPrice, () => {
                         for (const elt in result) {
                             insert(result[elt], () => {
                                 if (elt == (result.length - 1)) { // once the insertion is over
                                     BTCPrice.find({}, (err, founded) => { //find and return all documents inside obj collection
                                         if (err) throw err
-                                        console.log(founded.length)
+                                        //console.log(founded.length)
                                         res.json(founded);
                                         //mongoose.disconnect();
                                     });
