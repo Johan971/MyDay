@@ -12,19 +12,13 @@ const Trend = require("./models/Trends");
 const APIkey= "Uszcu6clBx7Om95C8nJQ94icS"
 const APIkeySecret= "R4ei263Y2Dj3vyIuQvhg7ICT8G1pTV3iLzwC25BSXWCDOYs2iN"
 
-
 const AccessToken ="1268637071830368256-krQWMKj9GLhqMd3aWTSbT8SIyCw3s9"
 const AccessTokenSecret ="hfxDmwRxli0RuyBnzXKLHcTWsS0iufIatK4FzZZlOO1yR"
 
-
-
-
 module.exports ={
-
 
 	newGet: (callback) => {
 		//var result=[]
-
 
 		const T = new Twit({
 			consumer_key: APIkey,
@@ -65,33 +59,21 @@ module.exports ={
 
 			}
 
-
-
-
-
-
-
-
-
 		const calculDistance=(founde)=>{   //Quand on a les coord on cherche la ville la plus proche
 			
 			return new Promise(function(res,rej){
-				console.log("dis:",founde)
+				//console.log("dis:",founde)
 				WOEIDs.forEach((elt)=>{
 
 					tabDistance.push(geolib.getDistance({latitude:founde[0].lat, longitude:founde[0].lon},{latitude:elt.lat,longitude:elt.lon},(err)=>{
 						if (err) rej(err)
 					}))
 
-
 				})
 				res(tabDistance)
 
-
 			})
 		}
-
-
 
 		const PPT=(tab)=>{
 			return new Promise((res,rej)=>{
@@ -105,10 +87,8 @@ module.exports ={
 					if(ppt>tab[j+1]){
 						ppt=tab[j+1]
 						posVilleProche=j+1
-
 					}
 					
-
 					if (tab[j+1]==tab[tab.length-1]){
 						var villePP=WOEIDs[posVilleProche]
 						var result=[]
@@ -120,7 +100,7 @@ module.exports ={
 									break
 								}
 
-								else{
+								else if (data[0].trends[f].tweet_volume !== null) {
 									
 									result.push(new Trend({
 										name: data[0].trends[f].name,
@@ -135,7 +115,6 @@ module.exports ={
 							
 						})
 					}
-
 				}
 			})
 		}

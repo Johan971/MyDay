@@ -29,7 +29,7 @@ module.exports = {
                         lon: resp.features[0].geometry.coordinates[0]
                     });
 
-                    console.log(result);
+                    //console.log(result);
 
                     callback(result);
                 }

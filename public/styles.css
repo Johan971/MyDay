@@ -268,11 +268,28 @@ body{
   height:500px;
 
 }
+
 /*élargissement de la zone sur click*/
 .large.main{
   width:400px;
   height:600px;
   background-color: #7C9EB2;
+}
+
+
+.zone#clock{
+  width:500px;
+  height:500px;
+  background-color: grey;
+  overflow: hidden;
+
+}
+/*élargissement de la zone sur click*/
+.large#clock{
+  width:500px;
+  height:5px;
+  background-color: grey;
+  overflow: hidden;
 }
 /*/////////////////////////////ZONE ECONOMIE//////////////////////////////*/
 .zone.economie{
@@ -285,19 +302,4 @@ body{
   width:450px;
   height:300px;
   background-color: #7C9EB2;
-}
-/*/////////////////////////////ZONE ECONOMIE//////////////////////////////*/
-.zone#clock{
-  width:500px;
-  height:500px;
-  background-color: grey;
-  overflow: hidden;
-
-}
-/*élargissement de la zone sur click*/
-.large#clock{
-  width:500px;
-  height:500px;
-  background-color: grey;
-  overflow: hidden;
 }

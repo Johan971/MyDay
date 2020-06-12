@@ -8,7 +8,7 @@ const WeeklyWeather = require("./models/WeeklyWeather");
 module.exports = {
 
     getWeeklyWeather: (la, lo, callback) => {
- 
+
     let openWeatherParams = querystring.stringify({
         lat: la,
         lon: lo,
@@ -19,8 +19,8 @@ module.exports = {
     });
 
     let apiUrl = "http://api.openweathermap.org/data/2.5/onecall?" + openWeatherParams;
- 
-    var req = request({ 
+
+    var req = request({
             url : apiUrl,
             json: true
         }, function (error, response, resp) {
@@ -28,12 +28,11 @@ module.exports = {
             if(error){
                 console.log(error.code)
             }
- 
+
             if(!error && response.statusCode === 200){
 
                 //console.log(resp.current.weather[0].description);
                 //console.log(resp.daily[0].temp.morn);
-
                 let result = [];
 
                 for (const i in resp.daily) {
@@ -53,9 +52,11 @@ module.exports = {
                             nightFl: resp.daily[i].feels_like.night,
                         },
                         description: resp.daily[i].weather[0].description,
+                        icon: resp.daily[i].weather[0].icon,
+
                     }));
                 }
-                
+
                 callback(result);
             }
         }
