@@ -128,7 +128,6 @@ function showWeather(){
       preview[0].appendChild(date);
 
       logoWeather=document.createElement("img")
-      console.log("https://openweathermap.org/img/wn/"+tabMeteo[i].icon+"@2x.png");
       logoWeather.setAttribute("src","https://openweathermap.org/img/wn/"+tabMeteo[i].icon+"@2x.png")
       preview[0].appendChild(logoWeather)
 
