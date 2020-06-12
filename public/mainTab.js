@@ -141,7 +141,7 @@ function showWeather(){
       preview[0].appendChild(weather);
 
       weather = document.createElement("p");
-      weather.appendChild(document.createTextNode("Avec une impression de : "+round(tabMeteo[i].temp["dayFl"],1)+" °C"));
+      weather.appendChild(document.createTextNode("Avec un ressenti de : "+round(tabMeteo[i].temp["dayFl"],1)+" °C"));
       preview[0].appendChild(weather);
 
       date = document.createElement("h1");
