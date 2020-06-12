@@ -37,8 +37,7 @@ document.getElementById("media").onclick = function(){
     		var preview=newZone2[0].getElementsByClassName("preview")[0]
     		var fullview=newZone2[0].getElementsByClassName("fullview")[0]
     		
-        	preview.innerHTML = ""
-       		fullview.innerHTML = ""
+        	
 
             var titlePv = document.createElement("h1")
             titlePv.setAttribute("class", "titleTwitterTrend")

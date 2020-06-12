@@ -291,6 +291,13 @@ body{
   background-color: grey;
   overflow: hidden;
 }
+
+/*taille onglet meteo*/
+#zoneMeteoPrincipale{
+  width:500px;
+  height:500px;
+}
+
 /*/////////////////////////////ZONE ECONOMIE//////////////////////////////*/
 .zone.economie{
   width:375px;

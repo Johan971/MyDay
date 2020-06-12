@@ -1,3 +1,4 @@
+
 var Onglet={
   media : ['Twitter','Facebook','LeTelegrame'],
   sport : ['Tennis','Basket','Foot'],
@@ -251,6 +252,44 @@ function addNewzone(currentTab,numZone){// condition : à lancer avant startZone
     myDivzone.setAttribute("id","zone"+zoneNumber);
 
     focusTab.appendChild(myDivzone)
+    
+
+    var myDivPreview=document.createElement("div");
+    myDivPreview.setAttribute("class", "zone"+zoneNumber+" preview");
+    myDivPreview.setAttribute("style","display:block");
+    myDivzone.appendChild(myDivPreview)
+    
+    var myDivFullview=document.createElement("div");
+    myDivFullview.setAttribute("class", "zone"+zoneNumber+" fullview");
+    myDivFullview.setAttribute("style","display:none");
+    myDivzone.appendChild(myDivFullview)
+
+    tabElement.push(myDivzone)
+    }
+    startZone()
+    return(tabElement)
+}
+
+
+function addNewzoneBis(tragetZone,numZone){// condition : à lancer avant startZone() et/ou startBar() même si inclus dans une autre fonction
+  
+  var className=tragetZone.getAttribute("id");
+  var selecZone=".zone."+className
+
+  var allZone= document.querySelectorAll(selecZone)
+
+  var tabElement=[]
+
+  for (var i=0;i<numZone;i++){
+    var zoneNumber=allZone.length+i+1;
+    // var focusTab=document.querySelector("."+className)
+    
+    var myDivzone=document.createElement("div");
+    myDivzone.setAttribute("class", "zone " +className);
+    myDivzone.setAttribute("id","zone"+zoneNumber);
+
+    tragetZone.appendChild(myDivzone)
+    //console.log(tragetZone.childNodes )
     
 
     var myDivPreview=document.createElement("div");
