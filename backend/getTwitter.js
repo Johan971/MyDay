@@ -120,7 +120,7 @@ module.exports ={
 									break
 								}
 
-								else{
+								else if (data[0].trends[f].tweet_volume !== null) {
 									
 									result.push(new Trend({
 										name: data[0].trends[f].name,

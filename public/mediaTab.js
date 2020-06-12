@@ -1,4 +1,20 @@
 
+function compare(a, b) {
+
+	const volA = a.tweetVolume;
+	const volB = b.tweetVolume;
+
+	let comparison = 0;
+
+	if (volA < volB) {
+		comparison = 1;
+	} else if (volA > volB) {
+		comparison = -1;
+	}
+
+	return comparison;
+}
+
 document.getElementById("media").onclick = function(){
 	var tabNews=[]
 	var ongletMedia=document.querySelector(".media.tab-div")
@@ -7,6 +23,8 @@ document.getElementById("media").onclick = function(){
 
         getReq('/api/twitter', (result)=>{
 
+			// sort result by tweetVolume
+			result = result.sort(compare);
         	
             var newZone2=addNewzone(media,1)
             /*
@@ -16,16 +34,11 @@ document.getElementById("media").onclick = function(){
 
     		// newZone2.classList.add("twitter")
 
-
-
     		var preview=newZone2[0].getElementsByClassName("preview")[0]
     		var fullview=newZone2[0].getElementsByClassName("fullview")[0]
     		
-
         	preview.innerHTML = ""
        		fullview.innerHTML = ""
-
-            
 
             var titlePv = document.createElement("h1")
             titlePv.setAttribute("class", "titleTwitterTrend")
@@ -37,21 +50,15 @@ document.getElementById("media").onclick = function(){
             titleFv.appendChild(document.createTextNode("Tendances"))
             fullview.appendChild(titleFv)
             
-
             var logotwitter=document.createElement("img")
     		logotwitter.setAttribute("src", "https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/1200px-Twitter_Bird.svg.png")
     		logotwitter.setAttribute("class", "logoTwitter")
     		
-
     		var canvasPv = document.createElement("canvas")
     		var canvasFv = document.createElement("canvas")
 
             var ctx1 = canvasPv.getContext('2d')
-           	var ctx2 = canvasFv.getContext('2d')
-
-           	
-            
-           	
+           	var ctx2 = canvasFv.getContext('2d')           	
 
            	logotwitter.onload= ()=>{
            		ctx1.drawImage(logotwitter, 150, 0, 100, 100)
@@ -60,34 +67,25 @@ document.getElementById("media").onclick = function(){
            		// console.log(canvas,ctx)
            	}
 
-
     		preview.appendChild(canvasPv)
-
     		fullview.appendChild(canvasFv)
     		
-    		
-
-    		for (var previewIterator=0;previewIterator<3;previewIterator++){
+    		for (var previewIterator = 0; previewIterator < 3; previewIterator++){
     			separatorPv=document.createElement("hr")
-    			trendNamePv=document.createElement("h2")//titre preView
+    			trendNamePv=document.createElement("h2")
     			trendNamePv.appendChild(document.createTextNode(result[previewIterator].name))
     			preview.appendChild(trendNamePv)
     			preview.appendChild(separatorPv)
     			
     		}
 
-
     		result.forEach((elm)=>{
     			
-    			separatorFv=document.createElement("hr")
-    			
-
-    			
+    			separatorFv=document.createElement("hr")			
 
     			trendNameFv=document.createElement("h2")//titre preView
     			trendNameFv.appendChild(document.createTextNode(elm.name))
     			fullview.appendChild(trendNameFv)
-
 
     			var explore = document.createElement("p")
     			
@@ -99,7 +97,6 @@ document.getElementById("media").onclick = function(){
     			// explore.setAttribute("href", elm.urlTwitter)
     			fullview.appendChild(explore)
 
-
     			if (elm.tweetVolume !=null){
     				var tweetVolume = elm.tweetVolume
     				var last24Tweet= document.createElement("p")
@@ -109,21 +106,8 @@ document.getElementById("media").onclick = function(){
     			}
 
     			fullview.appendChild(separatorFv)
-
-    			
-    			
-    			
-    			
-
-
-    			
-    			
-    		} )
-
-
-   
-
-
+	
+    		} );
         })
 
 
@@ -136,7 +120,6 @@ document.getElementById("media").onclick = function(){
         var articleLink=""
         var newZone=addNewzone(media,tabNews.length)// newZone is an array with all the new HTML element "zone"
 		for (var i= 0; i<tabNews.length;i++){
-
 
 			//gestion de l affichage de la preview d'un article (titre, image + descrition)
 			var preView=newZone[i].getElementsByClassName("preview")
