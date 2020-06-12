@@ -13,6 +13,10 @@ document.getElementById("economie").onclick = function (){
 }
 
 
+function variationsPercentage(initiale,finale){
+  return round((finale-initiale)*100/initiale,2);
+}
+
 function cryptoZone(currency, result){
 
   let date3D = [];
@@ -75,6 +79,11 @@ function cryptoZone(currency, result){
   lastPricePreview.textContent = result[result.length-1]["price"+currency]+" €"
   lastPricePreview.style.color = variationColor("1.0")
   childPreview.appendChild(lastPricePreview)
+
+  let percentagePreview = document.createElement("h3")
+  percentagePreview.textContent = variationsPercentage(result[result.length-19]["price"+currency],result[result.length-1]["price"+currency])+' %'
+  percentagePreview.style.color = variationColor("1.0")
+  childPreview.appendChild(percentagePreview)
 
 
 
