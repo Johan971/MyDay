@@ -8,10 +8,41 @@ document.getElementById("economie").onclick = function (){
     cryptoZone("ETH", result);
     cryptoZone("XRP", result);
     cryptoZone("LTC", result);
+    
+    console.log(getIndicator(result, Date.now()/1000 - 3600*24*3));
   });
 
 }
 
+function getIndicator(result, since){ // since is a unix timestamp
+
+  valueArray = [];
+  indicators = {
+    BTCIndicator: Number,
+    ETHIndicator: Number,
+    XRPIndicator: Number,
+    LTCIndicator: Number
+  };
+
+  console.log(since)
+  console.log(result)
+
+  // keep the value since the timestamp
+  for(const elt in result){
+    if(result[elt].time >= since){
+      valueArray.push(result[elt]);
+    }
+  }
+
+  console.log(valueArray)
+
+  indicators.BTCIndicator = (100*(valueArray[valueArray.length - 1].priceBTC - valueArray[0].priceBTC) / valueArray[valueArray.length - 1].priceBTC) / valueArray.length;
+  indicators.ETHIndicator = (100*(valueArray[valueArray.length - 1].priceETH - valueArray[0].priceETH) / valueArray[valueArray.length - 1].priceETH) / valueArray.length;
+  indicators.XRPIndicator = (100*(valueArray[valueArray.length - 1].priceXRP - valueArray[0].priceXRP) / valueArray[valueArray.length - 1].priceXRP) / valueArray.length;
+  indicators.LTCIndicator = (100*(valueArray[valueArray.length - 1].priceLTC - valueArray[0].priceLTC) / valueArray[valueArray.length - 1].priceLTC) / valueArray.length;
+  
+  return indicators;
+}
 
 function cryptoZone(currency, result){
 
