@@ -286,3 +286,18 @@ body{
   height:300px;
   background-color: #7C9EB2;
 }
+/*/////////////////////////////ZONE ECONOMIE//////////////////////////////*/
+.zone#clock{
+  width:500px;
+  height:500px;
+  background-color: grey;
+  overflow: hidden;
+
+}
+/*élargissement de la zone sur click*/
+.large#clock{
+  width:500px;
+  height:500px;
+  background-color: grey;
+  overflow: hidden;
+}
