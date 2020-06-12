@@ -264,15 +264,18 @@ body{
 }
 /*/////////////////////////////ZONE MAIN//////////////////////////////*/
 .zone.main{
-  width:375px;
-  height:500px;
-
+  width:225px;
+  height:300px;
 }
 /*élargissement de la zone sur click*/
 .large.main{
   width:400px;
   height:600px;
   background-color: #7C9EB2;
+}
+#clock{
+    width:510px;
+    height:515px;
 }
 /*/////////////////////////////ZONE ECONOMIE//////////////////////////////*/
 .zone.economie{
