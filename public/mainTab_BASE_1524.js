@@ -109,74 +109,14 @@ function showWeather(){
 
   getReq('/api/weeklyWeather', (result) => {
     tabMeteo=result;
-    var newZone=addNewzone(main,1)
-    newZone[0].setAttribute("id", "zoneMeteoPrincipale")
 
-    var day = new ChooseDate(tabMeteo[0].timeStamp)
-    var sunset = new ChooseDate(tabMeteo[0].sunset)
-    var sunrise = new ChooseDate(tabMeteo[0].sunrise)
+    var newZone=addNewzone(main,tabMeteo.length)
 
-    var preview = newZone[0].getElementsByClassName("preview")
-    var fullview = newZone[0].getElementsByClassName("fullview")
-    fullview[0].setAttribute("id","fullviewCanvasMeteo")
+    for(var i=0; i<tabMeteo.length;i++){
 
 
-
-    date = document.createElement("h1");
-    date.appendChild(document.createTextNode(day.dayName+" "+day.dayNumber+" "+day.monthName+" "+day.yearNumber));
-    preview[0].appendChild(date);
-
-    logoWeather=document.createElement("img")
-    logoWeather.setAttribute("src","https://openweathermap.org/img/wn/"+tabMeteo[0].icon+"@2x.png")
-    preview[0].appendChild(logoWeather)
-
-    weather = document.createElement("p");
-    weather.appendChild(document.createTextNode("Le temps est : "+tabMeteo[0].description));
-    preview[0].appendChild(weather);
-
-    weather = document.createElement("p");
-    weather.appendChild(document.createTextNode("La temperature de ce jour est : "+round(tabMeteo[0].temp["day"],1)+" °C"));
-    preview[0].appendChild(weather);
-
-    weather = document.createElement("p");
-    weather.appendChild(document.createTextNode("Avec un ressenti de : "+round(tabMeteo[0].temp["dayFl"],1)+" °C"));
-    preview[0].appendChild(weather);
-
-    
-
-    // Mini zones des autres jours 
-    var newZones=addNewzoneBis(fullview[0],tabMeteo.length-1) //REVOIR SI LES ZONES SONT BIEN LA 5MEME SI LA LIGNE USIVANT 0 LAIRE DE LE PROUVER
-    
-
-    console.log("ee",fullview[0].childNodes)
-
-
-    for (var j=1;j<tabMeteo.length;j++){
-
-      var previews = newZones[j].getElementsByClassName("preview")
-      var fullviews = newZones[j].getElementsByClassName("fullview") //UNDEFINED
-      // var day = new ChooseDate(tabMeteo[j].timeStamp)
-      // var sunset = new ChooseDate(tabMeteo[j].sunset)
-      // var sunrise = new ChooseDate(tabMeteo[j].sunrise)
-
-      // date = document.createElement("h1");
-
-      // date.appendChild(document.createTextNode(day.dayName+" "+day.dayNumber+" "+day.monthName+" "+day.yearNumber));
-      // fullview[0].appendChild(date);
-      previews[0].appendChild(document.createTextNode("fff"))
-    }
-
-    
-    /*
-    for(var i=1; i<tabMeteo.length;i++){
-
-      
-      var preview = newZones[i].getElementsByClassName("preview")
-      var fullview = newZones[i].getElementsByClassName("fullview")
-=======
       var preview = newZone[i].getElementsByClassName("preview")
       var fullview = newZone[i].getElementsByClassName("fullview")
->>>>>>> ab7343df65c4f6bf12f427c2bbe378bfdd118d38
 
 
       var day = new ChooseDate(tabMeteo[i].timeStamp)
@@ -231,6 +171,6 @@ function showWeather(){
       weather = document.createElement("p");
       weather.appendChild(document.createTextNode("Le coucher du soleil est à "+typeNum(sunset.hour)+"h"+typeNum(sunset.minute)));
       fullview[0].appendChild(weather);
-    }*/
+    }
   })
 }

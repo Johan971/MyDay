@@ -121,7 +121,6 @@ function showWeather(){
     fullview[0].setAttribute("id","fullviewCanvasMeteo")
 
 
-
     date = document.createElement("h1");
     date.appendChild(document.createTextNode(day.dayName+" "+day.dayNumber+" "+day.monthName+" "+day.yearNumber));
     preview[0].appendChild(date);
@@ -173,10 +172,6 @@ function showWeather(){
       
       var preview = newZones[i].getElementsByClassName("preview")
       var fullview = newZones[i].getElementsByClassName("fullview")
-=======
-      var preview = newZone[i].getElementsByClassName("preview")
-      var fullview = newZone[i].getElementsByClassName("fullview")
->>>>>>> ab7343df65c4f6bf12f427c2bbe378bfdd118d38
 
 
       var day = new ChooseDate(tabMeteo[i].timeStamp)

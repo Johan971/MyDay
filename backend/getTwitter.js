@@ -106,7 +106,6 @@ module.exports ={
 										name: data[0].trends[f].name,
 										urlTwitter: data[0].trends[f].url,
 										tweetVolume: data[0].trends[f].tweet_volume
-
 									}))
 								}
 							}
