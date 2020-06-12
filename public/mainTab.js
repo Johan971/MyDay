@@ -5,10 +5,22 @@ function ChooseDate(timeStamp) {
 
   this.ts = timeStamp;
   this.date = new Date(timeStamp * 1000);
+  this.hour = this.date.getHours();
+  this.minute = this.date.getMinutes();
   this.dayNumber = this.date.getDate(); // number of the day
   this.monthName = monthDayArray[this.date.getMonth()];
   this.dayName = dayNameArray[this.date.getDay()];
   this.yearNumber = this.date.getFullYear();
+}
+
+function round(nombre, precision){
+    var precision = precision || 2;
+    var tmp = Math.pow(10, precision);
+    return Math.round( nombre*tmp )/tmp;
+}
+
+function typeNum(number) {
+    return (number < 10) ? '0' + number.toString() : number.toString();
 }
 
 function degToRad(degree) {
@@ -108,6 +120,8 @@ function showWeather(){
 
 
       var day = new ChooseDate(tabMeteo[i].timeStamp)
+      var sunset = new ChooseDate(tabMeteo[i].sunset)
+      var sunrise = new ChooseDate(tabMeteo[i].sunrise)
 
       date = document.createElement("h1");
       date.appendChild(document.createTextNode(day.dayName+" "+day.dayNumber+" "+day.monthName+" "+day.yearNumber));
@@ -118,26 +132,46 @@ function showWeather(){
       logoWeather.setAttribute("src","https://openweathermap.org/img/wn/"+tabMeteo[i].icon+"@2x.png")
       preview[0].appendChild(logoWeather)
 
+      weather = document.createElement("p");
+      weather.appendChild(document.createTextNode("Le temps est : "+tabMeteo[i].description));
+      preview[0].appendChild(weather);
+
+      weather = document.createElement("p");
+      weather.appendChild(document.createTextNode("La temperature de ce jour est : "+round(tabMeteo[i].temp["day"],1)+" °C"));
+      preview[0].appendChild(weather);
+
+      weather = document.createElement("p");
+      weather.appendChild(document.createTextNode("Avec une impression de : "+round(tabMeteo[i].temp["dayFl"],1)+" °C"));
+      preview[0].appendChild(weather);
+
       date = document.createElement("h1");
       date.appendChild(document.createTextNode(day.dayName+" "+day.dayNumber+" "+day.monthName+" "+day.yearNumber));
       fullview[0].appendChild(date);
 
 
       weather = document.createElement("p");
-      weather.appendChild(document.createTextNode("Le temps est : "+tabMeteo[i].description+" avec une temperature de : "+tabMeteo[i].temp["day"]+" et un ressenti de : "+tabMeteo[i].temp["dayFl"]));
+      weather.appendChild(document.createTextNode("Le temps est : "+tabMeteo[i].description+" avec une temperature de : "+tabMeteo[i].temp["day"]+" °C"+" et un ressenti de : "+tabMeteo[i].temp["dayFl"]+" °C"));
       fullview[0].appendChild(weather);
 
-      weather2 = document.createElement("p");
-      weather2.appendChild(document.createTextNode("Matin : "+tabMeteo[i].temp["morning"]+" avec un ressenti de : "+tabMeteo[i].temp["morningFl"]));
-      fullview[0].appendChild(weather2);
+      weather = document.createElement("p");
+      weather.appendChild(document.createTextNode("Matin : "+tabMeteo[i].temp["morning"]+" °C"+" avec un ressenti de : "+tabMeteo[i].temp["morningFl"]+" °C"));
+      fullview[0].appendChild(weather);
 
-      weather3 = document.createElement("p");
-      weather3.appendChild(document.createTextNode(" Apres midi : "+tabMeteo[i].temp["evening"]+" avec un ressenti de : "+tabMeteo[i].temp["eveningFl"]));
-      fullview[0].appendChild(weather3);
+      weather = document.createElement("p");
+      weather.appendChild(document.createTextNode(" Apres midi : "+tabMeteo[i].temp["evening"]+" °C"+" avec un ressenti de : "+tabMeteo[i].temp["eveningFl"]+" °C"));
+      fullview[0].appendChild(weather);
 
-      weather4 = document.createElement("p");
-      weather4.appendChild(document.createTextNode(" Nuit : "+tabMeteo[i].temp["night"]+" avec un ressenti de : "+tabMeteo[i].temp["nightFl"]));
-      fullview[0].appendChild(weather4);
+      weather = document.createElement("p");
+      weather.appendChild(document.createTextNode(" Nuit : "+tabMeteo[i].temp["night"]+" °C"+" avec un ressenti de : "+tabMeteo[i].temp["nightFl"]+" °C"));
+      fullview[0].appendChild(weather);
+
+      weather = document.createElement("p");
+      weather.appendChild(document.createTextNode("Le lever du soleil est à "+typeNum(sunrise.hour)+"h"+typeNum(sunrise.minute)));
+      fullview[0].appendChild(weather);
+
+      weather = document.createElement("p");
+      weather.appendChild(document.createTextNode("Le coucher du soleil est à "+typeNum(sunset.hour)+"h"+typeNum(sunset.minute)));
+      fullview[0].appendChild(weather);
     }
   })
 }
