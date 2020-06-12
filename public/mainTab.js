@@ -114,7 +114,6 @@ function showWeather(){
 
     for(var i=0; i<tabMeteo.length;i++){
 
-
       var preview = newZone[i].getElementsByClassName("preview")
       var fullview = newZone[i].getElementsByClassName("fullview")
 

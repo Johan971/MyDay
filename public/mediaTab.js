@@ -23,7 +23,9 @@ document.getElementById("media").onclick = function(){
 
         getReq('/api/twitter', (result)=>{
 
-			// sort result by tweetVolume
+			console.log(result)
+
+			// sort again
 			result = result.sort(compare);
         	
             var newZone2=addNewzone(media,1)
