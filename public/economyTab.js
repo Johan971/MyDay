@@ -4,12 +4,18 @@ document.getElementById("economie").onclick = function (){
   ongletEco.innerHTML = "";
 
   getReq('/api/kraken', (result) => {
+
+
+
     cryptoZone("BTC", result);
     cryptoZone("ETH", result);
+    // pq pas
     cryptoZone("XRP", result);
     cryptoZone("LTC", result);
     
     console.log(getIndicator(result, Date.now()/1000 - 3600*24*3));
+    console.log(getIndicator(result, Date.now()/1000 - 3600*24*90));
+
   });
 
 }
@@ -24,17 +30,12 @@ function getIndicator(result, since){ // since is a unix timestamp
     LTCIndicator: Number
   };
 
-  console.log(since)
-  console.log(result)
-
   // keep the value since the timestamp
   for(const elt in result){
     if(result[elt].time >= since){
       valueArray.push(result[elt]);
     }
   }
-
-  console.log(valueArray)
 
   indicators.BTCIndicator = (100*(valueArray[valueArray.length - 1].priceBTC - valueArray[0].priceBTC) / valueArray[valueArray.length - 1].priceBTC) / valueArray.length;
   indicators.ETHIndicator = (100*(valueArray[valueArray.length - 1].priceETH - valueArray[0].priceETH) / valueArray[valueArray.length - 1].priceETH) / valueArray.length;
