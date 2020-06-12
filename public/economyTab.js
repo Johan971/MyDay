@@ -9,10 +9,10 @@ document.getElementById("economie").onclick = function (){
 
     cryptoZone("BTC", result);
     cryptoZone("ETH", result);
-    // pq pas
+    indicatorsZone(result);
     cryptoZone("XRP", result);
     cryptoZone("LTC", result);
-    
+
     console.log(getIndicator(result, Date.now()/1000 - 3600*24*3));
     console.log(getIndicator(result, Date.now()/1000 - 3600*24*90));
 
@@ -37,17 +37,42 @@ function getIndicator(result, since){ // since is a unix timestamp
     }
   }
 
-  indicators.BTCIndicator = (100*(valueArray[valueArray.length - 1].priceBTC - valueArray[0].priceBTC) / valueArray[valueArray.length - 1].priceBTC) / valueArray.length;
-  indicators.ETHIndicator = (100*(valueArray[valueArray.length - 1].priceETH - valueArray[0].priceETH) / valueArray[valueArray.length - 1].priceETH) / valueArray.length;
-  indicators.XRPIndicator = (100*(valueArray[valueArray.length - 1].priceXRP - valueArray[0].priceXRP) / valueArray[valueArray.length - 1].priceXRP) / valueArray.length;
-  indicators.LTCIndicator = (100*(valueArray[valueArray.length - 1].priceLTC - valueArray[0].priceLTC) / valueArray[valueArray.length - 1].priceLTC) / valueArray.length;
-  
+  indicators.BTCIndicator = (10000*(valueArray[valueArray.length - 1].priceBTC - valueArray[0].priceBTC) / valueArray[valueArray.length - 1].priceBTC) / valueArray.length;
+  indicators.ETHIndicator = (10000*(valueArray[valueArray.length - 1].priceETH - valueArray[0].priceETH) / valueArray[valueArray.length - 1].priceETH) / valueArray.length;
+  indicators.XRPIndicator = (10000*(valueArray[valueArray.length - 1].priceXRP - valueArray[0].priceXRP) / valueArray[valueArray.length - 1].priceXRP) / valueArray.length;
+  indicators.LTCIndicator = (10000*(valueArray[valueArray.length - 1].priceLTC - valueArray[0].priceLTC) / valueArray[valueArray.length - 1].priceLTC) / valueArray.length;
+
   return indicators;
 }
 
 function variationsPercentage(initiale,finale){
   return round((finale-initiale)*100/initiale,2);
 }
+
+function indicatorsZone(result){
+  var ongletEco = document.querySelector(".economie.tab-div")
+
+  let newZone = addNewzone(economie,1)
+
+  indicators = document.createElement("h1");
+  indicators.appendChild(document.createTextNode("Indicateurs"));
+  newZone[0].appendChild(indicators);
+
+
+  let averageDays = (getIndicator(result, Date.now()/1000 - 3600*24*3).BTCIndicator+getIndicator(result, Date.now()/1000 - 3600*24*3).ETHIndicator+getIndicator(result, Date.now()/1000 - 3600*24*3).XRPIndicator+getIndicator(result, Date.now()/1000 - 3600*24*3).LTCIndicator)/4
+  let averageMonths = (getIndicator(result, Date.now()/1000 - 3600*24*90).BTCIndicator+getIndicator(result, Date.now()/1000 - 3600*24*90).ETHIndicator+getIndicator(result, Date.now()/1000 - 3600*24*90).XRPIndicator+getIndicator(result, Date.now()/1000 - 3600*24*90).LTCIndicator)/4
+
+  indicatorsAverageDay = document.createElement("p")
+  indicatorsAverageDay.appendChild(document.createTextNode("Indicateur de 3 jours du marché : "+ round(averageDays),2));
+  indicatorsAverageMonth = document.createElement("p")
+  indicatorsAverageMonth.appendChild(document.createTextNode("Indicateur de 3 mois du marché : "+ round(averageMonths),2));
+
+  newZone[0].appendChild(indicatorsAverageDay);
+  newZone[0].appendChild(indicatorsAverageMonth)
+
+
+}
+
 
 function cryptoZone(currency, result){
 
@@ -73,7 +98,7 @@ function cryptoZone(currency, result){
   let childFullview = newZone.children[1]*/
 
 
-  let infoCurrency = {
+  var infoCurrency = {
     BTC: {
       name: "Bitcoin",
       image: "https://tokensinvaders.com/wp-content/uploads/2018/11/Bitcoin-cest-quoi.png"
