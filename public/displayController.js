@@ -211,7 +211,7 @@ function startBar(){
 ////////AGRANDISSEMENT DES BLOCS///////////////
 function startZone(){
   let zoneEltList = document.getElementsByClassName("zone")// récupartion d'une liste constituée de tous les élements "zone"
-  for (let zoneElt of zoneEltList){
+  for (let zoneElt of zoneEltList){ //==Et si la zone c'est une fullview ?!!!!==//
     zoneElt.onclick = function(){
       let childFullview = this.getElementsByClassName(this.id+" fullview")[0]
       let childPreview = this.getElementsByClassName(this.id+" preview")[0]
@@ -304,7 +304,7 @@ function addNewzoneBis(tragetZone,numZone){// condition : à lancer avant startZ
 
     tabElement.push(myDivzone)
     }
-    startZone()
+    startZone() //REFAIRE STARTZONE
     return(tabElement)
 }
 

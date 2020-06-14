@@ -153,8 +153,8 @@ function showWeather(){
 
     for (var j=1;j<tabMeteo.length;j++){
 
-      var previews = newZones[j].getElementsByClassName("preview")
-      var fullviews = newZones[j].getElementsByClassName("fullview") //UNDEFINED
+      var previews = newZones[j].getElementsByClassName("preview")[0]
+      var fullviews = newZones[j].getElementsByClassName("fullview")[0] //UNDEFINED
       // var day = new ChooseDate(tabMeteo[j].timeStamp)
       // var sunset = new ChooseDate(tabMeteo[j].sunset)
       // var sunrise = new ChooseDate(tabMeteo[j].sunrise)
@@ -173,10 +173,10 @@ function showWeather(){
       
       var preview = newZones[i].getElementsByClassName("preview")
       var fullview = newZones[i].getElementsByClassName("fullview")
-=======
+
       var preview = newZone[i].getElementsByClassName("preview")
       var fullview = newZone[i].getElementsByClassName("fullview")
->>>>>>> ab7343df65c4f6bf12f427c2bbe378bfdd118d38
+
 
 
       var day = new ChooseDate(tabMeteo[i].timeStamp)
