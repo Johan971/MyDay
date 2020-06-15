@@ -103,6 +103,17 @@ function showWeather(){
 
   var ongletMain=document.querySelector(".main.tab-div")
       ongletMain.innerHTML=""
+  var icons =[
+    {icon : "10",image : "https://i1.wp.com/www.beyond-magazine.com/wp-content/uploads/2016/02/sunny-rain.jpg"},
+    {icon : "09",image : "https://bacafanfic.files.wordpress.com/2014/10/tumblr_m6upaz4pvc1qhv7bk.jpg?w=560"},
+    {icon : "01",image : "https://wallpapersite.com/images/pages/pic_h/4423.jpg"},
+    {icon : "02",image : "https://4.bp.blogspot.com/-dZwQMqVZFMQ/UeAgjMdES1I/AAAAAAAAXFM/riuIUs_WoZc/s1600/Sun+And+Clouds+Wallpapers+(1).jpg"},
+    {icon : "03",image : "https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&w=1000&q=80"},
+    {icon : "11",image : "https://sambadenglish.com/wp-content/uploads/2019/06/157ZIapRuOaO4HVf916cHjRZq_4Ope2Z2.jpg"},
+    {icon : "13",image : "https://img.wallpapersafari.com/desktop/1920/1080/43/33/mxudJO.jpg"},
+    {icon : "50",image : "https://inhabitat.com/wp-content/blogs.dir/1/files/2016/06/Matthias-Arndt-Triangle-Cliff-House-04-600x480.jpg"},
+    {icon : "09",image : "https://c4.wallpaperflare.com/wallpaper/282/607/672/clouds-cloudy-sky-night-wallpaper-preview.jpg"}
+  ]
 
       clockCreation()
 
@@ -126,9 +137,13 @@ function showWeather(){
     date.appendChild(document.createTextNode(day.dayName+" "+day.dayNumber+" "+day.monthName+" "+day.yearNumber));
     preview[0].appendChild(date);
 
-    logoWeather=document.createElement("img")
-    logoWeather.setAttribute("src","https://openweathermap.org/img/wn/"+tabMeteo[0].icon+"@2x.png")
-    preview[0].appendChild(logoWeather)
+    icons.forEach(elm => {
+          if (tabMeteo[0].icon.includes(elm.icon)) {
+            logoWeather=document.createElement("img")
+            logoWeather.setAttribute("src",elm.image)
+            preview[0].appendChild(logoWeather)
+          }
+        });
 
     weather = document.createElement("p");
     weather.appendChild(document.createTextNode("Le temps est : "+tabMeteo[0].description));
@@ -142,11 +157,11 @@ function showWeather(){
     weather.appendChild(document.createTextNode("Avec un ressenti de : "+round(tabMeteo[0].temp["dayFl"],1)+" °C"));
     preview[0].appendChild(weather);
 
-    
 
-    // Mini zones des autres jours 
+
+    // Mini zones des autres jours
     var newZones=addNewzoneBis(fullview[0],tabMeteo.length-1) //REVOIR SI LES ZONES SONT BIEN LA 5MEME SI LA LIGNE USIVANT 0 LAIRE DE LE PROUVER
-    
+
 
     console.log("ee",fullview[0].childNodes)
 
@@ -166,11 +181,11 @@ function showWeather(){
       previews[0].appendChild(document.createTextNode("fff"))
     }
 
-    
+
     /*
     for(var i=1; i<tabMeteo.length;i++){
 
-      
+
       var preview = newZones[i].getElementsByClassName("preview")
       var fullview = newZones[i].getElementsByClassName("fullview")
 
