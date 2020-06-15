@@ -11,7 +11,8 @@
 
 body{
   color: white;
-  background-color: #52528C;
+  background: rgb(0,233,69);
+  background: linear-gradient(90deg, rgba(0,233,69,0.8970938717283788) 0%, rgba(2,0,36,1) 13%, rgba(2,0,36,1) 100%);
   margin:0px;
   padding:0px;
 }
@@ -39,7 +40,7 @@ body{
 
 }
 
-#contenu::-webkit-scrollbar-thumb:hover{ 
+#contenu::-webkit-scrollbar-thumb:hover{
   background-color:#BF4649;
   border:0.5px solid #333333;
 }
@@ -129,14 +130,14 @@ body{
 .sousnavlink:hover{
   color :#27ae60;
   cursor: pointer;
-  
+
 }
 /* apparance sidebar*/
 #sidebar{
   width : 10rem;
   height : 100vh;
   position : fixed;
-  background-color : #372554;
+  /*background-color : #372554;*/
   list-style: none;
   padding : 0;
   margin : 0;
@@ -164,16 +165,18 @@ body{
 
 .zone{
   color:white;
-  background-color: #7C9EB2;
+  background-color: #2C3A47;
   margin: 1%;
   border-radius:5px;
+  box-shadow: 0px 10px 10px black;
   transition: 0.5s;
   overflow:auto;
   min-width: 0px;
 }
 
 .zone:hover{
-  border: 2px red solid;
+  /*border: 2px red solid;*/
+  box-shadow: 0px 10px 10px #00B43E;
 }
 
 /*ecart du texte par rapport au bord de la zone*/
@@ -206,7 +209,7 @@ body{
 
 }
 
-.zone::-webkit-scrollbar-thumb:hover{ 
+.zone::-webkit-scrollbar-thumb:hover{
   background-color:#BF4649;
   border:0.5px solid #333333;
 }
