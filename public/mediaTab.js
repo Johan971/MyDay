@@ -15,6 +15,22 @@ function compare(a, b) {
 	return comparison;
 }
 
+function compareDelta(a, b) {
+
+	const deltaA = a.delta;
+	const deltaB = b.delta;
+
+	let comparison = 0;
+
+	if (deltaA < deltaB) {
+		comparison = 1;
+	} else if (deltaA > deltaB) {
+		comparison = -1;
+	}
+
+	return comparison;
+}
+
 document.getElementById("media").onclick = function(){
 	var tabNews=[]
 	var ongletMedia=document.querySelector(".media.tab-div")
@@ -29,17 +45,9 @@ document.getElementById("media").onclick = function(){
 		result = result.sort(compare);
 		
 		var newZone2=addNewzone(media,1)
-		/*
-		let preview = zoneMain[0].children[0]
-		let fullview = zoneMain[0].children[1]
-		*/
-
-		// newZone2.classList.add("twitter")
 
 		var preview=newZone2[0].getElementsByClassName("preview")[0]
-		var fullview=newZone2[0].getElementsByClassName("fullview")[0]
-		
-		
+		var fullview=newZone2[0].getElementsByClassName("fullview")[0]		
 
 		var titlePv = document.createElement("h1")
 		titlePv.setAttribute("class", "titleTwitterTrend")
@@ -108,6 +116,57 @@ document.getElementById("media").onclick = function(){
 			fullview.appendChild(separatorFv)
 
 		};
+
+		var newZonePrediction = addNewzone(media, 1);
+
+		// sort by delta
+		let predictionResult = result.slice(10, result.length - 1).sort(compareDelta);;
+		let topResult = result.slice(0,10).sort(compareDelta);
+
+		predictionTitle1 = document.createElement("h1");
+		predictionTitle1.appendChild(document.createTextNode("Prochains Tweet en tendance"));
+		prediction1 = document.createElement("h2");
+		prediction2 = document.createElement("h2");
+		separator = document.createElement("hr");
+		predictionTitle2 = document.createElement("h1");
+		predictionTitle2.appendChild(document.createTextNode("Prochains Tweet à sortir des tendances"));
+		prediction3 = document.createElement("h2");
+		prediction4 = document.createElement("h2");
+
+		if (predictionResult[0].name[0] != '#') {
+			prediction1.appendChild(document.createTextNode("#" + predictionResult[0].name));
+		}
+		else{
+			prediction1.appendChild(document.createTextNode(predictionResult[0].name));
+		}
+
+		if (predictionResult[1].name[0] != '#') {
+			prediction2.appendChild(document.createTextNode("#" + predictionResult[1].name));
+		} else {
+			prediction2.appendChild(document.createTextNode(predictionResult[1].name));
+		}
+
+		if (topResult[topResult.length-1].name[0] != '#') {
+			prediction3.appendChild(document.createTextNode("#" + topResult[topResult.length-1].name));
+		} else {
+			prediction3.appendChild(document.createTextNode(topResult[topResult.length-1].name));
+		}
+		
+		if (topResult[topResult.length-2].name[0] != '#') {
+			prediction4.appendChild(document.createTextNode("#" + topResult[topResult.length-2].name));
+		} else {
+			prediction4.appendChild(document.createTextNode(topResult[topResult.length-2].name));
+		}
+
+		newZonePrediction[0].appendChild(predictionTitle1);
+		newZonePrediction[0].appendChild(prediction1);
+		newZonePrediction[0].appendChild(prediction2);
+		newZonePrediction[0].appendChild(separator);
+		newZonePrediction[0].appendChild(predictionTitle2);
+		newZonePrediction[0].appendChild(prediction3);
+		newZonePrediction[0].appendChild(prediction4);
+
+		ongletMedia.appendChild(newZonePrediction[0]);
 
 		getReq('/api/news', (result) => {
 			
