@@ -37,8 +37,6 @@ document.getElementById("media").onclick = function(){
     		var preview=newZone2[0].getElementsByClassName("preview")[0]
     		var fullview=newZone2[0].getElementsByClassName("fullview")[0]
     		
-        	preview.innerHTML = ""
-       		fullview.innerHTML = ""
 
             var titlePv = document.createElement("h1")
             titlePv.setAttribute("class", "titleTwitterTrend")
@@ -49,27 +47,22 @@ document.getElementById("media").onclick = function(){
             titleFv.setAttribute("class", "titleTwitterTrend")
             titleFv.appendChild(document.createTextNode("Tendances"))
             fullview.appendChild(titleFv)
+
+
+    		var logotwitterPv=document.createElement("img")
+            logotwitterPv.setAttribute("src", "https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/1200px-Twitter_Bird.svg.png")
+            logotwitterPv.setAttribute("id", "logoTwitter")
             
-            var logotwitter=document.createElement("img")
-    		logotwitter.setAttribute("src", "https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/1200px-Twitter_Bird.svg.png")
-    		logotwitter.setAttribute("class", "logoTwitter")
-    		
-    		var canvasPv = document.createElement("canvas")
-    		var canvasFv = document.createElement("canvas")
+            var logotwitterFv=document.createElement("img")
+            logotwitterFv.setAttribute("src", "https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/1200px-Twitter_Bird.svg.png")
+            logotwitterFv.setAttribute("id", "logoTwitter")
 
-            var ctx1 = canvasPv.getContext('2d')
-           	var ctx2 = canvasFv.getContext('2d')           	
 
-           	logotwitter.onload= ()=>{
-           		ctx1.drawImage(logotwitter, 150, 0, 100, 100)
-           		ctx2.drawImage(logotwitter, 150, 0, 100, 100)
+            fullview.appendChild(logotwitterFv)
+            preview.appendChild(logotwitterPv)
+            
 
-           		// console.log(canvas,ctx)
-           	}
 
-    		preview.appendChild(canvasPv)
-    		fullview.appendChild(canvasFv)
-    		
     		for (var previewIterator = 0; previewIterator < 3; previewIterator++){
     			separatorPv=document.createElement("hr")
     			trendNamePv=document.createElement("h2")
@@ -92,6 +85,7 @@ document.getElementById("media").onclick = function(){
     			var link=document.createElement("a")
     			link.setAttribute("href", elm.urlTwitter)
     			link.appendChild(document.createTextNode("Explorez"))
+    			link.setAttribute("target", "_blank");
     			explore.appendChild(link)
     			explore.setAttribute("class", "twitterExploreURL")
     			// explore.setAttribute("href", elm.urlTwitter)

@@ -152,8 +152,13 @@ body{
   align-items: center;
 }
 
-
-
+#logoTwitter{
+  
+  width: 25%;
+  height: 25%;
+  margin-right: 0;
+  margin-left: 70%;
+}
 /*/////////////////////////////////ZONE GENERALE///////////////////////*/
 
 
@@ -252,8 +257,8 @@ body{
 }
 /*/////////////////////////ZONE SPORT/////////////////////////////*/
 .zone.sport{
-  width:375px;
-  height:600px;
+  width:400px;
+  height:625px;
 
 }
 /*élargissement de la zone sur click*/
@@ -265,17 +270,15 @@ body{
 /*/////////////////////////////ZONE MAIN//////////////////////////////*/
 .zone.main{
   width:375px;
-  height:500px;
-
+  height:300px;
 }
 
 /*élargissement de la zone sur click*/
 .large.main{
   width:400px;
-  height:600px;
+  height:330px;
   background-color: #7C9EB2;
 }
-
 
 .zone#clock{
   width:500px;
@@ -284,13 +287,14 @@ body{
   overflow: hidden;
 
 }
-/*élargissement de la zone sur click*/
+
 .large#clock{
   width:500px;
-  height:5px;
+  height:500px;
   background-color: grey;
   overflow: hidden;
 }
+
 /*/////////////////////////////ZONE ECONOMIE//////////////////////////////*/
 .zone.economie{
   width:375px;
