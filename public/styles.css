@@ -345,12 +345,12 @@ body{
   text-shadow: 1px 2px 2px black ;
   position: relative;
   background:transparent;
-  margin-top:-400px;
+  margin-top:-70px;
   /*left: 10em;
   top: 5em;
   height : 20em;  
   width : 30em;*/
-  z-index: 2;
+  z-index: 20;
 
 
 }
