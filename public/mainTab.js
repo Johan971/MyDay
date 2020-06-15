@@ -143,6 +143,15 @@ function showWeather(){
     preview.appendChild(container)
 
 
+    titleCase=(str)=> {
+        return str.replace(
+            /\w\S*/g,
+            (txt)=> {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            }
+        );
+    }
+
 
     createElementContainer=(adjective,container)=>{
 
@@ -153,6 +162,7 @@ function showWeather(){
         var element = document.createElement("h1");
         element.appendChild(document.createTextNode(day.dayName+" "+day.dayNumber+" "+day.monthName+" "+day.yearNumber))
         element.setAttribute("class","WeatherElements")
+
         element.setAttribute("id", adjective)
         container.appendChild(element)
         return
@@ -160,7 +170,7 @@ function showWeather(){
       }
       else if (adjective=="description"){
         var element = document.createElement("p");
-        element.appendChild(document.createTextNode(tabMeteo[0].description));
+        element.appendChild(document.createTextNode(titleCase(String(tabMeteo[0].description))));
         element.setAttribute("class","WeatherElements")
         element.setAttribute("id", adjective)
         container.appendChild(element);
@@ -176,10 +186,16 @@ function showWeather(){
       }
       else if (adjective=="ressenti"){
         var element = document.createElement("p");
-        element.appendChild(document.createTextNode("Ressenti "+round(tabMeteo[0].temp["dayFl"],1)+"°"));
+        element.appendChild(document.createTextNode(round(tabMeteo[0].temp["dayFl"],1)+"°"));
         element.setAttribute("class","WeatherElements")
         element.setAttribute("id", adjective)
         container.appendChild(element);
+
+        var element2 = document.createElement("p");
+        element2.appendChild(document.createTextNode("Ressenti"));
+        element2.setAttribute("class","WeatherElements")
+        element2.setAttribute("id", "ressenti2")
+        container.appendChild(element2);
         return
       }
       else {
