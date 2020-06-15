@@ -23,7 +23,9 @@ document.getElementById("media").onclick = function(){
 
         getReq('/api/twitter', (result)=>{
 
-			// sort result by tweetVolume
+			console.log(result)
+
+			// sort again
 			result = result.sort(compare);
         	
             var newZone2=addNewzone(media,1)
@@ -37,6 +39,10 @@ document.getElementById("media").onclick = function(){
     		var preview=newZone2[0].getElementsByClassName("preview")[0]
     		var fullview=newZone2[0].getElementsByClassName("fullview")[0]
     		
+<<<<<<< HEAD
+=======
+        	
+>>>>>>> f9f1918ac7a9996c0a31e0863ff3a26dd582e4cb
 
             var titlePv = document.createElement("h1")
             titlePv.setAttribute("class", "titleTwitterTrend")
