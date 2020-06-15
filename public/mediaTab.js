@@ -27,8 +27,8 @@ document.getElementById("media").onclick = function(){
 
 		// sort again
 		result = result.sort(compare);
-		
-		var newZone2=addNewzone(media,1)
+		classTwit="twitterZone"
+		var newZone2=addNewzone(media,1,classTwit)
 		/*
 		let preview = zoneMain[0].children[0]
 		let fullview = zoneMain[0].children[1]
@@ -51,25 +51,16 @@ document.getElementById("media").onclick = function(){
 		titleFv.appendChild(document.createTextNode("Tendances"))
 		fullview.appendChild(titleFv)
 		
-		var logotwitter=document.createElement("img")
-		logotwitter.setAttribute("src", "https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/1200px-Twitter_Bird.svg.png")
-		logotwitter.setAttribute("class", "logoTwitter")
+		var logotwitterFv=document.createElement("img")
+		logotwitterFv.setAttribute("src", "https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/1200px-Twitter_Bird.svg.png")
+		logotwitterFv.setAttribute("class", "logoTwitter")
 		
-		var canvasPv = document.createElement("canvas")
-		var canvasFv = document.createElement("canvas")
+		var logotwitterPv=document.createElement("img")
+        logotwitterPv.setAttribute("src", "https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/1200px-Twitter_Bird.svg.png")
+        logotwitterPv.setAttribute("class", "logoTwitter")
 
-		var ctx1 = canvasPv.getContext('2d')
-		var ctx2 = canvasFv.getContext('2d')           	
-
-		logotwitter.onload= ()=>{
-			ctx1.drawImage(logotwitter, 150, 0, 100, 100)
-			ctx2.drawImage(logotwitter, 150, 0, 100, 100)
-
-			// console.log(canvas,ctx)
-		}
-
-		preview.appendChild(canvasPv)
-		fullview.appendChild(canvasFv)
+		preview.appendChild(logotwitterPv)
+		fullview.appendChild(logotwitterFv)
 		
 		for (var previewIterator = 0; previewIterator < 3; previewIterator++){
 			separatorPv=document.createElement("hr")
@@ -125,17 +116,17 @@ document.getElementById("media").onclick = function(){
 				titrePv.appendChild(document.createTextNode(tabNews[i].title))
 				preView[0].appendChild(titrePv)
 
-
+                if(tabNews[i].imageUrl!=null){
 				var imageNode=document.createElement("img")
 				imageNode.setAttribute("src", tabNews[i].imageUrl)
 				imageNode.setAttribute("class", "imgArcticle")
 				preView[0].appendChild(imageNode)
-				
-
-				descriptionArtcicle=document.createElement("p")//titre preView
+				}
+                if(tabNews[i].description){
+				descriptionArtcicle=document.createElement("p")
 				descriptionArtcicle.appendChild(document.createTextNode(tabNews[i].description))
 				preView[0].appendChild(descriptionArtcicle)
-
+                }
 				//gestion de la full view (titre + contenu)
 				var fullView=newZone[i].getElementsByClassName("fullview")
 
@@ -144,11 +135,11 @@ document.getElementById("media").onclick = function(){
 				titreFv.appendChild(document.createTextNode(tabNews[i].title))//titre fullView
 				fullView[0].appendChild(titreFv)
 
-
+                if(tabNews[i].content!=null){
 				contenuArticle=document.createElement("p")//titre preView
 				contenuArticle.appendChild(document.createTextNode(tabNews[i].content))
 				fullView[0].appendChild(contenuArticle)
-
+                }
 
 				articleLink=document.createElement("a")//titre preView
 				articleLink.setAttribute("href", tabNews[i].articleUrl);

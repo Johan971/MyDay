@@ -1,10 +1,10 @@
 
 var Onglet={
-  media : ['Twitter','Facebook','LeTelegrame'],
-  sport : ['Tennis','Basket','Foot'],
-  proximite : ['Velille','Evenement'],
-  economie : ['Cac40','Top10'],
-  main : ['Meteo','Agenda'],
+  media : [['twitter','<i class="fab fa-twitter-square fa-3x"></i>'],['news','<i class="far fa-newspaper fa-3x"></i>']],
+  sport : [['basket','<i class="fas fa-basketball-ball fa-3x"></i>'],['foot','<i class="fas fa-football-ball fa-3x"></i>'],['volley','<i class="fas fa-volleyball-ball fa-3x"></i>']],
+  proximite : [['Vlille','<i class="fas fa-bicycle fa-3x"></i>']],
+  economie : [['Cryptos','<i class="fas fa-chart-line fa-3x"></i>']],
+  main : [['horloge','<i class="far fa-clock fa-3x"></i>'],['meteo','<i class="fas fa-cloud-sun fa-3x"></i>']],
 }
 // changement dans la navbar principal et affichage des contenus ( texte/module et sousnav) :
 const tableauLiens = document.querySelectorAll(".navbar-list li a");        //On recupere tous les <a> dans les <li> dans une liste
@@ -189,14 +189,14 @@ function startBar(){
         let ecritureOnglet=""
         let ecritureOngletComplet=""
         for(var i=0;i<Onglet[nomClasse].length;i++){
-        let classSelectValue
+        let classSelectValue=""
           if(i==0){
             classSelectValue="'selected'"
           }
           else{
             classSelectValue="'no-selected'"
           }
-          ecritureOnglet="<li class="+classSelectValue+"><a onclick='onclickNavbar(this)' class='sousnavlink' href=\'#"+Onglet[nomClasse][i]+"\'</a>"+Onglet[nomClasse][i]+"</li>"
+          ecritureOnglet="<li class="+classSelectValue+"><a onclick='onclickNavbar(this)' class='sousnavlink' href=\'#"+Onglet[nomClasse][i][0]+"\'</a>"+Onglet[nomClasse][i][1]+"</li>"
           ecritureOngletComplet+=ecritureOnglet
         }
         sidebarElt.innerHTML=ecritureOngletComplet
@@ -211,7 +211,7 @@ function startBar(){
 ////////AGRANDISSEMENT DES BLOCS///////////////
 function startZone(){
   let zoneEltList = document.getElementsByClassName("zone")// récupartion d'une liste constituée de tous les élements "zone"
-  for (let zoneElt of zoneEltList){ //==Et si la zone c'est une fullview ?!!!!==//
+  for (let zoneElt of zoneEltList){
     zoneElt.onclick = function(){
       let childFullview = this.getElementsByClassName(this.id+" fullview")[0]
       let childPreview = this.getElementsByClassName(this.id+" preview")[0]
@@ -234,7 +234,7 @@ function startZone(){
 
 ////////////////////////// AJOUT DE  X ZONES //////////////////////////////////
 
-function addNewzone(currentTab,numZone){// condition : à lancer avant startZone() et/ou startBar() même si inclus dans une autre fonction
+function addNewzone(currentTab,numZone,addClass){// condition : à lancer avant startZone() et/ou startBar() même si inclus dans une autre fonction
   
   var className=currentTab.getAttribute("id");
   var selecZone=".zone."+className
@@ -248,7 +248,7 @@ function addNewzone(currentTab,numZone){// condition : à lancer avant startZone
     var focusTab=document.querySelector("."+className)
     
     var myDivzone=document.createElement("div");
-    myDivzone.setAttribute("class", "zone " +className);
+    myDivzone.setAttribute("class", "zone " +className+" "+addClass);
     myDivzone.setAttribute("id","zone"+zoneNumber);
 
     focusTab.appendChild(myDivzone)
