@@ -321,10 +321,7 @@ body{
   width:500px;
   height:500px;
   background:transparent;
-
-
-  
-  
+ 
 }
 
 .container{
@@ -354,11 +351,6 @@ body{
   background:transparent;
   margin : 6px;
   margin-top:-70px;
-
-  /*left: 10em;
-  top: 5em;
-  height : 20em;  
-  width : 30em;*/
   z-index: 20;
 }
 
