@@ -171,7 +171,7 @@ function startBar(){
 
       let divActive = document.getElementsByClassName(nomClasse)[0];  //On recupere donc la div en fonction de son nom de classe (qui est nomClasse)
 
-  
+
       if(divActive.classList[2]=="non-affiche"){                     //On regarde déja si la <div> n'est pas déja affiche grâce à son 3e nom de classe (soit non-affiche soit affiche)
 
         console.log("Cette div n'est pas encore affichée");
@@ -219,13 +219,13 @@ function startZone(){
         this.classList.add("large")
         let self=this
         setTimeout(function(){self.scrollIntoView({block:"start"})},500)
-        childFullview.style.display = "block"
+        childFullview.style.display = "flex"
         childPreview.style.display = "none"
       }
       else{
         this.classList.remove("large")
         childFullview.style.display ="none"
-        childPreview.style.display = "block"
+        childPreview.style.display = "flex"
       }
     }
   }
@@ -235,7 +235,7 @@ function startZone(){
 ////////////////////////// AJOUT DE  X ZONES //////////////////////////////////
 
 function addNewzone(currentTab,numZone,addClass){// condition : à lancer avant startZone() et/ou startBar() même si inclus dans une autre fonction
-  
+
   var className=currentTab.getAttribute("id");
   var selecZone=".zone."+className
 
@@ -246,19 +246,19 @@ function addNewzone(currentTab,numZone,addClass){// condition : à lancer avant 
   for (var i=0;i<numZone;i++){
     var zoneNumber=allZone.length+i+1;
     var focusTab=document.querySelector("."+className)
-    
+
     var myDivzone=document.createElement("div");
     myDivzone.setAttribute("class", "zone " +className+" "+addClass);
     myDivzone.setAttribute("id","zone"+zoneNumber);
 
     focusTab.appendChild(myDivzone)
-    
+
 
     var myDivPreview=document.createElement("div");
     myDivPreview.setAttribute("class", "zone"+zoneNumber+" preview");
-    myDivPreview.setAttribute("style","display:block");
+    myDivPreview.setAttribute("style","display:flex");
     myDivzone.appendChild(myDivPreview)
-    
+
     var myDivFullview=document.createElement("div");
     myDivFullview.setAttribute("class", "zone"+zoneNumber+" fullview");
     myDivFullview.setAttribute("style","display:none");
@@ -266,9 +266,12 @@ function addNewzone(currentTab,numZone,addClass){// condition : à lancer avant 
 
     tabElement.push(myDivzone)
     }
-    startZone()
+    if (addClass=="zoneMeteoPrincipale") {
+      startZoneMeteo()
+    }
+    else{
+      startZone()
+    }
+
     return(tabElement)
 }
-
-
-

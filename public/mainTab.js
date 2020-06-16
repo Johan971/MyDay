@@ -113,7 +113,7 @@ function showWeather(){
     {icon : "11",image : "https://sambadenglish.com/wp-content/uploads/2019/06/157ZIapRuOaO4HVf916cHjRZq_4Ope2Z2.jpg"},
     {icon : "13",image : "https://img.wallpapersafari.com/desktop/1920/1080/43/33/mxudJO.jpg"},
     {icon : "50",image : "https://inhabitat.com/wp-content/blogs.dir/1/files/2016/06/Matthias-Arndt-Triangle-Cliff-House-04-600x480.jpg"},
-    {icon : "09",image : "https://c4.wallpaperflare.com/wallpaper/282/607/672/clouds-cloudy-sky-night-wallpaper-preview.jpg"}
+    {icon : "04",image : "https://c4.wallpaperflare.com/wallpaper/282/607/672/clouds-cloudy-sky-night-wallpaper-preview.jpg"}
   ]
 
       clockCreation()
@@ -122,7 +122,7 @@ function showWeather(){
   getReq('/api/weeklyWeather', (result) => {
     tabMeteo=result;
     var newZone=addNewzone(main,1,"zoneMeteoPrincipale")
-    
+
 
 
     // =================PREVIEW=======================//
@@ -135,12 +135,17 @@ function showWeather(){
 
     var preview = newZone[0].getElementsByClassName("preview")[0]
     var fullview = newZone[0].getElementsByClassName("fullview")[0]
-    fullview.appendChild(document.createTextNode(day.dayName+" "+day.dayNumber+" "+day.monthName+" "+day.yearNumber))
+    //fullview.setAttribute("class","fullviewMeteo")
+
+    newZone[0].getElementsByClassName("fullview")[0].classList.add("meteo")
+
 
 
     var container=document.createElement("div") //Container superposition img text
     container.setAttribute("class","container")
     preview.appendChild(container)
+
+
 
 
     titleCase=(str)=> {
@@ -153,14 +158,14 @@ function showWeather(){
     }
 
 
-    createElementContainer=(adjective,container)=>{
+    createElementContainer=(adjective,container,day)=>{   //today=0, tomorrow = 1 ...
 
-      //Traites les ELEMENTS et non les weatherLogo 
       if (adjective=="date"){
 
+        var date = new ChooseDate(tabMeteo[day].timeStamp)
 
         var element = document.createElement("h1");
-        element.appendChild(document.createTextNode(day.dayName+" "+day.dayNumber+" "+day.monthName+" "+day.yearNumber))
+        element.appendChild(document.createTextNode(date.dayName+" "+date.dayNumber+" "+date.monthName+" "+date.yearNumber))
         element.setAttribute("class","WeatherElements")
 
         element.setAttribute("id", adjective)
@@ -170,7 +175,7 @@ function showWeather(){
       }
       else if (adjective=="description"){
         var element = document.createElement("p");
-        element.appendChild(document.createTextNode(titleCase(String(tabMeteo[0].description))));
+        element.appendChild(document.createTextNode(titleCase(String(tabMeteo[day].description))));
         element.setAttribute("class","WeatherElements")
         element.setAttribute("id", adjective)
         container.appendChild(element);
@@ -178,15 +183,16 @@ function showWeather(){
       }
       else if (adjective=="temp"){
         var element = document.createElement("p");
-        element.appendChild(document.createTextNode(round(tabMeteo[0].temp["day"],1)+"°"));
+        element.appendChild(document.createTextNode(round(tabMeteo[day].temp["day"],1)+"°"));
         element.setAttribute("class","WeatherElements")
         element.setAttribute("id", adjective)
         container.appendChild(element);
         return
+
       }
       else if (adjective=="ressenti"){
         var element = document.createElement("p");
-        element.appendChild(document.createTextNode(round(tabMeteo[0].temp["dayFl"],1)+"°"));
+        element.appendChild(document.createTextNode(round(tabMeteo[day].temp["dayFl"],1)+"°"));
         element.setAttribute("class","WeatherElements")
         element.setAttribute("id", adjective)
         container.appendChild(element);
@@ -198,34 +204,44 @@ function showWeather(){
         container.appendChild(element2);
         return
       }
+
+      else if (adjective=="image") {
+
+        icons.forEach(elm => {
+              if (tabMeteo[day].icon.includes(elm.icon)) {
+                var WeatherLogo=document.createElement("img")
+                WeatherLogo.setAttribute("src",elm.image)
+                container.appendChild(WeatherLogo)
+                WeatherLogo.setAttribute("class","WeatherLogo")
+                return
+              }
+            })
+      }
       else {
         console.log("ERROR ON ADJECTIVE")
       }
 
     }
 
-    
+
+    fillContainer=(container,day)=>{
+      var image="image"
+      var date="date"
+      var des="description"
+      var temp="temp"
+      var ressenti="ressenti"
+
+      createElementContainer(image,container,day)
+      createElementContainer(date,container,day)
+      createElementContainer(des,container,day)
+      createElementContainer(temp,container,day)
+      createElementContainer(ressenti,container,day)
+    }
+
+  fillContainer(container,0)
 
 
-    icons.forEach(elm => {
-          if (tabMeteo[0].icon.includes(elm.icon)) {
-            var WeatherLogo=document.createElement("img")
-            WeatherLogo.setAttribute("src",elm.image)
-            container.appendChild(WeatherLogo)
-            WeatherLogo.setAttribute("class","WeatherLogo")
-          }
-          
-        })
 
-    var date="date"
-    var des="description"
-    var temp="temp"
-    var ressenti="ressenti"
-
-    createElementContainer(date,container)
-    createElementContainer(des,container)
-    createElementContainer(temp,container)
-    createElementContainer(ressenti,container)
 
 
     // date = document.createElement("h1");
@@ -251,7 +267,7 @@ function showWeather(){
     // ======================================================//
 
     // Mini zones des autres jours
- 
+
 
     // for (var j=1;j<tabMeteo.length;j++){
 
@@ -267,12 +283,50 @@ function showWeather(){
     //   // fullview[0].appendChild(date);
     //   previews[0].appendChild(document.createTextNode("fff"))
     // }
+//------------------------------- fullview -----------------------------
+
+//declare
+      var containerFull0=document.createElement("div") //Container superposition img text
+      containerFull0.setAttribute("class","containerFullview")
+      fullview.appendChild(containerFull0)
+      var containerFull1=document.createElement("div") //Container superposition img text
+      containerFull1.setAttribute("class","containerFullview")
+      fullview.appendChild(containerFull1)
+      var containerFull2=document.createElement("div") //Container superposition img text
+      containerFull2.setAttribute("class","containerFullview")
+      fullview.appendChild(containerFull2)
+      var containerFull3=document.createElement("div") //Container superposition img text
+      containerFull3.setAttribute("class","containerFullview")
+      fullview.appendChild(containerFull3)
+      var containerFull4=document.createElement("div") //Container superposition img text
+      containerFull4.setAttribute("class","containerFullview")
+      fullview.appendChild(containerFull4)
+      var containerFull5=document.createElement("div") //Container superposition img text
+      containerFull5.setAttribute("class","containerFullview")
+      fullview.appendChild(containerFull5)
+      var containerFull6=document.createElement("div") //Container superposition img text
+      containerFull6.setAttribute("class","containerFullview")
+      fullview.appendChild(containerFull6)
+      var containerFull7=document.createElement("div") //Container superposition img text
+      containerFull7.setAttribute("class","containerFullview")
+      fullview.appendChild(containerFull7)
+ //create container and fill
+
+ fillContainer(containerFull0,0)
+ fillContainer(containerFull1,1)
+ fillContainer(containerFull2,2)
+ fillContainer(containerFull3,3)
+ fillContainer(containerFull4,4)
+ fillContainer(containerFull5,5)
+ fillContainer(containerFull6,6)
+ fillContainer(containerFull7,7)
 
 
-    /*
-    for(var i=1; i<tabMeteo.length;i++){
 
 
+
+
+/*
       var preview = newZones[i].getElementsByClassName("preview")
       var fullview = newZones[i].getElementsByClassName("fullview")
 
@@ -332,7 +386,7 @@ function showWeather(){
 
       weather = document.createElement("p");
       weather.appendChild(document.createTextNode("Le coucher du soleil est à "+typeNum(sunset.hour)+"h"+typeNum(sunset.minute)));
-      fullview[0].appendChild(weather);
-    }*/
+      fullview[0].appendChild(weather);*/
+
   })
 }
