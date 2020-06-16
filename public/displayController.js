@@ -266,12 +266,7 @@ function addNewzone(currentTab,numZone,addClass){// condition : à lancer avant 
 
     tabElement.push(myDivzone)
     }
-    if (addClass=="zoneMeteoPrincipale") {
-      startZoneMeteo()
-    }
-    else{
-      startZone()
-    }
+    startZone()
 
     return(tabElement)
 }

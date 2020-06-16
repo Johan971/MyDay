@@ -60,6 +60,5 @@ document.getElementById("main").onclick = function (){
 
 startBar();
 startZone();
-startZoneMeteo();
 
 setInterval(clockAnimation, 40);
