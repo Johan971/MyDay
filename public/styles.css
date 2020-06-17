@@ -314,7 +314,7 @@ body{
 .large#clock{
   width:500px;
   height:500px;
-  background-color: grey;
+  background-color: #020202;
   overflow: hidden;
 }
 
