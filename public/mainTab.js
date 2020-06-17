@@ -137,8 +137,6 @@ function showWeather(){
     var fullview = newZone[0].getElementsByClassName("fullview")[0]
     //fullview.setAttribute("class","fullviewMeteo")
 
-    newZone[0].getElementsByClassName("fullview")[0].classList.add("meteo")
-
 
 
     var container=document.createElement("div") //Container superposition img text
@@ -158,7 +156,7 @@ function showWeather(){
     }
 
 
-    createElementContainer=(adjective,container,day)=>{   //today=0, tomorrow = 1 ...
+    createElementContainer=(adjective,containers,day)=>{   //today=0, tomorrow = 1 ...
 
       if (adjective=="date"){
 
@@ -169,7 +167,7 @@ function showWeather(){
         element.setAttribute("class","WeatherElements")
 
         element.setAttribute("id", adjective)
-        container.appendChild(element)
+        containers.appendChild(element)
         return
 
       }
@@ -178,7 +176,7 @@ function showWeather(){
         element.appendChild(document.createTextNode(titleCase(String(tabMeteo[day].description))));
         element.setAttribute("class","WeatherElements")
         element.setAttribute("id", adjective)
-        container.appendChild(element);
+        containers.appendChild(element);
         return
       }
       else if (adjective=="temp"){
@@ -186,7 +184,7 @@ function showWeather(){
         element.appendChild(document.createTextNode(round(tabMeteo[day].temp["day"],1)+"°"));
         element.setAttribute("class","WeatherElements")
         element.setAttribute("id", adjective)
-        container.appendChild(element);
+        containers.appendChild(element);
         return
 
       }
@@ -195,13 +193,13 @@ function showWeather(){
         element.appendChild(document.createTextNode(round(tabMeteo[day].temp["dayFl"],1)+"°"));
         element.setAttribute("class","WeatherElements")
         element.setAttribute("id", adjective)
-        container.appendChild(element);
+        containers.appendChild(element);
 
         var element2 = document.createElement("p");
         element2.appendChild(document.createTextNode("Ressenti"));
         element2.setAttribute("class","WeatherElements")
         element2.setAttribute("id", "ressenti2")
-        container.appendChild(element2);
+        containers.appendChild(element2);
         return
       }
 
@@ -209,11 +207,21 @@ function showWeather(){
 
         icons.forEach(elm => {
               if (tabMeteo[day].icon.includes(elm.icon)) {
-                var WeatherLogo=document.createElement("img")
-                WeatherLogo.setAttribute("src",elm.image)
-                container.appendChild(WeatherLogo)
-                WeatherLogo.setAttribute("class","WeatherLogo")
-                return
+                if(container==containers){
+                  var WeatherLogo=document.createElement("img")
+                  WeatherLogo.setAttribute("src",elm.image)
+                  containers.appendChild(WeatherLogo)
+                  WeatherLogo.setAttribute("class","WeatherLogo")
+                  return
+                }
+                else {
+                  var WeatherLogo=document.createElement("img")
+                  WeatherLogo.setAttribute("src",elm.image)
+                  containers.appendChild(WeatherLogo)
+                  WeatherLogo.setAttribute("class","WeatherLogoFull")
+                  return
+
+                }
               }
             })
       }
@@ -239,7 +247,7 @@ function showWeather(){
     }
 
   fillContainer(container,0)
-
+console.log(document.getElementsByClassName("containerFull"))
 
 
 
@@ -287,28 +295,28 @@ function showWeather(){
 
 //declare
       var containerFull0=document.createElement("div") //Container superposition img text
-      containerFull0.setAttribute("class","containerFullview")
+      containerFull0.setAttribute("class","containerFull")
       fullview.appendChild(containerFull0)
       var containerFull1=document.createElement("div") //Container superposition img text
-      containerFull1.setAttribute("class","containerFullview")
+      containerFull1.setAttribute("class","containerFull")
       fullview.appendChild(containerFull1)
       var containerFull2=document.createElement("div") //Container superposition img text
-      containerFull2.setAttribute("class","containerFullview")
+      containerFull2.setAttribute("class","containerFull")
       fullview.appendChild(containerFull2)
       var containerFull3=document.createElement("div") //Container superposition img text
-      containerFull3.setAttribute("class","containerFullview")
+      containerFull3.setAttribute("class","containerFull")
       fullview.appendChild(containerFull3)
       var containerFull4=document.createElement("div") //Container superposition img text
-      containerFull4.setAttribute("class","containerFullview")
+      containerFull4.setAttribute("class","containerFull")
       fullview.appendChild(containerFull4)
       var containerFull5=document.createElement("div") //Container superposition img text
-      containerFull5.setAttribute("class","containerFullview")
+      containerFull5.setAttribute("class","containerFull")
       fullview.appendChild(containerFull5)
       var containerFull6=document.createElement("div") //Container superposition img text
-      containerFull6.setAttribute("class","containerFullview")
+      containerFull6.setAttribute("class","containerFull")
       fullview.appendChild(containerFull6)
       var containerFull7=document.createElement("div") //Container superposition img text
-      containerFull7.setAttribute("class","containerFullview")
+      containerFull7.setAttribute("class","containerFull")
       fullview.appendChild(containerFull7)
  //create container and fill
 

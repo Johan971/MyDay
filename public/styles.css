@@ -331,7 +331,12 @@ body{
   width:490px;
   height:490px;
   left:0px;
+}
 
+.containerFull{
+  min-width:492px;
+  height:480px;
+  left:0px;
 }
 
 .WeatherLogo{
@@ -341,6 +346,17 @@ body{
   border-radius:15px;
   transition: 0.5s;
   filter: brightness(50%);
+  z-index: 1;
+  left:0px;
+  bottom:0px;
+}
+
+.WeatherLogoFull{
+  position: relative;
+  width : 100%;
+  height: 100%;
+  transition: 0.5s;
+  filter: brightness(35%);
   z-index: 1;
   left:0px;
   bottom:0px;
