@@ -335,6 +335,7 @@ body{
 
 .containerFull{
   min-width:492px;
+  max-width: 492px;
   height:480px;
   left:0px;
 }
