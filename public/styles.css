@@ -385,13 +385,14 @@ body{
   height:500px;
   background:transparent;
   padding: 0px;
-  overflow: hidden
+  /*overflow: hidden*/
 }
 
 .container{
   width:500px;
   height:500px;
   padding: 0px;
+  transition: 2s
   
 }
 
@@ -427,11 +428,12 @@ body{
   border-radius:15px;
   bottom:4px;
   transition: 2s;
+  /*filter: brightness(35%)*/;
 }
 
-.WeatherLogoFull:hover{
+/*.WeatherLogoFull:hover{
   filter: brightness(35%);
-}
+}*/
 
 
 
@@ -474,6 +476,24 @@ body{
   bottom: -31px;
 }
 
+.containerBouton{
+  position:absolute;
+  z-index: 40;
+}
+
+
+#boutonNext{
+  width:50px;
+  height:50px;
+  
+
+}
+
+#boutonPrev{
+  width:50px;
+  height:50px;
+  
+}
 /*/////////////////////////////ZONE ECONOMIE//////////////////////////////*/
 .zone.economie{
   width:375px;

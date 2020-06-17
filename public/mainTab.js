@@ -246,8 +246,8 @@ function showWeather(){
       createElementContainer(ressenti,container,day)
     }
 
-  fillContainer(container,0)
-console.log(document.getElementsByClassName("containerFull"))
+    fillContainer(container,0)
+    // console.log(document.getElementsByClassName("containerFull"))
 
 
 
@@ -294,45 +294,86 @@ console.log(document.getElementsByClassName("containerFull"))
 //------------------------------- fullview -----------------------------
 
 //declare
-      var containerFull0=document.createElement("div") //Container superposition img text
-      containerFull0.setAttribute("class","containerFull")
-      fullview.appendChild(containerFull0)
-      var containerFull1=document.createElement("div") //Container superposition img text
-      containerFull1.setAttribute("class","containerFull")
-      fullview.appendChild(containerFull1)
-      var containerFull2=document.createElement("div") //Container superposition img text
-      containerFull2.setAttribute("class","containerFull")
-      fullview.appendChild(containerFull2)
-      var containerFull3=document.createElement("div") //Container superposition img text
-      containerFull3.setAttribute("class","containerFull")
-      fullview.appendChild(containerFull3)
-      var containerFull4=document.createElement("div") //Container superposition img text
-      containerFull4.setAttribute("class","containerFull")
-      fullview.appendChild(containerFull4)
-      var containerFull5=document.createElement("div") //Container superposition img text
-      containerFull5.setAttribute("class","containerFull")
-      fullview.appendChild(containerFull5)
-      var containerFull6=document.createElement("div") //Container superposition img text
-      containerFull6.setAttribute("class","containerFull")
-      fullview.appendChild(containerFull6)
-      var containerFull7=document.createElement("div") //Container superposition img text
-      containerFull7.setAttribute("class","containerFull")
-      fullview.appendChild(containerFull7)
+    var containerFull0=document.createElement("div") //Container superposition img text
+    containerFull0.setAttribute("class","containerFull")
+    fullview.appendChild(containerFull0)
+    var containerFull1=document.createElement("div") //Container superposition img text
+    containerFull1.setAttribute("class","containerFull")
+    fullview.appendChild(containerFull1)
+    var containerFull2=document.createElement("div") //Container superposition img text
+    containerFull2.setAttribute("class","containerFull")
+    fullview.appendChild(containerFull2)
+    var containerFull3=document.createElement("div") //Container superposition img text
+    containerFull3.setAttribute("class","containerFull")
+    fullview.appendChild(containerFull3)
+    var containerFull4=document.createElement("div") //Container superposition img text
+    containerFull4.setAttribute("class","containerFull")
+    fullview.appendChild(containerFull4)
+    var containerFull5=document.createElement("div") //Container superposition img text
+    containerFull5.setAttribute("class","containerFull")
+    fullview.appendChild(containerFull5)
+    var containerFull6=document.createElement("div") //Container superposition img text
+    containerFull6.setAttribute("class","containerFull")
+    fullview.appendChild(containerFull6)
+    var containerFull7=document.createElement("div") //Container superposition img text
+    containerFull7.setAttribute("class","containerFull")
+    fullview.appendChild(containerFull7)
  //create container and fill
 
- fillContainer(containerFull0,0)
- fillContainer(containerFull1,1)
- fillContainer(containerFull2,2)
- fillContainer(containerFull3,3)
- fillContainer(containerFull4,4)
- fillContainer(containerFull5,5)
- fillContainer(containerFull6,6)
- fillContainer(containerFull7,7)
+    fillContainer(containerFull0,0)
+    fillContainer(containerFull1,1)
+    fillContainer(containerFull2,2)
+    fillContainer(containerFull3,3)
+    fillContainer(containerFull4,4)
+    fillContainer(containerFull5,5)
+    fillContainer(containerFull6,6)
+    fillContainer(containerFull7,7)
+
+    darkness=()=>{
+
+      var elmnt=document.getElementsByClassName("WeatherLogoFull")
+      
+      let start = Date.now(); // remember start time
+
+      let timer = setInterval(function() {
+        // how much time passed from the start?
+        let timePassed = Date.now() - start;
+
+        if (timePassed >= 20000) {
+          clearInterval(timer); // finish the animation after 2 seconds
+          return;
+        }
+        var advancement=35+ timePassed/10
+        // elmnt[0].style.opacity = `brightness(${advancement}%)`;
+        elmnt[0].style.opacity = `brightness(60%)`;
+      },20)
+      // elmnt[0].style.filter = "brightness(45%)";
+      
+      // draw the animation at the moment timePassed
+
+
+    }
+
+    document.getElementsByClassName("WeatherLogoFull").onclick=darkness()
 
 
 
+    var boutonPrev=document.createElement("Button")
+    boutonPrev.setAttribute("id","boutonPrev")
+
+    var boutonNext=document.createElement("Button")
+    boutonNext.setAttribute("id","boutonNext")
+
+    var containerBouton=document.createElement("div") //Container superposition img text
+    containerBouton.setAttribute("class","containerBouton")
+    fullview.appendChild(containerBouton)
+
+    containerBouton.appendChild(boutonPrev)
+    containerBouton.appendChild(boutonNext)
 
 
+
+    
 
 /*
       var preview = newZones[i].getElementsByClassName("preview")
