@@ -385,20 +385,23 @@ body{
   height:500px;
   background:transparent;
   padding: 0px;
+  overflow: hidden
 }
 
 .container{
-  width:490px;
-  height:490px;
-  left:0px;
+  width:500px;
+  height:500px;
+  padding: 0px;
+  
 }
 
 .containerFull{
-  min-width:492px;
-  max-width: 492px;
-  height:480px;
-  left:0px;
+  min-width:500px;
+  max-width: 500px;
+  height:500px;
+  padding: 0px;
   transition: 2s;
+
 }
 
 .WeatherLogo{
@@ -409,8 +412,9 @@ body{
   filter: brightness(50%);
   z-index: 1;
   left:0px;
-  bottom:0px;
+  /*bottom:30px;*/
   transition: 2s;
+
 }
 
 .WeatherLogoFull{
@@ -419,8 +423,9 @@ body{
   height: 100%;
   filter: brightness(50%);
   z-index: 1;
-  left:0px;
-  bottom:0px;
+  left:-4px;
+  border-radius:15px;
+  bottom:4px;
   transition: 2s;
 }
 
