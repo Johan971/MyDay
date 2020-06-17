@@ -40,9 +40,9 @@ function renderTime(ctx) {
   var smoothmin = min + (smoothsec / 60);
 
   //Background
-  gradient = ctx.createRadialGradient(250, 250, 5, 250, 250, 300);
-  gradient.addColorStop(0, "#A9A9A9");
-  gradient.addColorStop(1, "#696969");
+  gradient = ctx.createRadialGradient(250, 250, 5, 250, 250, 250);
+  gradient.addColorStop(0, "#1c7200");
+  gradient.addColorStop(1, "#020202");
   ctx.fillStyle = gradient;
   //ctx.fillStyle = 'rgba(00 ,00 , 00, 1)';
   ctx.fillRect(0, 0, 500, 500);
@@ -60,11 +60,11 @@ function renderTime(ctx) {
   ctx.stroke();
   //Date
   ctx.font = "25px Helvetica";
-  ctx.fillStyle = 'rgba(00, 255, 255, 1)'
+  ctx.fillStyle = 'rgba(00, 230, 00, 1)'
   ctx.fillText(today, 175, 250);
   //Time
   ctx.font = "25px Helvetica Bold";
-  ctx.fillStyle = 'rgba(00, 255, 255, 1)';
+  ctx.fillStyle = 'rgba(00, 230, 00, 1)';
   ctx.fillText(time + ":" + mil, 175, 280);
 
 }
@@ -90,10 +90,10 @@ function clockAnimation(){
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
 
-  ctx.strokeStyle = '#00ffff';
+  ctx.strokeStyle = '#0eac01';
   ctx.lineWidth = 17;
   ctx.shadowBlur = 15;
-  ctx.shadowColor = '#00ffff';
+  ctx.shadowColor = '#020202';
 
   renderTime(ctx);
 }
