@@ -1,6 +1,7 @@
 const request = require('request');
 const querystring = require('querystring');
 const EuronextIndexInformation = require("./models/EuronextIndexInformation");
+const fs = require('fs');
 
 //////// WARNING : This is an asyc function working with callback ////////
 // For more infos/understanding : https://stackoverflow.com/questions/14220321/how-do-i-return-the-response-from-an-asynchronous-call
@@ -9,11 +10,14 @@ module.exports = {
 
     getEuronextIndexInformation: (index, callback) => {
 
+        let rawData = fs.readFileSync('./backend/config.json');
+        let config = JSON.parse(rawData);
+
         let EuronextParams = querystring.stringify({
             code: index,
             codification: "ISIN",
             exchCode: "XPar",
-            authKey: "256f0720127269acfcb390b5adef10c242469c41afd08426744324bee3e2d75a"
+            authKey: config.euronext.key
         });
 
         let apiUrl = "http://gateway.euronest.com/api/instrumentDetail?" + openWeatherParams;

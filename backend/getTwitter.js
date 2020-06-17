@@ -5,15 +5,20 @@ const Twit= require('twit')
 const coordinates=require('./models/Coordinates')
 const geolib=require('geolib')
 const Trend = require("./models/Trends");
+const fs = require('fs');
 
 //////// WARNING : This is an asyc function working with callback ////////
 // For more infos/understanding : https://stackoverflow.com/questions/14220321/how-do-i-return-the-response-from-an-asynchronous-call
 
-const APIkey= "Uszcu6clBx7Om95C8nJQ94icS"
-const APIkeySecret= "R4ei263Y2Dj3vyIuQvhg7ICT8G1pTV3iLzwC25BSXWCDOYs2iN"
+let rawData = fs.readFileSync('./backend/config.json');
+let config = JSON.parse(rawData);
 
-const AccessToken ="1268637071830368256-krQWMKj9GLhqMd3aWTSbT8SIyCw3s9"
-const AccessTokenSecret ="hfxDmwRxli0RuyBnzXKLHcTWsS0iufIatK4FzZZlOO1yR"
+
+const APIkey= config.twitter.key;
+const APIkeySecret= config.twitter.secretKey;
+
+const AccessToken = config.twitter.accessToken;
+const AccessTokenSecret = config.twitter.accessTokenSecret;
 
 module.exports ={
 
@@ -34,33 +39,33 @@ module.exports ={
 		connectdB()
 		var tabDistance=[]
 		var founde
-		
-		const lectureBDD=(succ,rej)=>{      //Cette fonction sors les coordonnées nécéssaire à l'affichage 
 
-		coordinates.find((err,founded)=>{
+		const lectureBDD=(succ,rej)=>{      //Cette fonction sors les coordonnées nécéssaire à l'affichage
+
+			coordinates.find((err,founded)=>{
 
 				if(err) rej (err) // error handling
 
 
-					if  (founded) {
+				if  (founded) {
 
 
-						succ(founded)
-					}
+					succ(founded)
+				}
 
 
-					else {
-						console.log("pas de coordonnées")
-						succ({_id:"012d",lat:48.863356,lon:2.343813})
-					}
+				else {
+					console.log("pas de coordonnées")
+					succ({_id:"012d",lat:48.863356,lon:2.343813})
+				}
 
-				})
-				
+			})
 
-			}
+
+		}
 
 		const calculDistance=(founde)=>{   //Quand on a les coord on cherche la ville la plus proche
-			
+
 			return new Promise(function(res,rej){
 				//console.log("dis:",founde)
 				WOEIDs.forEach((elt)=>{
@@ -80,7 +85,7 @@ module.exports ={
 
 				var posVilleProche=0
 				var ppt=tab[0]
-				
+
 
 				for (var j=0;j<tab.length-1;j++){
 
@@ -88,12 +93,12 @@ module.exports ={
 						ppt=tab[j+1]
 						posVilleProche=j+1
 					}
-					
+
 					if (tab[j+1]==tab[tab.length-1]){
 						var villePP=WOEIDs[posVilleProche]
 						var result=[]
 						T.get('/trends/place',{id: villePP.WOEID}, (err,data,response)=>{
-							if (err) rej(err) 
+							if (err) rej(err)
 							for (var f=0;f<50;f++){ //data[0].length-1
 
 								if(data[0].trends[f]==undefined){
@@ -101,7 +106,7 @@ module.exports ={
 								}
 
 								else if (data[0].trends[f].tweet_volume !== null) {
-									
+
 									result.push(new Trend({
 										name: data[0].trends[f].name,
 										urlTwitter: data[0].trends[f].url,
@@ -111,7 +116,7 @@ module.exports ={
 							}
 							res(result)
 							callback(result)
-							
+
 						})
 					}
 				}
