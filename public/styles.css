@@ -174,7 +174,7 @@ body{
 .zone{
   color:white;
   background-color: #2C3A47;
-  margin: 2%;
+  margin: 3% 2% 2% 2%; /* top right bottom left */
   padding: 1%;
   border-radius:15px;
   box-shadow: 0px 10px 10px black;
@@ -190,7 +190,7 @@ body{
 
 /*ecart du texte par rapport au bord de la zone*/
 .preview{
-  margin : 4px;
+  /*margin : 4px;*/
 }
 .fullview{
   margin :4px;
@@ -279,17 +279,77 @@ body{
   background-color: #7C9EB2;
 }
 /*/////////////////////////ZONE SPORT/////////////////////////////*/
-.zone.sport{
-  width:400px;
-  height:625px;
 
+/*-------NBA--------*/
+.nba{
+  width:630px;
+  height:455px;
+  flex-direction: column;
+  font-family: system-ui;
 }
+
+.nba .header-zone{
+  display:flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.nba .header-zone h1{
+  font-size: 1em;
+  letter-spacing: 2px;
+  font-weight: lighter;
+}
+
+.rank-nba{
+  border-collapse: collapse;
+  font-size: 1.1em;
+  min-width: 600px;
+  min-height: 300px;
+  border-radius: 15px;
+  border: 3px solid black;
+  overflow: hidden;
+}
+
+.rank-nba thead{
+  border-radius: 10px;
+}
+
+.rank-nba thead tr{
+  background-color: rgb(18, 200, 138);
+  text-align: left;
+  font-weight: bold;
+  border-radius: 40px;
+  border-bottom: 3px solid black;
+}
+
+.rank-nba tbody tr{
+  background-color: rgb(255, 255, 255);
+  color: rgb(52, 52, 52);
+  border-bottom: 1px solid black;
+}
+
+
+.rank-nba tbody tr:nth-of-type(even){
+  background-color: rgb(227, 227, 227);
+}
+
+.rank-nba th, .rank-nba td {
+  padding: 10px;
+}
+
+#logoNBA{
+  height: 45px;
+  width:auto;
+}
+
 /*élargissement de la zone sur click*/
-.large.sport{
-  width:400px;
-  height:700px;
+.large.nba{
+  width:650px;
+  height:650px;
   background-color: #7C9EB2;
 }
+/*-------NBA--------*/
+
+
 /*/////////////////////////////ZONE MAIN//////////////////////////////*/
 .zone.main{
   width:375px;

@@ -1,77 +1,104 @@
+document.getElementById("sport").onclick = function (){
+
+  var sportTab = document.querySelector(".sport.tab-div");
+  sportTab.innerHTML = "";
+
+  nbaZone()
+}
+
+
+
+function nbaZone(){
+  let newZone = addNewzone(sport,1)[0]
+  newZone.classList.add("nba")
+  let childPreview = newZone.getElementsByClassName("preview")[0];
+  let childFullview = newZone.getElementsByClassName("fullview")[0];
+
+  /*
+  MISE EN PLACE DU HEADERZONE ICI
+  */
+
+  //HEADERZONE PART
+  let headerZone = document.createElement("div")
+  headerZone.classList.add("header-zone")
+  newZone.insertBefore(headerZone,childPreview)
+
+  let imageHeader = document.createElement("img")
+  imageHeader.id="logoNBA"
+  imageHeader.setAttribute("src","https://cdn.bleacherreport.net/images/team_logos/328x328/nba.png")
+  imageHeader.setAttribute("alt","logo de la nba")
+  headerZone.appendChild(imageHeader)
+
+  let titleHeader = document.createElement("h1")
+  titleHeader.textContent = "Basketball"
+  headerZone.appendChild(titleHeader)
+
+
+
+  let titleH2 = document.createElement("h2")
+  titleH2.textContent = "Classement des meilleurs joueurs de la NBA"
+  newZone.insertBefore(titleH2,childPreview)
+
+  getReq("/api/nba", (result)=> {
+
+    tableMakerNba(3,result,childPreview)
+    tableMakerNba(result.length,result,childFullview)
+
+  })
+
+}
+
+
+//BUILT IN ORDER TO PURGE THE RESULT
 function purgeChar(str){
     return str.replace('[', '').replace(']', '').replace('"', '').replace('"', '');
 }
 
-document.getElementById("sport").onclick = function () {
 
-    let zoneMain = document.querySelectorAll(".zone.sport");
-    let preview = zoneMain[0].children[0];
-    let fullview = zoneMain[0].children[1];
-    // clean the previous content
-    preview.innerHTML = "";
-    fullview.innerHTML = "";
+//GENERAL FUNCTION THAT ALLOWS TO CREATE A TABLE
+function tableMakerNba(nbPlayers,result,parentNd){
+  //WE BUILD THE TABLE IN THE APPROPRIATE PARENT NODE
+  let tableRank = document.createElement("table")
+  tableRank.classList.add("rank-nba")
+  parentNd.appendChild(tableRank)
 
-    // preview static display
-    title = document.createElement("h1");
-    nbaLogo = document.createElement("img");
+  //TABLE'S HEADER PART
+  let theadElt = document.createElement("thead")
+  tableRank.appendChild(theadElt)
 
-    title.setAttribute("class", "titlePreview");
-    nbaLogo.setAttribute("class", "imgPreview");
-    nbaLogo.setAttribute("src", "https://cdn.1min30.com/wp-content/uploads/2018/03/logo-NBA.jpg");
+  let trOfTheadElt = document.createElement("tr")
+  theadElt.appendChild(trOfTheadElt)
 
+  headerListTable = ["Numero","Nom du joueur","Equipe","Poste"]
 
-    title.appendChild(document.createTextNode("Classement des meilleurs joueurs NBA"));
+  for (let elt of headerListTable){
+    let thElt = document.createElement("th")
+    thElt.textContent = elt
+    trOfTheadElt.appendChild(thElt)
+  }
 
-    preview.appendChild(title);
-    preview.appendChild(nbaLogo);
+  //TABLE'S CONTENT PART
+  let tbodyElt = document.createElement("tbody")
+  tableRank.appendChild(tbodyElt)
 
-    getReq('/api/nba', (result) => {
-    	var classement=0;
-        // preview dynamic display 
-        for (var i=0;i<3;i++) {
-        	classement+=1;
+  for (let i=0; i<nbPlayers; i++){
+    let trOfTbodyElt = document.createElement("tr")
+    tbodyElt.appendChild(trOfTbodyElt)
 
-            playerName = document.createElement("h1");
-            playerTeam = document.createElement("h2");
-            playerPosition = document.createElement("p");
-            separator=document.createElement("hr")
+    let playerRankElt = document.createElement("td")
+    playerRankElt.textContent = i+1
+    trOfTbodyElt.appendChild(playerRankElt)
 
-            playerName.classList.add("playerName");
-            playerTeam.classList.add("playerTeam");
-            playerPosition.classList.add("playerPosition");
+    let playerNameElt = document.createElement("td")
+    playerNameElt.textContent = purgeChar(result[i].playerName)
+    trOfTbodyElt.appendChild(playerNameElt)
 
-            playerName.appendChild(document.createTextNode(purgeChar("Top "+classement+" : "+result[i].playerName)));
-            playerTeam.appendChild(document.createTextNode("Equipe : " + purgeChar(result[i].playerTeam)));
-            playerPosition.appendChild(document.createTextNode("Position : " + purgeChar(result[i].playerPosition)));
+    let playerTeamElt = document.createElement("td")
+    playerTeamElt.textContent = purgeChar(result[i].playerTeam)
+    trOfTbodyElt.appendChild(playerTeamElt)
 
-            preview.appendChild(playerName);
-            preview.appendChild(playerTeam);
-            preview.appendChild(playerPosition);
-            preview.appendChild(separator);
-        }
-        classroom=0;
-        // fullview dynamic display
-        var classement=0;
-        for (let elt in result) {
-        	classement+=1;
-
-            playerName = document.createElement("h1");
-            playerTeam = document.createElement("h2");
-            playerPosition = document.createElement("p");
-            separator=document.createElement("hr")
-
-            playerName.classList.add("playerName");
-            playerTeam.classList.add("playerTeam");
-            playerPosition.classList.add("playerPosition");
-
-            playerName.appendChild(document.createTextNode(purgeChar("Top "+classement+" : "+result[elt].playerName)));
-            playerTeam.appendChild(document.createTextNode("Equipe : " + purgeChar(result[elt].playerTeam)));
-            playerPosition.appendChild(document.createTextNode("Position : " + purgeChar(result[elt].playerPosition)));
-
-            fullview.appendChild(playerName);
-            fullview.appendChild(playerTeam);
-            fullview.appendChild(playerPosition);
-            fullview.appendChild(separator);
-        }
-    });
+    let playerPositionElt = document.createElement("td")
+    playerPositionElt.textContent = purgeChar(result[i].playerPosition)
+    trOfTbodyElt.appendChild(playerPositionElt)
+  }
 }
