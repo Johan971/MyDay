@@ -267,17 +267,72 @@ body{
   background-color: #7C9EB2;
 }
 /*/////////////////////////////ZONE PROXIMITE///////////////////////*/
+/*
 .zone.proximite{
   width:375px;
   height:600px;
 
 }
-/*élargissement de la zone sur click*/
+élargissement de la zone sur click
 .large.proximite{
   width:400px;
   height:600px;
   background-color: #7C9EB2;
 }
+*/
+
+.vlille{
+  width:700px;
+  height:475px;
+  flex-direction: column;
+  font-family: system-ui;
+}
+
+.large.vlille{
+  width:750px;
+  height:650px;
+  background-color: #7C9EB2;
+}
+
+.table-vlille{
+  border-collapse: collapse;
+  margin: 10px 0px 0px 0px;
+  font-size: 1.1em;
+  min-width: 600px;
+  min-height: 300px;
+  border-radius: 15px;
+  border: 3px solid black;
+  overflow: hidden;
+}
+
+.table-vlille thead{
+  border-radius: 10px;
+}
+
+.table-vlille thead tr{
+  background-color: rgb(48, 48, 48);
+  color:rgb(255, 255, 255);
+  font-weight: normal;
+  text-align: left;
+  border-radius: 40px;
+  border-bottom: 3px solid black;
+}
+
+.table-vlille tbody tr{
+  border-bottom: 1px solid black;
+}
+
+.table-vlille th, .table-vlille td {
+  padding: 10px;
+}
+
+#logoVlille{
+  margin-right: 10px;
+  height: 50px;
+  width:auto;
+  border-radius: 20px;
+}
+
 /*/////////////////////////ZONE SPORT/////////////////////////////*/
 
 /*-------NBA--------*/
@@ -288,12 +343,12 @@ body{
   font-family: system-ui;
 }
 
-.nba .header-zone{
+.header-zone{
   display:flex;
   align-items: center;
   margin-bottom: 50px;
 }
-.nba .header-zone h1{
+.header-zone h1{
   font-size: 1em;
   letter-spacing: 2px;
   font-weight: lighter;
@@ -401,8 +456,13 @@ body{
   width:500px;
   height:500px;
   padding: 0px;
+<<<<<<< HEAD
   
   
+=======
+  transition: 2s
+
+>>>>>>> d2a35c6ad95f509260c98b8664aedaf7be3b5e84
 }
 
 .containerFull{
@@ -495,13 +555,13 @@ body{
 #boutonNext{
   width:50px;
   height:50px;
-  
+
 }
 
 #boutonPrev{
   width:50px;
   height:50px;
-  
+
 }
 
 

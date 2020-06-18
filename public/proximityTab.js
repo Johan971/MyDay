@@ -1,3 +1,128 @@
+document.getElementById("proximite").onclick = function (){
+
+  var proximityTab = document.querySelector(".proximite.tab-div");
+  proximityTab.innerHTML = "";
+
+  vlilleZone()
+}
+
+
+function vlilleZone(){
+
+  let newZone = addNewzone(proximite,1)[0]
+  newZone.classList.add("vlille")
+  let childPreview = newZone.getElementsByClassName("preview")[0];
+  let childFullview = newZone.getElementsByClassName("fullview")[0];
+
+  /*
+  MISE EN PLACE DU HEADERZONE ICI
+  */
+
+  //HEADERZONE PART
+  let headerZone = document.createElement("div")
+  headerZone.classList.add("header-zone")
+  newZone.insertBefore(headerZone,childPreview)
+
+  let imageHeader = document.createElement("img")
+  imageHeader.id="logoVlille"
+  imageHeader.setAttribute("src","https://is5-ssl.mzstatic.com/image/thumb/Purple113/v4/61/00/23/610023da-56b3-531f-5d85-9a8e70d73789/source/256x256bb.jpg")
+  imageHeader.setAttribute("alt","logo de V'lille")
+  headerZone.appendChild(imageHeader)
+
+  let titleHeader = document.createElement("h1")
+  titleHeader.textContent = "V'lille"
+  headerZone.appendChild(titleHeader)
+
+  let titleH2 = document.createElement("h2")
+  titleH2.textContent = "Liste des stations vLilles les plus proches"
+  newZone.insertBefore(titleH2,childPreview)
+
+  getReq("/api/vLille", (result) => {
+    getReq("/api/coordinates", (coordinates) => {
+      userLat = coordinates[0].lat
+      userLon = coordinates[0].lon
+
+      // computing the distance between user and stations
+      for (const elt in result) {
+          result[elt].dist = distance(userLat, userLon, result[elt].lat, result[elt].lon, 'K')
+      }
+      // sorting nearest stations
+      result = result.sort(compare)
+
+      tableMakerVlille(3,result,childPreview)
+      tableMakerVlille(result.length,result,childFullview)
+
+    })
+  })
+
+}
+
+
+function tableMakerVlille(nbDisplay,result,parentNd){
+  //WE BUILD THE TABLE IN THE APPROPRIATE PARENT NODE
+  let tableDisplay = document.createElement("table")
+  tableDisplay.classList.add("table-vlille")
+  parentNd.appendChild(tableDisplay)
+
+  //TABLE'S HEADER PART
+  let theadElt = document.createElement("thead")
+  tableDisplay.appendChild(theadElt)
+
+  let trOfTheadElt = document.createElement("tr")
+  theadElt.appendChild(trOfTheadElt)
+
+  headerListTable = ["Station","Localisation","Ville","Nombre disponibles"]
+
+  for (let elt of headerListTable){
+    let thElt = document.createElement("th")
+    thElt.textContent = elt
+    trOfTheadElt.appendChild(thElt)
+  }
+
+  //TABLE'S CONTENT PART
+  let tbodyElt = document.createElement("tbody")
+  tableDisplay.appendChild(tbodyElt)
+
+  for (let i=0; i<nbDisplay; i++){
+    let trOfTbodyElt = document.createElement("tr")
+    tbodyElt.appendChild(trOfTbodyElt)
+
+    //DYNAMIC COLOR DISPLAY
+    let vlilleNbr = Number(result[i].bikeAvaliable)
+    if (vlilleNbr>10){
+      trOfTbodyElt.style.backgroundColor = "#00b318"
+    }
+    else if (vlilleNbr>5){
+      trOfTbodyElt.style.backgroundColor = "#89dc63"
+    }
+    else if (vlilleNbr>0){
+      trOfTbodyElt.style.backgroundColor = "#f99a22"
+    }
+    else{
+      trOfTbodyElt.style.backgroundColor = "#a30000"
+    }
+    /*--------------------*/
+
+    let stationElt = document.createElement("td")
+    stationElt.textContent = result[i].name
+    trOfTbodyElt.appendChild(stationElt)
+
+    let localisationElt = document.createElement("td")
+    localisationElt.textContent = result[i].adress
+    trOfTbodyElt.appendChild(localisationElt)
+
+    let townElt = document.createElement("td")
+    townElt.textContent = result[i].town
+    trOfTbodyElt.appendChild(townElt)
+
+    let numberElt = document.createElement("td")
+    numberElt.textContent = result[i].bikeAvaliable
+    trOfTbodyElt.appendChild(numberElt)
+  }
+}
+
+//MAP LOGIC FUNCTIONS
+
 function distance(lat1, lon1, lat2, lon2, unit) {
     if ((lat1 == lat2) && (lon1 == lon2)) {
         return 0;
@@ -37,92 +162,4 @@ function compare(a, b) {
     }
 
     return comparison;
-}
-
-document.getElementById("proximite").onclick = function () {
-
-    let zoneMain = document.querySelectorAll(".zone.proximite");
-    let preview = zoneMain[0].children[0];
-    let fullview = zoneMain[0].children[1];
-
-    // clean the previous content
-    preview.innerHTML = "";
-    fullview.innerHTML = "";
-
-    // preview static display
-    title = document.createElement("h1");
-    vlilleLogo = document.createElement("img");
-
-    title.setAttribute("class", "titlePreview");
-    vlilleLogo.setAttribute("class", "imgPreview");
-    vlilleLogo.setAttribute("src", "https://upload.wikimedia.org/wikipedia/fr/thumb/5/52/Logo-vlille.svg/1200px-Logo-vlille.svg.png");
-    
-
-    title.appendChild(document.createTextNode("Liste des stations VLille les plus proches"));
-
-    preview.appendChild(title);
-    preview.appendChild(vlilleLogo);
-    
-    getReq('/api/vLille', (result) => {
-
-        getReq('/api/coordinates', (coordinates) => {
-
-            userLat = coordinates[0].lat;
-            userLon = coordinates[0].lon;
-
-            // computing the distance between user and stations
-            for (const elt in result) {
-                result[elt].dist = distance(userLat, userLon, result[elt].lat, result[elt].lon, 'K')
-            }
-
-            // sorting nearest stations
-            result = result.sort(compare);
-
-            // preview dynamic display 
-            for(var i=0;i<3;i++){
-                stationName = document.createElement("h1");
-                bikeAvaliable = document.createElement("h2");
-                adress = document.createElement("p");
-                separator=document.createElement("hr")
-
-                
-                stationName.classList.add("stationName");
-                bikeAvaliable.classList.add("bikeAvaliable");
-                adress.classList.add("adress");
-
-                stationName.appendChild(document.createTextNode(result[i].name));
-                bikeAvaliable.appendChild(document.createTextNode(result[i].bikeAvaliable + " VLille disponibles"));
-                adress.appendChild(document.createTextNode(result[i].adress + ", " + result[i].town));
-
-                preview.appendChild(stationName);
-                preview.appendChild(bikeAvaliable);
-                preview.appendChild(adress);
-                preview.appendChild(separator);
-            }
-
-            // fullview dynamic display
-            for(const elt in result){
-                
-                stationName = document.createElement("h1");
-                bikeAvaliable = document.createElement("h2");
-                adress = document.createElement("p");
-                separator=document.createElement("hr")
-
-                
-                stationName.classList.add("stationName");
-                bikeAvaliable.classList.add("bikeAvaliable");
-                adress.classList.add("adress");
-
-                stationName.appendChild(document.createTextNode(result[elt].name));
-                bikeAvaliable.appendChild(document.createTextNode(result[elt].bikeAvaliable + " VLille disponibles"));
-                adress.appendChild(document.createTextNode(result[elt].adress + ", " + result[elt].town));
-
-                fullview.appendChild(stationName);
-                fullview.appendChild(bikeAvaliable);
-                fullview.appendChild(adress);
-                fullview.appendChild(separator);
-            }
-
-        });
-    });
 }
