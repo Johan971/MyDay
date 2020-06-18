@@ -357,6 +357,7 @@ function showWeather(){
         console.log("fin, adv: ",advancement)
         clearInterval(myVar)
       }
+      
 
       timePassed = 100+ Date.now() - start;
       advancement=45-(timePassed*10)/tpsTotal
