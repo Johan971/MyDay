@@ -386,13 +386,22 @@ body{
   background:transparent;
   padding: 0px;
   /*overflow: hidden*/
+  transition: 2s;
 }
 
+/*.zoneMeteoPrincipale .WeatherLogoFull{
+  transition: 7s;
+}
+
+.zoneMeteoPrincipale.large .WeatherLogoFull{
+  filter: brightness(5%);
+}
+*/
 .container{
   width:500px;
   height:500px;
   padding: 0px;
-  transition: 2s
+  
   
 }
 
@@ -401,8 +410,7 @@ body{
   max-width: 500px;
   height:500px;
   padding: 0px;
-  transition: 2s;
-
+  
 }
 
 .WeatherLogo{
@@ -414,7 +422,7 @@ body{
   z-index: 1;
   left:0px;
   /*bottom:30px;*/
-  transition: 2s;
+  
 
 }
 
@@ -422,14 +430,16 @@ body{
   position: relative;
   width : 100%;
   height: 100%;
-  filter: brightness(50%);
+  
   z-index: 1;
   left:-4px;
   border-radius:15px;
   bottom:4px;
-  transition: 2s;
-  /*filter: brightness(35%)*/;
+  
+  filter: brightness(50%);
 }
+
+
 
 /*.WeatherLogoFull:hover{
   filter: brightness(35%);
@@ -486,7 +496,6 @@ body{
   width:50px;
   height:50px;
   
-
 }
 
 #boutonPrev{
@@ -494,6 +503,8 @@ body{
   height:50px;
   
 }
+
+
 /*/////////////////////////////ZONE ECONOMIE//////////////////////////////*/
 .zone.economie{
   width:375px;
