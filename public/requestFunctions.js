@@ -29,6 +29,6 @@ function postReq(pathApi, obj) {
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhr.send(JSON.stringify(obj));
 
-  console.log("posted");
+  console.log("posted" + JSON.stringify(obj));
 }
 

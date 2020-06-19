@@ -14,8 +14,8 @@ let rawData = fs.readFileSync('./backend/config.json');
 let config = JSON.parse(rawData);
 
 
-const APIkey= config.twitter.key;
-const APIkeySecret= config.twitter.secretKey;
+const APIkey = config.twitter.key;
+const APIkeySecret = config.twitter.secretKey;
 
 const AccessToken = config.twitter.accessToken;
 const AccessTokenSecret = config.twitter.accessTokenSecret;

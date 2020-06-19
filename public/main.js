@@ -9,8 +9,9 @@ window.onload = function () {
   var startPos;
 
   var geoOptions = {
-    enableHighAccuracy: true
-
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0 
   }
 
   var geoSuccess = function (position) {
@@ -38,7 +39,7 @@ window.onload = function () {
 
 document.getElementById("main").onclick = function (){
 
-  getReq('/api/weeklyWeather', (result) => {
+  /*getReq('/api/weeklyWeather', (result) => {
     console.log(result);
     getReq('/api/vLille', (result) => {
       console.log(result);
@@ -54,7 +55,7 @@ document.getElementById("main").onclick = function (){
         });
       });
     });
-  });
+  });*/
 
 }
 

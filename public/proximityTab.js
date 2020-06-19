@@ -47,9 +47,13 @@ function vlilleZone(){
       // computing the distance between user and stations
       for (const elt in result) {
           result[elt].dist = distance(userLat, userLon, result[elt].lat, result[elt].lon, 'K')
+          console.log(elt)
       }
+
       // sorting nearest stations
-      result = result.sort(compare)
+      result.sort((a, b) => Number(a.dist) - Number(b.dist));
+
+      console.log(result)
 
       tableMakerVlille(3,result,childPreview)
       tableMakerVlille(result.length,result,childFullview)
@@ -148,20 +152,4 @@ function distance(lat1, lon1, lat2, lon2, unit) {
         }
         return dist;
     }
-}
-
-function compare(a, b) {
-
-    const distA = a.dist;
-    const distB = b.dist;
-
-    let comparison = 0;
-
-    if (distA > distB) {
-        comparison = 1;
-    } else if (distA < distB) {
-        comparison = -1;
-    }
-
-    return comparison;
 }
