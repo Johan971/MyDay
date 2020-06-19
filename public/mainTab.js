@@ -329,32 +329,43 @@ function showWeather(){
     fillContainer(containerFull6,6)
     fillContainer(containerFull7,7)
 
-    darkness=()=>{
-
-      var elmnt=document.getElementsByClassName("WeatherLogoFull")
+    function darkness(){
       
-      let start = Date.now(); // remember start time
-
-      let timer = setInterval(function() {
-        // how much time passed from the start?
-        let timePassed = Date.now() - start;
-
-        if (timePassed >= 20000) {
-          clearInterval(timer); // finish the animation after 2 seconds
-          return;
-        }
-        var advancement=35+ timePassed/10
-        // elmnt[0].style.opacity = `brightness(${advancement}%)`;
-        elmnt[0].style.opacity = `brightness(60%)`;
-      },20)
-      // elmnt[0].style.filter = "brightness(45%)";
-      
-      // draw the animation at the moment timePassed
 
 
     }
 
-    document.getElementsByClassName("WeatherLogoFull").onclick=darkness()
+  document.getElementsByClassName("container")[0].addEventListener("click",()=>{
+    
+    let elmnt=document.getElementsByClassName("WeatherLogoFull")
+    
+    let start = Date.now(); // remember start time
+    myVar= setInterval(()=>{
+
+
+      let timePassed = 100+ Date.now() - start;
+      console.log("tps passé :",timePassed)
+      let tpsTotal=500
+
+      let advancement=45-timePassed*10/tpsTotal
+      let goal=35
+
+      if (advancement<= goal){
+        // console.log("on est dans la fin",advancement)
+        advancement=goal
+        timePassed=0
+        console.log("fin, adv: ",advancement)
+        clearInterval(myVar)
+      }
+      
+
+      timePassed = 100+ Date.now() - start;
+      advancement=45-(timePassed*10)/tpsTotal
+      console.log("advense:",advancement)
+      elmnt[0].style.filter = `brightness(${advancement}%)`
+    },20)
+
+    })
 
 
 

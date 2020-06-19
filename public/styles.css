@@ -297,17 +297,72 @@ body{
   background-color: #7C9EB2;
 }
 /*/////////////////////////////ZONE PROXIMITE///////////////////////*/
+/*
 .zone.proximite{
   width:375px;
   height:600px;
 
 }
-/*élargissement de la zone sur click*/
+élargissement de la zone sur click
 .large.proximite{
   width:400px;
   height:600px;
   background-color: #7C9EB2;
 }
+*/
+
+.vlille{
+  width:700px;
+  height:475px;
+  flex-direction: column;
+  font-family: system-ui;
+}
+
+.large.vlille{
+  width:750px;
+  height:650px;
+  background-color: #7C9EB2;
+}
+
+.table-vlille{
+  border-collapse: collapse;
+  margin: 10px 0px 0px 0px;
+  font-size: 1.1em;
+  min-width: 600px;
+  min-height: 300px;
+  border-radius: 15px;
+  border: 3px solid black;
+  overflow: hidden;
+}
+
+.table-vlille thead{
+  border-radius: 10px;
+}
+
+.table-vlille thead tr{
+  background-color: rgb(48, 48, 48);
+  color:rgb(255, 255, 255);
+  font-weight: normal;
+  text-align: left;
+  border-radius: 40px;
+  border-bottom: 3px solid black;
+}
+
+.table-vlille tbody tr{
+  border-bottom: 1px solid black;
+}
+
+.table-vlille th, .table-vlille td {
+  padding: 10px;
+}
+
+#logoVlille{
+  margin-right: 10px;
+  height: 50px;
+  width:auto;
+  border-radius: 20px;
+}
+
 /*/////////////////////////ZONE SPORT/////////////////////////////*/
 
 /*-------NBA--------*/
@@ -318,6 +373,19 @@ body{
   font-family: system-ui;
 }
 
+<<<<<<< HEAD
+=======
+.header-zone{
+  display:flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.header-zone h1{
+  font-size: 1em;
+  letter-spacing: 2px;
+  font-weight: lighter;
+}
+>>>>>>> 844102fa9df9f921f57cf9475ef63ce3027696df
 
 .rank-nba{
   border-collapse: collapse;
@@ -406,14 +474,21 @@ body{
   background:transparent;
   padding: 0px;
   /*overflow: hidden*/
+  transition: 2s;
 }
 
+/*.zoneMeteoPrincipale .WeatherLogoFull{
+  transition: 7s;
+}
+
+.zoneMeteoPrincipale.large .WeatherLogoFull{
+  filter: brightness(5%);
+}
+*/
 .container{
   width:500px;
   height:500px;
   padding: 0px;
-  transition: 2s
-  
 }
 
 .containerFull{
@@ -421,8 +496,7 @@ body{
   max-width: 500px;
   height:500px;
   padding: 0px;
-  transition: 2s;
-
+  
 }
 
 .WeatherLogo{
@@ -434,7 +508,7 @@ body{
   z-index: 1;
   left:0px;
   /*bottom:30px;*/
-  transition: 2s;
+  
 
 }
 
@@ -442,14 +516,16 @@ body{
   position: relative;
   width : 100%;
   height: 100%;
-  filter: brightness(50%);
+  
   z-index: 1;
   left:-4px;
   border-radius:15px;
   bottom:4px;
-  transition: 2s;
-  /*filter: brightness(35%)*/;
+  
+  filter: brightness(50%);
 }
+
+
 
 /*.WeatherLogoFull:hover{
   filter: brightness(35%);
@@ -505,13 +581,19 @@ body{
 #boutonNext{
   width:50px;
   height:50px;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 844102fa9df9f921f57cf9475ef63ce3027696df
 }
 
 #boutonPrev{
   width:50px;
   height:50px;
-  
+
 }
+
+
 /*/////////////////////////////ZONE ECONOMIE//////////////////////////////*/
 .zone.economie{
   width:375px;
