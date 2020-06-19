@@ -50,7 +50,7 @@ function vlilleZone(){
       }
 
       // sorting nearest stations
-      result.sort((a, b) => Number(a.dist) - Number(b.dist));)
+      result.sort((a, b) => Number(a.dist) - Number(b.dist));
 
       tableMakerVlille(3,result,childPreview)
       tableMakerVlille(result.length,result,childFullview)
