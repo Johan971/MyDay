@@ -234,7 +234,7 @@ function startZone(){
 
 ////////////////////////// AJOUT DE  X ZONES //////////////////////////////////
 
-function addNewzone(currentTab,numZone,addClass){// condition : à lancer avant startZone() et/ou startBar() même si inclus dans une autre fonction
+function addNewzone(currentTab,numZone,addClass=""){// condition : à lancer avant startZone() et/ou startBar() même si inclus dans une autre fonction
 
   var className=currentTab.getAttribute("id");
   var selecZone=".zone."+className

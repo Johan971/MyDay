@@ -30,6 +30,7 @@ function nbaZone(){
   headerZone.appendChild(imageHeader)
 
   let titleHeader = document.createElement("h1")
+  titleHeader.setAttribute("class", "headerZoneTitle")
   titleHeader.textContent = "Basketball"
   headerZone.appendChild(titleHeader)
 

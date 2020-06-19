@@ -172,24 +172,29 @@ document.getElementById("media").onclick = function(){
 			var contenuArticle=""
 			var descriptionArtcicle=""
 			var articleLink=""
-			var newZone=addNewzone(media,tabNews.length)// newZone is an array with all the new HTML element "zone"
+            var classNews="News"
+			var newZone=addNewzone(media,tabNews.length,classNews)// newZone is an array with all the new HTML element "zone"
 			for (var i= 0; i<tabNews.length;i++){
 
 				//gestion de l affichage de la preview d'un article (titre, image + descrition)
 				var preView=newZone[i].getElementsByClassName("preview")
 
+                if(tabNews[i].imageUrl!=null){
+                    var imageNode=document.createElement("img")
+                    imageNode.setAttribute("src", tabNews[i].imageUrl)
+                    imageNode.setAttribute("class", "imgArcticle")
+                    preView[0].appendChild(imageNode)
+                }
+
 				var titrePv=document.createElement("h1")//titre preView
 				titrePv.appendChild(document.createTextNode(tabNews[i].title))
+                titrePv.setAttribute("class", "articleTitle")
 				preView[0].appendChild(titrePv)
 
-                if(tabNews[i].imageUrl!=null){
-				var imageNode=document.createElement("img")
-				imageNode.setAttribute("src", tabNews[i].imageUrl)
-				imageNode.setAttribute("class", "imgArcticle")
-				preView[0].appendChild(imageNode)
-				}
+               
                 if(tabNews[i].description){
 				descriptionArtcicle=document.createElement("p")
+                descriptionArtcicle.setAttribute("class", "articleSpeech")
 				descriptionArtcicle.appendChild(document.createTextNode(tabNews[i].description))
 				preView[0].appendChild(descriptionArtcicle)
                 }
