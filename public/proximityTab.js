@@ -47,13 +47,10 @@ function vlilleZone(){
       // computing the distance between user and stations
       for (const elt in result) {
           result[elt].dist = distance(userLat, userLon, result[elt].lat, result[elt].lon, 'K')
-          console.log(elt)
       }
 
       // sorting nearest stations
-      result.sort((a, b) => Number(a.dist) - Number(b.dist));
-
-      console.log(result)
+      result.sort((a, b) => Number(a.dist) - Number(b.dist));)
 
       tableMakerVlille(3,result,childPreview)
       tableMakerVlille(result.length,result,childFullview)
