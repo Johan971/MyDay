@@ -186,7 +186,7 @@ body{
   border-radius:15px;
   box-shadow: 0px 10px 10px black;
   transition: 0.5s;
-  overflow:auto;
+  overflow:hidden;
   min-width: 0px;
 }
 
@@ -194,6 +194,7 @@ body{
   /*border: 2px red solid;*/
   box-shadow: -5px 5px 10px #00B43E;
 }
+
 
 .header-zone{
   display:flex;
@@ -207,6 +208,11 @@ body{
   font-weight: lighter;
   margin-left: 3%;
 }
+
+.large{
+  overflow:auto;
+}
+
 /*ecart du texte par rapport au bord de la zone*/
 .preview{
   /*margin : 4px;*/
@@ -275,12 +281,12 @@ body{
 }
 
 /* News Style*/
-.preview{
+.media .preview{
   flex-direction: column;
 
 }
 
-.fullview{
+.media .fullview{
   flex-direction: column;
 }
 .imgArcticle{
@@ -389,6 +395,7 @@ body{
 }
 
 
+
 .rank-nba{
   border-collapse: collapse;
   font-size: 1.1em;
@@ -475,8 +482,7 @@ body{
   height:500px;
   background:transparent;
   padding: 0px;
-  /*overflow: hidden*/
-  transition: 2s;
+  overflow: hidden;
 }
 
 /*.zoneMeteoPrincipale .WeatherLogoFull{
@@ -498,7 +504,11 @@ body{
   max-width: 500px;
   height:500px;
   padding: 0px;
-  
+
+}
+
+.zone2.fullview{
+  margin: 0px;
 }
 
 .WeatherLogo{
@@ -508,32 +518,18 @@ body{
   border-radius:15px;
   filter: brightness(50%);
   z-index: 1;
-  left:0px;
-  /*bottom:30px;*/
-  
-
 }
 
 .WeatherLogoFull{
   position: relative;
   width : 100%;
   height: 100%;
-  
+
   z-index: 1;
-  left:-4px;
   border-radius:15px;
-  bottom:4px;
-  
+
   filter: brightness(50%);
 }
-
-
-
-/*.WeatherLogoFull:hover{
-  filter: brightness(35%);
-}*/
-
-
 
 .WeatherElements{
   text-shadow: 1px 2px 2px black ;
@@ -564,8 +560,6 @@ body{
   font-size: 21px;
   text-align: right;
   bottom: -20px;
-
-
 }
 
 .WeatherElements#ressenti2{
@@ -576,31 +570,129 @@ body{
 
 .containerBouton{
   position:absolute;
-  z-index: 40;
+  z-index: 1;
+  width:500px;
+  height:500px;
+  justify-content:space-between;
+  display: flex;
 }
-
 
 #boutonNext{
   width:50px;
-  height:50px;
+  height:500px;
+  opacity: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+#boutonNext:hover{
+  color : #fff;
+  border: none;
+  outline: none;
+  background: transparent;
+  opacity: 1;
+
 }
 
 #boutonPrev{
   width:50px;
-  height:50px;
-
+  height:500px;
+  opacity: 0;
+  border: none;
+  outline: none;
+  background: transparent;
 }
+
+#boutonPrev:hover{
+  color : #fff;
+  border: none;
+  outline: none;
+  background: transparent;
+  opacity: 1;
+}
+
 
 
 /*/////////////////////////////ZONE ECONOMIE//////////////////////////////*/
-.zone.economie{
-  width:375px;
+.crypto{
+  width:550px;
   height:350px;
-
+  display:flex;
+  flex-wrap: wrap;
 }
+
+.crypto .header-zone{
+  width:100%;
+}
+
+.stats-crypto{
+  margin: -25px 40px 0px 5px;
+}
+
+.stats-crypto h2{
+  font-size: 1.7em;
+  font-weight: bolder;
+}
+
+.stats-crypto h3{
+  font-size: 1.2em;
+}
+
+.crypto .preview{
+  margin-right: 3px;
+}
+
+.crytpo .preview canvas{
+  width:100px;
+  height:100px;
+}
+
+
 /*élargissement de la zone sur click*/
-.large.economie{
+.large.crypto{
+  /*display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;*/
   width:900px;
-  height:480px;
+  height:600px;
   background-color: #7C9EB2;
+}
+
+.large.crypto .stats-crypto{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.large.crypto .stats-crypto h2{
+  margin: 30px 5px 0px 10px;
+}
+
+.crypto .fullview{
+  display:flex;
+  flex-direction: column;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.div-btn-crypto{
+  display:flex;
+  justify-content: flex-end;
+  width:100%;
+  margin-top: -60px;
+}
+
+.div-btn-crypto button{
+  margin-left: 2px;
+  width:50px;
+  height:30px;
+}
+
+.logoCrypto{
+  margin-right: 10px;
+  height: 50px;
+  width:auto;
+  border-radius: 20px;
 }

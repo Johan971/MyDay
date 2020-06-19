@@ -330,15 +330,15 @@ function showWeather(){
     fillContainer(containerFull7,7)
 
     function darkness(){
-      
+
 
 
     }
 
   document.getElementsByClassName("container")[0].addEventListener("click",()=>{
-    
+
     let elmnt=document.getElementsByClassName("WeatherLogoFull")
-    
+
     let start = Date.now(); // remember start time
     myVar= setInterval(()=>{
 
@@ -357,7 +357,7 @@ function showWeather(){
         console.log("fin, adv: ",advancement)
         clearInterval(myVar)
       }
-      
+
 
       timePassed = 100+ Date.now() - start;
       advancement=45-(timePassed*10)/tpsTotal
@@ -369,22 +369,40 @@ function showWeather(){
 
 
 
-    var boutonPrev=document.createElement("Button")
+    var boutonPrev=document.createElement("button")
     boutonPrev.setAttribute("id","boutonPrev")
+    boutonPrev.setAttribute("class","fas fa-angle-left")
 
     var boutonNext=document.createElement("Button")
     boutonNext.setAttribute("id","boutonNext")
+    boutonNext.setAttribute("class","fas fa-angle-right")
 
     var containerBouton=document.createElement("div") //Container superposition img text
     containerBouton.setAttribute("class","containerBouton")
-    fullview.appendChild(containerBouton)
+
+
+
 
     containerBouton.appendChild(boutonPrev)
     containerBouton.appendChild(boutonNext)
+    fullview.appendChild(containerBouton)
+
+    boutonNext.onclick = function(event){
+      event.stopPropagation()
+      console.log(document.getElementsByClassName("zone main zoneMeteoPrincipale large"))
+      let elm = document.getElementsByClassName("zone main zoneMeteoPrincipale large")[0]
+      elm.scrollLeft = elm.scrollLeft + 500
+    }
+
+    boutonPrev.onclick = function(event){
+      event.stopPropagation()
+      let elm = document.getElementsByClassName("zone main zoneMeteoPrincipale large")[0]
+      elm.scrollLeft = elm.scrollLeft -500
+    }
 
 
 
-    
+
 
 /*
       var preview = newZones[i].getElementsByClassName("preview")

@@ -9,9 +9,9 @@ document.getElementById("economie").onclick = function (){
 
     cryptoZone("BTC", result);
     cryptoZone("ETH", result);
-    indicatorsZone(result);
     cryptoZone("XRP", result);
     cryptoZone("LTC", result);
+    indicatorsZone(result);
 
     console.log(getIndicator(result, Date.now()/1000 - 3600*24*3));
     console.log(getIndicator(result, Date.now()/1000 - 3600*24*90));
@@ -20,58 +20,7 @@ document.getElementById("economie").onclick = function (){
 
 }
 
-function getIndicator(result, since){ // since is a unix timestamp
 
-  valueArray = [];
-  indicators = {
-    BTCIndicator: Number,
-    ETHIndicator: Number,
-    XRPIndicator: Number,
-    LTCIndicator: Number
-  };
-
-  // keep the value since the timestamp
-  for(const elt in result){
-    if(result[elt].time >= since){
-      valueArray.push(result[elt]);
-    }
-  }
-
-  indicators.BTCIndicator = (10000*(valueArray[valueArray.length - 1].priceBTC - valueArray[0].priceBTC) / valueArray[valueArray.length - 1].priceBTC) / valueArray.length;
-  indicators.ETHIndicator = (10000*(valueArray[valueArray.length - 1].priceETH - valueArray[0].priceETH) / valueArray[valueArray.length - 1].priceETH) / valueArray.length;
-  indicators.XRPIndicator = (10000*(valueArray[valueArray.length - 1].priceXRP - valueArray[0].priceXRP) / valueArray[valueArray.length - 1].priceXRP) / valueArray.length;
-  indicators.LTCIndicator = (10000*(valueArray[valueArray.length - 1].priceLTC - valueArray[0].priceLTC) / valueArray[valueArray.length - 1].priceLTC) / valueArray.length;
-
-  return indicators;
-}
-
-function variationsPercentage(initiale,finale){
-  return round((finale-initiale)*100/initiale,2);
-}
-
-function indicatorsZone(result){
-  var ongletEco = document.querySelector(".economie.tab-div")
-
-  let newZone = addNewzone(economie,1)
-
-  indicators = document.createElement("h1");
-  indicators.appendChild(document.createTextNode("Indicateurs"));
-  newZone[0].appendChild(indicators);
-
-
-  let averageDays = (getIndicator(result, Date.now()/1000 - 3600*24*3).BTCIndicator+getIndicator(result, Date.now()/1000 - 3600*24*3).ETHIndicator+getIndicator(result, Date.now()/1000 - 3600*24*3).XRPIndicator+getIndicator(result, Date.now()/1000 - 3600*24*3).LTCIndicator)/4
-  let averageMonths = (getIndicator(result, Date.now()/1000 - 3600*24*90).BTCIndicator+getIndicator(result, Date.now()/1000 - 3600*24*90).ETHIndicator+getIndicator(result, Date.now()/1000 - 3600*24*90).XRPIndicator+getIndicator(result, Date.now()/1000 - 3600*24*90).LTCIndicator)/4
-
-  indicatorsAverageDay = document.createElement("p")
-  indicatorsAverageDay.appendChild(document.createTextNode("Indicateur de 3 jours du marché : "+ round(averageDays),2));
-  indicatorsAverageMonth = document.createElement("p")
-  indicatorsAverageMonth.appendChild(document.createTextNode("Indicateur de 3 mois du marché : "+ round(averageMonths),2));
-
-  newZone[0].appendChild(indicatorsAverageDay);
-  newZone[0].appendChild(indicatorsAverageMonth)
-
-
-}
 
 
 function cryptoZone(currency, result){
@@ -86,16 +35,16 @@ function cryptoZone(currency, result){
   let price3M = [];
 
 
-  var ongletEco = document.querySelector(".economie.tab-div");
+  var ongletEco = document.querySelector(".economie.tab-div")
 
-  let newZone = addNewzone(economie,1);
-  newZone[0].classList.add("crypto")
-  let childPreview = newZone[0].getElementsByClassName("preview")[0];
-  let childFullview = newZone[0].getElementsByClassName("fullview")[0];
+  let newZone = addNewzone(economie,1)[0]
+  newZone.classList.add("crypto")
+  let childPreview = newZone.getElementsByClassName("preview")[0]
+  let childFullview = newZone.getElementsByClassName("fullview")[0]
 
-  /*let newZone = document.querySelector(".zone.economie")
-  let childPreview = newZone.children[0]
-  let childFullview = newZone.children[1]*/
+
+
+
 
 
   var infoCurrency = {
@@ -116,7 +65,22 @@ function cryptoZone(currency, result){
       image: "https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/litecion_ltc_lite_coin_crypto-512.png"
     }
   }
-  //PREVIEW PART
+
+  //HEADERZONE PART
+  let headerZone = document.createElement("div")
+  headerZone.classList.add("header-zone")
+  newZone.insertBefore(headerZone,childPreview)
+
+  let imageHeader = document.createElement("img")
+  imageHeader.classList.add("logoCrypto")
+  imageHeader.setAttribute("src",infoCurrency[currency].image)
+  imageHeader.setAttribute("alt",`logo de ${infoCurrency[currency].name}`)
+  headerZone.appendChild(imageHeader)
+
+  let titleHeader = document.createElement("h1")
+  titleHeader.textContent = infoCurrency[currency].name
+  headerZone.appendChild(titleHeader)
+
 
   //Définition de la couleur (verte || rouge) en fonction des variations du cours de la monnaie
   let variationColor
@@ -127,30 +91,77 @@ function cryptoZone(currency, result){
     variationColor = (opacityColor) => "rgba(235, 59, 90,"+opacityColor+")"
   }
 
-  //PARTIE ELEMENT DOM
-
-  childPreview.innerHTML="<h1>"+infoCurrency[currency].name+"</h1>"
-
+  let statsCryptElt = document.createElement("div")
+  statsCryptElt.classList.add("stats-crypto")
+  newZone.insertBefore(statsCryptElt,childPreview)
 
   let lastPricePreview = document.createElement("h2")
   lastPricePreview.textContent = result[result.length-1]["price"+currency]+" €"
-  lastPricePreview.style.color = variationColor("1.0")
-  childPreview.appendChild(lastPricePreview)
+  /*lastPricePreview.style.color = variationColor("1.0")*/
+  statsCryptElt.appendChild(lastPricePreview)
 
   let percentagePreview = document.createElement("h3")
   percentagePreview.textContent = variationsPercentage(result[result.length-19]["price"+currency],result[result.length-1]["price"+currency])+' %'
   percentagePreview.style.color = variationColor("1.0")
-  childPreview.appendChild(percentagePreview)
+  statsCryptElt.appendChild(percentagePreview)
+
+  //PREVIEW PART
+  let graphPVElt = document.createElement("canvas")
+  graphPVElt.setAttribute("max-width","300px")
+  graphPVElt.setAttribute("height","auto")
+
+  graphPVElt.classList.add("graphCanvas")
+  childPreview.appendChild(graphPVElt)
+
+  //------------------------PARTIE GESTION GRAPHIQUE----------------------
+  let dataPV = {
+          labels: date3D,
+          datasets: [{
+              label: "Crypto",
+              backgroundColor: "transparent",
+              borderColor: "rgb(0, 105, 255)",
+              data: price3D,
+              pointRadius:0
+          }]
+  }
+
+  let optionsPV = {
+    responsive: true,
+    /*responsive: true,*/
+    maintainAspectRatio:false,
+    title: {
+      display: false,
+    },
+    legend: {
+      display: false,
+    },
+    scales: {
+      xAxes: [{
+        display: false
+        }],
+      yAxes: [{
+        display: false,
+      }]
+    }
+  }
+
+  let configPV = {
+    type: 'line',
+    data: dataPV,
+    options: optionsPV
+  }
+
+  let ctxPV = graphPVElt.getContext('2d')
+  let myChartPV = new Chart(ctxPV,configPV)
 
 
-
-
+  /*
   let logoPreview = document.createElement("img")
   logoPreview.setAttribute("src",infoCurrency[currency].image)
   logoPreview.setAttribute("height","200px")
   logoPreview.setAttribute("width","200px")
   childPreview.appendChild(logoPreview)
-
+  */
 
   //FULLVIEW PART
 
@@ -189,7 +200,7 @@ function cryptoZone(currency, result){
   //------------------------PARTIE ELEMENTS DOM----------------------
 
   let divButton = document.createElement("div")
-  divButton.classList.add("div-btn-"+currency)
+  divButton.classList.add("div-btn-crypto")
   childFullview.appendChild(divButton)
 
   listeDurations = ["3D","1W","1M","3M"]
@@ -213,11 +224,11 @@ function cryptoZone(currency, result){
     //FONCTION DU BOUTON
     btnElt.onclick = function(event){
       event.stopPropagation()
-      data.labels = eval("date"+duration)
-      data.datasets[0].data = eval("price"+duration)
-      data.datasets[0].borderColor = borderColorData
-      data.datasets[0].backgroundColor = backgroundColorData
-      myChart.update(data.datasets.data)
+      dataFV.labels = eval("date"+duration)
+      dataFV.datasets[0].data = eval("price"+duration)
+      dataFV.datasets[0].borderColor = borderColorData
+      dataFV.datasets[0].backgroundColor = backgroundColorData
+      myChartFV.update(dataFV.datasets.data)
     }
 
     //IMPLEMENTATION DU BOUTON
@@ -226,20 +237,20 @@ function cryptoZone(currency, result){
 
 
   //CREATION DU GRAPHIQUE
-  /*let divGraph = document.createElement("div")
-  divGraph.classList.add("graph-crypto")
-  childFullview.appendChild(divGraph)*/
+  let divGraphFV = document.createElement("div")
+  divGraphFV.classList.add("graph-crypto")
+  childFullview.appendChild(divGraphFV)
 
-  let graphElt = document.createElement("canvas")
-  graphElt.setAttribute("width","864px")
-  graphElt.setAttribute("height","432px")
+  let graphFVElt = document.createElement("canvas")
+  graphFVElt.setAttribute("width","864px")
+  graphFVElt.setAttribute("height","432px")
 
-  graphElt.classList.add("graphCanvas")
-  childFullview.appendChild(graphElt)
+  graphFVElt.classList.add("graphCanvas")
+  divGraphFV.appendChild(graphFVElt)
 
 
   //------------------------PARTIE GESTION GRAPHIQUE----------------------
-  let data = {
+  let dataFV = {
           labels: date3D,
           datasets: [{
               label: infoCurrency[currency].name+' Price',
@@ -249,7 +260,7 @@ function cryptoZone(currency, result){
           }]
   }
 
-  let options = {
+  let optionsFV = {
     responsive: false,
     //responsive: true,
     maintainAspectRatio:true,
@@ -269,15 +280,67 @@ function cryptoZone(currency, result){
     }
   }
 
-  let config = {
+  let configFV = {
     type: 'line',
-    data: data,
-    options: options
+    data: dataFV,
+    options: optionsFV
   }
 
-  let ctx = graphElt.getContext('2d')
-  let myChart = new Chart(ctx,config)
+  let ctxFV = graphFVElt.getContext('2d')
+  let myChartFV = new Chart(ctxFV,configFV)
+}
 
-  ongletEco.appendChild(newZone[0]);
 
+
+//INDICATOR FUNCTIONS
+
+function getIndicator(result, since){ // since is a unix timestamp
+
+  valueArray = [];
+  indicators = {
+    BTCIndicator: Number,
+    ETHIndicator: Number,
+    XRPIndicator: Number,
+    LTCIndicator: Number
+  };
+
+  // keep the value since the timestamp
+  for(const elt in result){
+    if(result[elt].time >= since){
+      valueArray.push(result[elt]);
+    }
+  }
+
+  indicators.BTCIndicator = (10000*(valueArray[valueArray.length - 1].priceBTC - valueArray[0].priceBTC) / valueArray[valueArray.length - 1].priceBTC) / valueArray.length;
+  indicators.ETHIndicator = (10000*(valueArray[valueArray.length - 1].priceETH - valueArray[0].priceETH) / valueArray[valueArray.length - 1].priceETH) / valueArray.length;
+  indicators.XRPIndicator = (10000*(valueArray[valueArray.length - 1].priceXRP - valueArray[0].priceXRP) / valueArray[valueArray.length - 1].priceXRP) / valueArray.length;
+  indicators.LTCIndicator = (10000*(valueArray[valueArray.length - 1].priceLTC - valueArray[0].priceLTC) / valueArray[valueArray.length - 1].priceLTC) / valueArray.length;
+
+  return indicators;
+}
+
+function variationsPercentage(initiale,finale){
+  return round((finale-initiale)*100/initiale,2);
+}
+
+function indicatorsZone(result){
+  var ongletEco = document.querySelector(".economie.tab-div")
+
+  let newZone = addNewzone(economie,1)[0]
+
+  indicators = document.createElement("h1");
+  indicators.appendChild(document.createTextNode("Indicateurs"));
+  newZone.appendChild(indicators);
+
+
+  let averageDays = (getIndicator(result, Date.now()/1000 - 3600*24*3).BTCIndicator+getIndicator(result, Date.now()/1000 - 3600*24*3).ETHIndicator+getIndicator(result, Date.now()/1000 - 3600*24*3).XRPIndicator+getIndicator(result, Date.now()/1000 - 3600*24*3).LTCIndicator)/4
+  let averageMonths = (getIndicator(result, Date.now()/1000 - 3600*24*90).BTCIndicator+getIndicator(result, Date.now()/1000 - 3600*24*90).ETHIndicator+getIndicator(result, Date.now()/1000 - 3600*24*90).XRPIndicator+getIndicator(result, Date.now()/1000 - 3600*24*90).LTCIndicator)/4
+
+  indicatorsAverageDay = document.createElement("p")
+  indicatorsAverageDay.appendChild(document.createTextNode("Indicateur de 3 jours du marché : "+ round(averageDays),2));
+  indicatorsAverageMonth = document.createElement("p")
+  indicatorsAverageMonth.appendChild(document.createTextNode("Indicateur de 3 mois du marché : "+ round(averageMonths),2));
+
+  newZone.appendChild(indicatorsAverageDay);
+  newZone.appendChild(indicatorsAverageMonth)
 }
