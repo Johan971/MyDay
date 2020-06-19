@@ -444,8 +444,7 @@ body{
   height:500px;
   background:transparent;
   padding: 0px;
-  /*overflow: hidden*/
-  transition: 2s;
+  overflow: hidden;
 }
 
 /*.zoneMeteoPrincipale .WeatherLogoFull{
@@ -470,6 +469,10 @@ body{
 
 }
 
+.zone2.fullview{
+  margin: 0px;
+}
+
 .WeatherLogo{
   position: relative;
   width : 100%;
@@ -477,10 +480,6 @@ body{
   border-radius:15px;
   filter: brightness(50%);
   z-index: 1;
-  left:0px;
-  /*bottom:30px;*/
-
-
 }
 
 .WeatherLogoFull{
@@ -489,20 +488,10 @@ body{
   height: 100%;
 
   z-index: 1;
-  left:-4px;
   border-radius:15px;
-  bottom:4px;
 
   filter: brightness(50%);
 }
-
-
-
-/*.WeatherLogoFull:hover{
-  filter: brightness(35%);
-}*/
-
-
 
 .WeatherElements{
   text-shadow: 1px 2px 2px black ;
@@ -543,21 +532,47 @@ body{
 
 .containerBouton{
   position:absolute;
-  z-index: 40;
+  z-index: 1;
+  width:500px;
+  height:500px;
+  justify-content:space-between;
+  display: flex;
 }
-
 
 #boutonNext{
   width:50px;
-  height:50px;
+  height:500px;
+  opacity: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+}
 
+#boutonNext:hover{
+  color : #fff;
+  border: none;
+  outline: none;
+  background: transparent;
+  opacity: 1;
 }
 
 #boutonPrev{
   width:50px;
-  height:50px;
-
+  height:500px;
+  opacity: 0;
+  border: none;
+  outline: none;
+  background: transparent;
 }
+
+#boutonPrev:hover{
+  color : #fff;
+  border: none;
+  outline: none;
+  background: transparent;
+  opacity: 1;
+}
+
 
 
 /*/////////////////////////////ZONE ECONOMIE//////////////////////////////*/
