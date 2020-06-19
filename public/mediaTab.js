@@ -46,6 +46,7 @@ document.getElementById("media").onclick = function(){
 
 		classTwit="twitterZone"
 		var newZone2=addNewzone(media,1,classTwit)
+        var preView=newZone2[0].getElementsByClassName("preview")
 		/*
 		let preview = zoneMain[0].children[0]
 		let fullview = zoneMain[0].children[1]
@@ -53,8 +54,26 @@ document.getElementById("media").onclick = function(){
 
 		// newZone2.classList.add("twitter")
 
+        //HEADERZONE PART
+        let headerZone = document.createElement("div")
+        headerZone.classList.add("header-zone")
+        newZone2[0].insertBefore(headerZone,preView[0])
+
+        let imageHeader = document.createElement("i")
+        imageHeader.class="logoMedia"
+        imageHeader.setAttribute("class","fab fa-twitter-square fa-3x")
+        imageHeader.setAttribute("alt","LogoTwitter")
+        headerZone.appendChild(imageHeader)
+
+        let titleHeader = document.createElement("h1")
+        titleHeader.setAttribute("class", "headerZoneTitle")
+        titleHeader.textContent = "Twitter"
+        headerZone.appendChild(titleHeader)
+
+        //Twitter content
 		var preview=newZone2[0].getElementsByClassName("preview")[0]
 		var fullview=newZone2[0].getElementsByClassName("fullview")[0]		
+
 
 		var titlePv = document.createElement("h1")
 		titlePv.setAttribute("class", "titleTwitterTrend")
@@ -66,16 +85,7 @@ document.getElementById("media").onclick = function(){
 		titleFv.appendChild(document.createTextNode("Tendances"))
 		fullview.appendChild(titleFv)
 		
-		var logotwitterFv=document.createElement("img")
-		logotwitterFv.setAttribute("src", "https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/1200px-Twitter_Bird.svg.png")
-		logotwitterFv.setAttribute("class", "logoTwitter")
-		
-		var logotwitterPv=document.createElement("img")
-        logotwitterPv.setAttribute("src", "https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/1200px-Twitter_Bird.svg.png")
-        logotwitterPv.setAttribute("class", "logoTwitter")
-
-		preview.appendChild(logotwitterPv)
-		fullview.appendChild(logotwitterFv)
+		 
 		
 		for (var previewIterator = 0; previewIterator < 3; previewIterator++){
 			separatorPv=document.createElement("hr")
@@ -115,7 +125,7 @@ document.getElementById("media").onclick = function(){
 
 		};
 
-		var newZonePrediction = addNewzone(media, 1);
+		var newZonePrediction = addNewzone(media, 1,"twitterZone");
 
 		// sort by delta
 		let predictionResult = result.slice(10, result.length - 1).sort(compareDelta);;
@@ -165,6 +175,34 @@ document.getElementById("media").onclick = function(){
 		newZonePrediction[0].appendChild(prediction4);
 
 		ongletMedia.appendChild(newZonePrediction[0]);
+        var preViewPred=newZonePrediction[0].getElementsByClassName("preview")
+
+        //HEADER ZONEZ TWITTER PREDICTION
+        let headerZonePred = document.createElement("div")
+        headerZonePred.classList.add("header-zone")
+        newZonePrediction[0].insertBefore(headerZonePred,preViewPred[0])
+
+        let imageHeaderPred = document.createElement("i")
+        imageHeaderPred.class="logoMedia"
+        imageHeaderPred.setAttribute("class","fab fa-twitter-square fa-3x")
+        imageHeaderPred.setAttribute("alt","LogoTwitter")
+        headerZonePred.appendChild(imageHeaderPred)
+
+        let titleHeaderPred = document.createElement("h1")
+        titleHeaderPred.setAttribute("class", "headerZoneTitle")
+        titleHeaderPred.textContent = "Twitter"
+        headerZonePred.appendChild(titleHeaderPred)
+   
+
+
+        // Separation Twitter/ News
+        var divSeparator=document.createElement("div")
+        var hrSeparator=document.createElement("hr")
+        divSeparator.setAttribute("id", "separator")
+        hrSeparator.setAttribute("id", "lignSeparator")
+        divSeparator.appendChild(hrSeparator);
+        
+        ongletMedia.appendChild(divSeparator);
 
 		getReq('/api/news', (result) => {
 			
@@ -174,10 +212,28 @@ document.getElementById("media").onclick = function(){
 			var articleLink=""
             var classNews="News"
 			var newZone=addNewzone(media,tabNews.length,classNews)// newZone is an array with all the new HTML element "zone"
+
 			for (var i= 0; i<tabNews.length;i++){
 
+                var preView=newZone[i].getElementsByClassName("preview")
+                var fullView=newZone[i].getElementsByClassName("fullview")
+                 //HEADERZONE PART
+                let headerZone = document.createElement("div")
+                headerZone.classList.add("header-zone")
+                newZone[i].insertBefore(headerZone,preView[0])
+
+                let imageHeader = document.createElement("i")
+                imageHeader.class="logoMedia"
+                imageHeader.setAttribute("class","far fa-newspaper fa-2x")
+                imageHeader.setAttribute("alt","Logo Media")
+                headerZone.appendChild(imageHeader)
+
+                let titleHeader = document.createElement("h1")
+                titleHeader.setAttribute("class", "headerZoneTitle")
+                titleHeader.textContent = "   News"
+                headerZone.appendChild(titleHeader)
 				//gestion de l affichage de la preview d'un article (titre, image + descrition)
-				var preView=newZone[i].getElementsByClassName("preview")
+				
 
                 if(tabNews[i].imageUrl!=null){
                     var imageNode=document.createElement("img")
@@ -186,7 +242,7 @@ document.getElementById("media").onclick = function(){
                     preView[0].appendChild(imageNode)
                 }
 
-				var titrePv=document.createElement("h1")//titre preView
+				var titrePv=document.createElement("h2")//titre preView
 				titrePv.appendChild(document.createTextNode(tabNews[i].title))
                 titrePv.setAttribute("class", "articleTitle")
 				preView[0].appendChild(titrePv)
@@ -199,7 +255,7 @@ document.getElementById("media").onclick = function(){
 				preView[0].appendChild(descriptionArtcicle)
                 }
 				//gestion de la full view (titre + contenu)
-				var fullView=newZone[i].getElementsByClassName("fullview")
+				
 
 
 				var titreFv=document.createElement("h1")

@@ -2,8 +2,8 @@
 var Onglet={
   media : [['twitter','<i class="fab fa-twitter-square fa-3x"></i>'],['news','<i class="far fa-newspaper fa-3x"></i>']],
   sport : [['basket','<i class="fas fa-basketball-ball fa-3x"></i>'],['foot','<i class="fas fa-football-ball fa-3x"></i>'],['volley','<i class="fas fa-volleyball-ball fa-3x"></i>']],
-  proximite : [['Vlille','<i class="fas fa-bicycle fa-3x"></i>']],
-  economie : [['Cryptos','<i class="fas fa-chart-line fa-3x"></i>']],
+  proximite : [['Vlille','<i class="fas fa-bicycle fa-3x"></i>'],['Musique','<i class="fas fa-music fa-3x"></i>']],
+  economie : [['Cryptos','<i class="fas fa-chart-line fa-3x"></i>'],['Portefeuille','<i class="fas fa-wallet fa-3x"></i>']],
   main : [['horloge','<i class="far fa-clock fa-3x"></i>'],['meteo','<i class="fas fa-cloud-sun fa-3x"></i>']],
 }
 // changement dans la navbar principal et affichage des contenus ( texte/module et sousnav) :
@@ -28,9 +28,6 @@ var onclickNavbar=function(elem){
     li.classList.add("selected");
     ancienneliAffiche.classList.remove("selected");             //On lui eneleve sa classe affiche
     ancienneliAffiche.classList.add("no-selected");
-    console.log('c est affiché')
-  }else{
-    console.log('deja affiché')
   }
 
 }
@@ -174,7 +171,6 @@ function startBar(){
 
       if(divActive.classList[2]=="non-affiche"){                     //On regarde déja si la <div> n'est pas déja affiche grâce à son 3e nom de classe (soit non-affiche soit affiche)
 
-        console.log("Cette div n'est pas encore affichée");
 
         let ancienneDivAffiche = document.getElementsByClassName("affiche")[0]; //On recupere l'ancienne div qui est affichéelse
 
@@ -186,6 +182,7 @@ function startBar(){
 
         // gestion de la sous barre de navigation :
         let sidebarElt=document.getElementById("sidebar-list")
+
         let ecritureOnglet=""
         let ecritureOngletComplet=""
         for(var i=0;i<Onglet[nomClasse].length;i++){
@@ -196,6 +193,18 @@ function startBar(){
           else{
             classSelectValue="'no-selected'"
           }
+          /*
+          var listSidebar =document.createElement("li")
+          listSidebar.setAttribute("classs", classSelectValue)
+
+          var elementSidebar=document.createElement("a")
+          elementSidebar.setAttribute("onclick",'onclickNavbar(this)')
+          elementSidebar.setAttribute("class",'sousnavlink' )
+          elementSidebar.setAttribute("href",'#'+Onglet[nomClasse][i][0])
+
+          elementSidebar.appendChild(Onglet[nomClasse][i][1])
+          listSidebar.appendChild(elementSidebar)*/
+
           ecritureOnglet="<li class="+classSelectValue+"><a onclick='onclickNavbar(this)' class='sousnavlink' href=\'#"+Onglet[nomClasse][i][0]+"\'</a>"+Onglet[nomClasse][i][1]+"</li>"
           ecritureOngletComplet+=ecritureOnglet
         }

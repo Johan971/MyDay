@@ -77,7 +77,17 @@ body{
   list-style: none;
   margin:auto;
 }
-
+#separator{
+  width: 100%;
+  height :5%;
+  }
+#lignSeparator{
+  width: 50%;
+  height: 100%;
+  margin-left: 2%;
+  border : 1px solid rgba(0,233,69,0.8970938717283);
+  box-shadow: -5px 5px 25px #00B43E;
+}
 
 
 
@@ -118,7 +128,6 @@ body{
 
 /* texte sidebar*/
 .selected .sousnavlink{
-   font-size: 20px;
    color :rgba(0,233,69,0.8970938717283788);
 }
 
@@ -134,7 +143,7 @@ body{
 }
 
 .sousnavlink:hover{
-  color :#27ae60;
+  color :rgba(0,233,69,0.8970938717283788);
   cursor: pointer;
 
 }
@@ -189,13 +198,14 @@ body{
 .header-zone{
   display:flex;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 3%;
 }
 
 .headerZoneTitle{
   font-size: 1.5rem;
   letter-spacing: 3px;
-  font-weight: bold;
+  font-weight: lighter;
+  margin-left: 3%;
 }
 /*ecart du texte par rapport au bord de la zone*/
 .preview{
@@ -252,24 +262,25 @@ body{
 }
 
 /*////////////////////////////////// ZONE MEDIA///////////////////////*/
-.zone.media{
-  width:400px;
-  height:440px;
+/*Gestion des zones News*/
+.zone.News{
+  width:510px;
+  height:630px;
 }
 /*élargissement de la zone sur click*/
-.large.media{
+.large.News{
   width:400px;
   height:300px;
   background-color: #7C9EB2;
 }
 
 /* News Style*/
-.News .preview{
+.preview{
   flex-direction: column;
 
 }
 
-.News .fullview{
+.fullview{
   flex-direction: column;
 }
 .imgArcticle{
@@ -284,12 +295,16 @@ body{
   font-size: 1rem;
   font-style: oblique 160deg;
 }
-/* Partie Twitter dans l'onglet media*/
+/* Gestion de Twitter*/
 .logoTwitter{
   width: 25%;
   height: 25%;
   margin-right: 0;
   margin-left: 70%;
+}
+.zone.twitterZone {
+  width:400px;
+  height:400px;
 }
 .large.twitterZone{
   width:400px;
@@ -373,19 +388,6 @@ body{
   font-family: system-ui;
 }
 
-<<<<<<< HEAD
-=======
-.header-zone{
-  display:flex;
-  align-items: center;
-  margin-bottom: 50px;
-}
-.header-zone h1{
-  font-size: 1em;
-  letter-spacing: 2px;
-  font-weight: lighter;
-}
->>>>>>> 844102fa9df9f921f57cf9475ef63ce3027696df
 
 .rank-nba{
   border-collapse: collapse;
@@ -581,10 +583,6 @@ body{
 #boutonNext{
   width:50px;
   height:50px;
-<<<<<<< HEAD
-=======
-
->>>>>>> 844102fa9df9f921f57cf9475ef63ce3027696df
 }
 
 #boutonPrev{

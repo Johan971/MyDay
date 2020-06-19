@@ -34,7 +34,7 @@ function vlilleZone(){
   headerZone.appendChild(titleHeader)
 
   let titleH2 = document.createElement("h2")
-  titleH2.textContent = "Liste des stations vLilles les plus proches"
+  titleH2.textContent = "Liste des stations V'Lilles les plus proches :"
   newZone.insertBefore(titleH2,childPreview)
 
   getReq("/api/vLille", (result) => {
