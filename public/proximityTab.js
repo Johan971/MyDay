@@ -30,6 +30,8 @@ function vlilleZone(){
   headerZone.appendChild(imageHeader)
 
   let titleHeader = document.createElement("h1")
+  titleHeader.classList.add("headerZoneTitle")
+  titleHeader.setAttribute("id", "vlilleTitle")
   titleHeader.textContent = "V'lille"
   headerZone.appendChild(titleHeader)
 

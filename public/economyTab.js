@@ -78,6 +78,7 @@ function cryptoZone(currency, result){
   headerZone.appendChild(imageHeader)
 
   let titleHeader = document.createElement("h1")
+  titleHeader.classList.add("headerZoneTitle")
   titleHeader.textContent = infoCurrency[currency].name
   headerZone.appendChild(titleHeader)
 

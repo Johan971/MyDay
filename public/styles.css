@@ -206,8 +206,12 @@ body{
   font-size: 1.5rem;
   letter-spacing: 3px;
   font-weight: lighter;
-  margin-left: 3%;
+  margin-left: 0px;
 }
+.headerZoneTitle#mediaTitle{
+  margin-left : 3%;
+}
+
 
 .large{
   overflow:auto;
@@ -681,7 +685,7 @@ body{
   display:flex;
   justify-content: flex-end;
   width:100%;
-  margin-top: -60px;
+  margin-top: -70px;
 }
 
 .div-btn-crypto button{

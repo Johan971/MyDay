@@ -67,6 +67,7 @@ document.getElementById("media").onclick = function(){
 
         let titleHeader = document.createElement("h1")
         titleHeader.setAttribute("class", "headerZoneTitle")
+        titleHeader.setAttribute("id", "mediaTitle")
         titleHeader.textContent = "Twitter"
         headerZone.appendChild(titleHeader)
 
@@ -190,6 +191,7 @@ document.getElementById("media").onclick = function(){
 
         let titleHeaderPred = document.createElement("h1")
         titleHeaderPred.setAttribute("class", "headerZoneTitle")
+        titleHeaderPred.setAttribute("id", "mediaTitle")
         titleHeaderPred.textContent = "Twitter"
         headerZonePred.appendChild(titleHeaderPred)
    
@@ -230,6 +232,7 @@ document.getElementById("media").onclick = function(){
 
                 let titleHeader = document.createElement("h1")
                 titleHeader.setAttribute("class", "headerZoneTitle")
+                titleHeader.setAttribute("id", "mediaTitle")
                 titleHeader.textContent = "   News"
                 headerZone.appendChild(titleHeader)
 				//gestion de l affichage de la preview d'un article (titre, image + descrition)
