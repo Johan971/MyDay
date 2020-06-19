@@ -135,7 +135,7 @@ function showWeather(){
 
     var preview = newZone[0].getElementsByClassName("preview")[0]
     var fullview = newZone[0].getElementsByClassName("fullview")[0]
-    //fullview.setAttribute("class","fullviewMeteo")
+    
 
 
 
@@ -247,50 +247,7 @@ function showWeather(){
     }
 
     fillContainer(container,0)
-    // console.log(document.getElementsByClassName("containerFull"))
-
-
-
-
-    // date = document.createElement("h1");
-    // date.appendChild(document.createTextNode(day.dayName+" "+day.dayNumber+" "+day.monthName+" "+day.yearNumber))
-    // date.setAttribute("class","WeatherElements")
-    // container.appendChild(date);
-
-    // weather = document.createElement("p");
-    // weather.appendChild(document.createTextNode("Le temps est : "+tabMeteo[0].description));
-    // weather.setAttribute("class","WeatherElements")
-    // container.appendChild(weather);
-
-    // weather = document.createElement("p");
-    // weather.appendChild(document.createTextNode("La temperature de ce jour est : "+round(tabMeteo[0].temp["day"],1)+" °C"));
-    // weather.setAttribute("class","WeatherElements")
-    // container.appendChild(weather);
-
-    // weather = document.createElement("p");
-    // weather.appendChild(document.createTextNode("Avec un ressenti de : "+round(tabMeteo[0].temp["dayFl"],1)+" °C"));
-    // weather.setAttribute("class","WeatherElements")
-    // container.appendChild(weather);
-
-    // ======================================================//
-
-    // Mini zones des autres jours
-
-
-    // for (var j=1;j<tabMeteo.length;j++){
-
-    //   var previews = newZones[j].getElementsByClassName("preview")[0]
-    //   var fullviews = newZones[j].getElementsByClassName("fullview")[0] //UNDEFINED
-    //   // var day = new ChooseDate(tabMeteo[j].timeStamp)
-    //   // var sunset = new ChooseDate(tabMeteo[j].sunset)
-    //   // var sunrise = new ChooseDate(tabMeteo[j].sunrise)
-
-    //   // date = document.createElement("h1");
-
-    //   // date.appendChild(document.createTextNode(day.dayName+" "+day.dayNumber+" "+day.monthName+" "+day.yearNumber));
-    //   // fullview[0].appendChild(date);
-    //   previews[0].appendChild(document.createTextNode("fff"))
-    // }
+ 
 //------------------------------- fullview -----------------------------
 
 //declare
@@ -318,7 +275,7 @@ function showWeather(){
     var containerFull7=document.createElement("div") //Container superposition img text
     containerFull7.setAttribute("class","containerFull")
     fullview.appendChild(containerFull7)
- //create container and fill
+
 
     fillContainer(containerFull0,0)
     fillContainer(containerFull1,1)
@@ -329,142 +286,101 @@ function showWeather(){
     fillContainer(containerFull6,6)
     fillContainer(containerFull7,7)
 
-    function darkness(){
-
-
-
-    }
-
+  
+  // =======TRANSITION ZONES========//
+  var cpt=0
   document.getElementsByClassName("container")[0].addEventListener("click",()=>{
 
     let elmnt=document.getElementsByClassName("WeatherLogoFull")
 
-    let start = Date.now(); // remember start time
+   
     myVar= setInterval(()=>{
+      
+      cpt++
+      
+        
+      let advancement=50-cpt
+      
 
-
-      let timePassed = 100+ Date.now() - start;
-      console.log("tps passé :",timePassed)
-      let tpsTotal=500
-
-      let advancement=45-timePassed*10/tpsTotal
-      let goal=35
-
-      if (advancement<= goal){
-        // console.log("on est dans la fin",advancement)
-        advancement=goal
-        timePassed=0
-        console.log("fin, adv: ",advancement)
+      if (cpt>= 10){
+        
         clearInterval(myVar)
       }
 
-
-      timePassed = 100+ Date.now() - start;
-      advancement=45-(timePassed*10)/tpsTotal
-      console.log("advense:",advancement)
-      elmnt[0].style.filter = `brightness(${advancement}%)`
+      for(let i=0;i<elmnt.length;i++){
+        elmnt[i].style.filter = `brightness(${advancement}%)`
+      }
+      
     },20)
+    cpt=0
 
     })
 
+  var boutonPrev=document.createElement("button")
+  boutonPrev.setAttribute("id","boutonPrev")
+  boutonPrev.setAttribute("class","fas fa-angle-left")
 
+  var boutonNext=document.createElement("Button")
+  boutonNext.setAttribute("id","boutonNext")
+  boutonNext.setAttribute("class","fas fa-angle-right")
 
-    var boutonPrev=document.createElement("button")
-    boutonPrev.setAttribute("id","boutonPrev")
-    boutonPrev.setAttribute("class","fas fa-angle-left")
-
-    var boutonNext=document.createElement("Button")
-    boutonNext.setAttribute("id","boutonNext")
-    boutonNext.setAttribute("class","fas fa-angle-right")
-
-    var containerBouton=document.createElement("div") //Container superposition img text
-    containerBouton.setAttribute("class","containerBouton")
+  var containerBouton=document.createElement("div") //Container superposition img text
+  containerBouton.setAttribute("class","containerBouton")
 
 
 
 
-    containerBouton.appendChild(boutonPrev)
-    containerBouton.appendChild(boutonNext)
-    fullview.appendChild(containerBouton)
+  containerBouton.appendChild(boutonPrev)
+  containerBouton.appendChild(boutonNext)
+  fullview.appendChild(containerBouton)
 
-    boutonNext.onclick = function(event){
-      event.stopPropagation()
-      console.log(document.getElementsByClassName("zone main zoneMeteoPrincipale large"))
-      let elm = document.getElementsByClassName("zone main zoneMeteoPrincipale large")[0]
-      elm.scrollLeft = elm.scrollLeft + 500
-    }
+  boutonNext.onclick = function(event){
+    event.stopPropagation()
+    // console.log(document.getElementsByClassName("zone main zoneMeteoPrincipale large"))
+    let elm = document.getElementsByClassName("zone main zoneMeteoPrincipale large")[0]
+    elm.scrollLeft = elm.scrollLeft + 500
+  }
 
-    boutonPrev.onclick = function(event){
-      event.stopPropagation()
-      let elm = document.getElementsByClassName("zone main zoneMeteoPrincipale large")[0]
-      elm.scrollLeft = elm.scrollLeft -500
-    }
+  boutonPrev.onclick = function(event){
+    event.stopPropagation()
+    let elm = document.getElementsByClassName("zone main zoneMeteoPrincipale large")[0]
+    elm.scrollLeft = elm.scrollLeft -500
+  }
 
 
 
 
 
-/*
-      var preview = newZones[i].getElementsByClassName("preview")
-      var fullview = newZones[i].getElementsByClassName("fullview")
+  var cpt2=0
+  document.getElementsByClassName("containerBouton")[0].addEventListener("click",()=>{
 
-      var preview = newZone[i].getElementsByClassName("preview")
-      var fullview = newZone[i].getElementsByClassName("fullview")
+    let elmnt2=document.getElementsByClassName("WeatherLogo")
 
+   
+    myVar2= setInterval(()=>{
+      
+      cpt2++
+      
+      
+      let advancement2=40+cpt2
+      
 
+      if (cpt2>= 10){
+        
+        clearInterval(myVar2)
+      }
 
-      var day = new ChooseDate(tabMeteo[i].timeStamp)
-      var sunset = new ChooseDate(tabMeteo[i].sunset)
-      var sunrise = new ChooseDate(tabMeteo[i].sunrise)
+      
+      elmnt2[0].style.filter = `brightness(${advancement2}%)`
+      
+      
+    },20)
+    cpt2=0
 
-      date = document.createElement("h1");
-      date.appendChild(document.createTextNode(day.dayName+" "+day.dayNumber+" "+day.monthName+" "+day.yearNumber));
-      preview[0].appendChild(date);
+    })
 
-      logoWeather=document.createElement("img")
-      logoWeather.setAttribute("src","https://openweathermap.org/img/wn/"+tabMeteo[i].icon+"@2x.png")
-      preview[0].appendChild(logoWeather)
+// ======================================================//
 
-      weather = document.createElement("p");
-      weather.appendChild(document.createTextNode("Le temps est : "+tabMeteo[i].description));
-      preview[0].appendChild(weather);
-
-      weather = document.createElement("p");
-      weather.appendChild(document.createTextNode("La temperature de ce jour est : "+round(tabMeteo[i].temp["day"],1)+" °C"));
-      preview[0].appendChild(weather);
-
-      weather = document.createElement("p");
-      weather.appendChild(document.createTextNode("Avec un ressenti de : "+round(tabMeteo[i].temp["dayFl"],1)+" °C"));
-      preview[0].appendChild(weather);
-
-      date = document.createElement("h1");
-      date.appendChild(document.createTextNode(day.dayName+" "+day.dayNumber+" "+day.monthName+" "+day.yearNumber));
-      fullview[0].appendChild(date);
-
-
-      weather = document.createElement("p");
-      weather.appendChild(document.createTextNode("Le temps est : "+tabMeteo[i].description+" avec une temperature de : "+tabMeteo[i].temp["day"]+" °C"+" et un ressenti de : "+tabMeteo[i].temp["dayFl"]+" °C"));
-      fullview[0].appendChild(weather);
-
-      weather = document.createElement("p");
-      weather.appendChild(document.createTextNode("Matin : "+tabMeteo[i].temp["morning"]+" °C"+" avec un ressenti de : "+tabMeteo[i].temp["morningFl"]+" °C"));
-      fullview[0].appendChild(weather);
-
-      weather = document.createElement("p");
-      weather.appendChild(document.createTextNode(" Apres midi : "+tabMeteo[i].temp["evening"]+" °C"+" avec un ressenti de : "+tabMeteo[i].temp["eveningFl"]+" °C"));
-      fullview[0].appendChild(weather);
-
-      weather = document.createElement("p");
-      weather.appendChild(document.createTextNode(" Nuit : "+tabMeteo[i].temp["night"]+" °C"+" avec un ressenti de : "+tabMeteo[i].temp["nightFl"]+" °C"));
-      fullview[0].appendChild(weather);
-
-      weather = document.createElement("p");
-      weather.appendChild(document.createTextNode("Le lever du soleil est à "+typeNum(sunrise.hour)+"h"+typeNum(sunrise.minute)));
-      fullview[0].appendChild(weather);
-
-      weather = document.createElement("p");
-      weather.appendChild(document.createTextNode("Le coucher du soleil est à "+typeNum(sunset.hour)+"h"+typeNum(sunset.minute)));
-      fullview[0].appendChild(weather);*/
-
+    
   })
 }
