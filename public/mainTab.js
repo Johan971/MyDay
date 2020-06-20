@@ -135,7 +135,7 @@ function showWeather(){
 
     var preview = newZone[0].getElementsByClassName("preview")[0]
     var fullview = newZone[0].getElementsByClassName("fullview")[0]
-    
+
 
 
 
@@ -247,7 +247,7 @@ function showWeather(){
     }
 
     fillContainer(container,0)
- 
+
 //------------------------------- fullview -----------------------------
 
 //declare
@@ -286,31 +286,31 @@ function showWeather(){
     fillContainer(containerFull6,6)
     fillContainer(containerFull7,7)
 
-  
+
   // =======TRANSITION ZONES========//
   var cpt=0
   document.getElementsByClassName("container")[0].addEventListener("click",()=>{
 
     let elmnt=document.getElementsByClassName("WeatherLogoFull")
 
-   
+
     myVar= setInterval(()=>{
-      
+
       cpt++
-      
-        
+
+
       let advancement=50-cpt
-      
+
 
       if (cpt>= 10){
-        
+
         clearInterval(myVar)
       }
 
       for(let i=0;i<elmnt.length;i++){
         elmnt[i].style.filter = `brightness(${advancement}%)`
       }
-      
+
     },20)
     cpt=0
 
@@ -318,11 +318,11 @@ function showWeather(){
 
   var boutonPrev=document.createElement("button")
   boutonPrev.setAttribute("id","boutonPrev")
-  boutonPrev.setAttribute("class","fas fa-angle-left")
+  boutonPrev.setAttribute("class","fas fa-angle-left fa-2x")
 
   var boutonNext=document.createElement("Button")
   boutonNext.setAttribute("id","boutonNext")
-  boutonNext.setAttribute("class","fas fa-angle-right")
+  boutonNext.setAttribute("class","fas fa-angle-right fa-2x")
 
   var containerBouton=document.createElement("div") //Container superposition img text
   containerBouton.setAttribute("class","containerBouton")
@@ -356,24 +356,24 @@ function showWeather(){
 
     let elmnt2=document.getElementsByClassName("WeatherLogo")
 
-   
+
     myVar2= setInterval(()=>{
-      
+
       cpt2++
-      
-      
+
+
       let advancement2=40+cpt2
-      
+
 
       if (cpt2>= 10){
-        
+
         clearInterval(myVar2)
       }
 
-      
+
       elmnt2[0].style.filter = `brightness(${advancement2}%)`
-      
-      
+
+
     },20)
     cpt2=0
 
@@ -381,6 +381,6 @@ function showWeather(){
 
 // ======================================================//
 
-    
+
   })
 }
