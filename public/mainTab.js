@@ -122,31 +122,21 @@ function showWeather(){
   getReq('/api/weeklyWeather', (result) => {
     tabMeteo=result;
     var newZone=addNewzone(main,1,"zoneMeteoPrincipale")
-
-
-
-    // =================PREVIEW=======================//
-
-
-
     var day = new ChooseDate(tabMeteo[0].timeStamp)
     var sunset = new ChooseDate(tabMeteo[0].sunset)
     var sunrise = new ChooseDate(tabMeteo[0].sunrise)
-
     var preview = newZone[0].getElementsByClassName("preview")[0]
     var fullview = newZone[0].getElementsByClassName("fullview")[0]
 
 
 
 
-    var container=document.createElement("div") //Container superposition img text
-    container.setAttribute("class","container")
-    preview.appendChild(container)
+    
+
+    // ============================ FUNCTIONS ================================= //
 
 
-
-
-    titleCase=(str)=> {
+    titleCase=(str)=> { 
         return str.replace(
             /\w\S*/g,
             (txt)=> {
@@ -158,48 +148,44 @@ function showWeather(){
 
     createElementContainer=(adjective,containers,day)=>{   //today=0, tomorrow = 1 ...
 
+      addIt=(element)=>{
+        element.setAttribute("class","WeatherElements")
+        element.setAttribute("id", adjective)
+        containers.appendChild(element)
+
+        if (containers.className=="containerFull"){
+          element.classList.add("containerClick");    
+        }
+      }
+
       if (adjective=="date"){
 
         var date = new ChooseDate(tabMeteo[day].timeStamp)
-
-        var element = document.createElement("h1");
-        element.appendChild(document.createTextNode(date.dayName+" "+date.dayNumber+" "+date.monthName+" "+date.yearNumber))
-        element.setAttribute("class","WeatherElements")
-
-        element.setAttribute("id", adjective)
-        containers.appendChild(element)
+        var element1 = document.createElement("h1");
+        element1.appendChild(document.createTextNode(date.dayName+" "+date.dayNumber+" "+date.monthName+" "+date.yearNumber))
+        addIt(element1)
         return
 
       }
       else if (adjective=="description"){
-        var element = document.createElement("p");
-        element.appendChild(document.createTextNode(titleCase(String(tabMeteo[day].description))));
-        element.setAttribute("class","WeatherElements")
-        element.setAttribute("id", adjective)
-        containers.appendChild(element);
+        var element2 = document.createElement("p");
+        element2.appendChild(document.createTextNode(titleCase(String(tabMeteo[day].description))));    
+        addIt(element2)
         return
       }
       else if (adjective=="temp"){
-        var element = document.createElement("p");
-        element.appendChild(document.createTextNode(round(tabMeteo[day].temp["day"],1)+"°"));
-        element.setAttribute("class","WeatherElements")
-        element.setAttribute("id", adjective)
-        containers.appendChild(element);
+        var element3 = document.createElement("p");
+        element3.appendChild(document.createTextNode(round(tabMeteo[day].temp["day"],1)+"°"));     
+        addIt(element3)
         return
-
       }
       else if (adjective=="ressenti"){
-        var element = document.createElement("p");
-        element.appendChild(document.createTextNode(round(tabMeteo[day].temp["dayFl"],1)+"°"));
-        element.setAttribute("class","WeatherElements")
-        element.setAttribute("id", adjective)
-        containers.appendChild(element);
-
-        var element2 = document.createElement("p");
-        element2.appendChild(document.createTextNode("Ressenti"));
-        element2.setAttribute("class","WeatherElements")
-        element2.setAttribute("id", "ressenti2")
-        containers.appendChild(element2);
+        var element4 = document.createElement("p");
+        element4.appendChild(document.createTextNode(round(tabMeteo[day].temp["dayFl"],1)+"°"));       
+        addIt(element4)
+        var element5 = document.createElement("p");
+        element5.appendChild(document.createTextNode("Ressenti"));
+        addIt(element5)
         return
       }
 
@@ -229,6 +215,8 @@ function showWeather(){
         console.log("ERROR ON ADJECTIVE")
       }
 
+      
+
     }
 
 
@@ -244,11 +232,19 @@ function showWeather(){
       createElementContainer(des,container,day)
       createElementContainer(temp,container,day)
       createElementContainer(ressenti,container,day)
+
+
     }
 
+
+    // -----------------------------+Preview Printing------------------------------//
+
+    var container=document.createElement("div") //Container superposition img text
+    container.setAttribute("class","container")
+    preview.appendChild(container)
     fillContainer(container,0)
 
-//------------------------------- fullview -----------------------------
+//------------------------------- fullview Printing ----------------------------- //
 
 //declare
     var containerFull0=document.createElement("div") //Container superposition img text
@@ -285,23 +281,22 @@ function showWeather(){
     fillContainer(containerFull5,5)
     fillContainer(containerFull6,6)
     fillContainer(containerFull7,7)
+// ----------------------------------------------------------------------------------- //
 
 
-  // =======TRANSITION ZONES========//
+// ================================= BRGHTNESS WEATHER TRANSITION  ====================//
+
+
+
+
+// First Transition_______________________________________________________________________
   var cpt=0
   document.getElementsByClassName("container")[0].addEventListener("click",()=>{
 
     let elmnt=document.getElementsByClassName("WeatherLogoFull")
-
-
     myVar= setInterval(()=>{
-
       cpt++
-
-
       let advancement=50-cpt
-
-
       if (cpt>= 10){
 
         clearInterval(myVar)
@@ -316,6 +311,8 @@ function showWeather(){
 
     })
 
+
+//Buttons______________________________
   var boutonPrev=document.createElement("button")
   boutonPrev.setAttribute("id","boutonPrev")
   boutonPrev.setAttribute("class","fas fa-angle-left fa-2x")
@@ -324,9 +321,10 @@ function showWeather(){
   boutonNext.setAttribute("id","boutonNext")
   boutonNext.setAttribute("class","fas fa-angle-right fa-2x")
 
-  var containerBouton=document.createElement("div") //Container superposition img text
-  containerBouton.setAttribute("class","containerBouton")
+  var containerBouton=document.createElement("div") //Container superposition img/text
+  containerBouton.classList.add("containerBouton")
 
+  containerBouton.classList.add("containerClick")
 
 
 
@@ -336,7 +334,6 @@ function showWeather(){
 
   boutonNext.onclick = function(event){
     event.stopPropagation()
-    // console.log(document.getElementsByClassName("zone main zoneMeteoPrincipale large"))
     let elm = document.getElementsByClassName("zone main zoneMeteoPrincipale large")[0]
     elm.scrollLeft = elm.scrollLeft + 500
   }
@@ -351,33 +348,36 @@ function showWeather(){
 
 
 
+
+
+// Second Transition_____________________________________________________
   var cpt2=0
-  document.getElementsByClassName("containerBouton")[0].addEventListener("click",()=>{
+  clickElmnt=document.getElementsByClassName("containerClick") 
 
-    let elmnt2=document.getElementsByClassName("WeatherLogo")
+  for(let j=0;j<clickElmnt.length;j++){
 
+    clickElmnt[j].addEventListener("click",()=>{    
+      let elmnt2=document.getElementsByClassName("WeatherLogo")
 
-    myVar2= setInterval(()=>{
+      myVar2= setInterval(()=>{
+        cpt2++
+        let advancement2=40+cpt2
 
-      cpt2++
+        if (cpt2>= 10){
+          clearInterval(myVar2)
+        }
 
-
-      let advancement2=40+cpt2
-
-
-      if (cpt2>= 10){
-
-        clearInterval(myVar2)
-      }
-
-
-      elmnt2[0].style.filter = `brightness(${advancement2}%)`
+        elmnt2[0].style.filter = `brightness(${advancement2}%)`
 
 
-    },20)
-    cpt2=0
+      },20)
+      cpt2=0
 
-    })
+      })
+
+
+  }
+ 
 
 // ======================================================//
 
