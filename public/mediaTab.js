@@ -76,31 +76,35 @@ document.getElementById("media").onclick = function(){
 		let fullview=newZone2[0].getElementsByClassName("fullview")[0]		
 
 
-		let titlePv = document.createElement("h1")
+		let titlePv = document.createElement("h2")
 		titlePv.setAttribute("class", "titleTwitterTrend")
-		titlePv.appendChild(document.createTextNode("Tendances"))
+		titlePv.appendChild(document.createTextNode("Tendances Twitter :"))
 		preview.appendChild(titlePv)
 		
 		let titleFv = document.createElement("h1")
 		titleFv.setAttribute("class", "titleTwitterTrend")
-		titleFv.appendChild(document.createTextNode("Tendances"))
+		titleFv.appendChild(document.createTextNode("Tendances Twitter :"))
 		fullview.appendChild(titleFv)
 		
 		 
-		
+		var divSepPv=""
 		for (let previewIterator = 0; previewIterator < 3; previewIterator++){
+            divSepPv=document.createElement("div")
+            divSepPv.setAttribute("class","separatorTwitterpv")
 			separatorPv=document.createElement("hr")
+            divSepPv.appendChild(separatorPv)
 			trendNamePv=document.createElement("h2")
 			trendNamePv.appendChild(document.createTextNode(result[previewIterator].name))
 			preview.appendChild(trendNamePv)
-			preview.appendChild(separatorPv)
+			preview.appendChild(divSepPv)
 			
 		}
-
+        var divSepFv=""
 		for(let i = 0; i < 10; i++) {
-			
+			divSepFv=document.createElement("div")
+            divSepFv.setAttribute("class","separatorTwitterfv")
 			separatorFv = document.createElement("hr")			
-
+            divSepFv.appendChild(separatorFv)
 			trendNameFv = document.createElement("h2")//titre preView
 			trendNameFv.appendChild(document.createTextNode(result[i].name))
 			fullview.appendChild(trendNameFv)
@@ -109,7 +113,9 @@ document.getElementById("media").onclick = function(){
 			
 			let link=document.createElement("a")
 			link.setAttribute("href", result[i].urlTwitter)
+            link.setAttribute("target", "_blank");
 			link.appendChild(document.createTextNode("Explorez"))
+            
 			explore.appendChild(link)
 			explore.setAttribute("class", "twitterExploreURL")
 			// explore.setAttribute("href", elm.urlTwitter)
@@ -117,30 +123,33 @@ document.getElementById("media").onclick = function(){
 
 			if (result[i].tweetVolume != null) {
 				let last24Tweet= document.createElement("p")
-				last24Tweet.appendChild(document.createTextNode(`${result[i].tweetVolume} tweets durant ces dernières 24 heures`))
+                let numberTweet=`<strong>${result[i].tweetVolume}</strong> tweets durant ces dernières 24 heures`
+				last24Tweet.innerHTML=numberTweet
 	
 				fullview.appendChild(last24Tweet)
 			}
 
-			fullview.appendChild(separatorFv)
+			fullview.appendChild(divSepFv)
 
 		};
 
 		let newZonePrediction = addNewzone(media, 1,"twitterZone");
-
+        newZonePrediction[0].setAttribute("id", "predictionTwitter")
 		// sort by delta
 		let predictionResult = result.slice(10, result.length - 1).sort(compareDelta);;
 		let topResult = result.slice(0,10).sort(compareDelta);
 
-		predictionTitle1 = document.createElement("h1");
-		predictionTitle1.appendChild(document.createTextNode("Prochains Tweet en tendance"));
-		prediction1 = document.createElement("h2");
-		prediction2 = document.createElement("h2");
+		predictionTitle1 = document.createElement("h2");
+        predictionTitle1.setAttribute("class","titleTwitterTrend")
+		predictionTitle1.appendChild(document.createTextNode("Prochains Tweet en tendance :"));
+		prediction1 = document.createElement("h3");
+		prediction2 = document.createElement("h3");
 		separator = document.createElement("hr");
-		predictionTitle2 = document.createElement("h1");
-		predictionTitle2.appendChild(document.createTextNode("Prochains Tweet à sortir des tendances"));
-		prediction3 = document.createElement("h2");
-		prediction4 = document.createElement("h2");
+		predictionTitle2 = document.createElement("h2");
+		predictionTitle2.appendChild(document.createTextNode("Prochains Tweet à sortir des tendances :"));
+        predictionTitle2.setAttribute("class","titleTwitterTrend")
+		prediction3 = document.createElement("h3");
+		prediction4 = document.createElement("h3");
 
 		if (predictionResult[0].name[0] != '#') {
 			prediction1.appendChild(document.createTextNode("#" + predictionResult[0].name));
