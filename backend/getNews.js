@@ -7,24 +7,29 @@ const fs = require('fs');
 // For more infos/understanding : https://stackoverflow.com/questions/14220321/how-do-i-return-the-response-from-an-asynchronous-call
 
 module.exports = {
+
+    //Get headline news in France
     getNews: (callback) => {
 
+        //Setting path of the config file to retrieve API tokens and keys
         let rawData = fs.readFileSync('./backend/config.json');
         let config = JSON.parse(rawData);
 
+        //Setting parameters for the API call URL
         let apiParams = querystring.stringify({
             country: "fr",
             apiKey: config.news.key
         })
 
+        //Final API call URL
         let apiUrl = "https://newsapi.org/v2/top-headlines?" + apiParams;
 
-        var req = request({
+        //Making request with final URL
+        let req = request({
                 url: apiUrl,
                 json: true
             }, function (error, response, resp) {
-
-                if (!error && resp.status == "ok") {
+                if (!error && resp.status === "ok") {
                     result=[]
                     for(let i = 0; i < resp.articles.length; i++) {
                         result.push(new News({
@@ -35,11 +40,9 @@ module.exports = {
                             content: resp.articles[i].content,
                             imageUrl:resp.articles[i].urlToImage,
                             articleUrl: resp.articles[i].url
-                        }))
+                        }));
                     }
-
-                    //console.log(result)
-                    callback(result)
+                    callback(result);
                 }
             }
         );

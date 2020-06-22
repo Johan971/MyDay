@@ -8,11 +8,14 @@ let parseString = require('xml2js').parseString;
 
 module.exports = {
 
+    //Get the current 30 best NBA players
     getNBAPlayerInformation: (callback) => {
 
+        //Final API call URL
         let apiUrl = "https://www.fantasybasketballnerd.com/service/draft-rankings";
 
-        var req = request({
+        //Making request with URL and adding headers information
+        let req = request({
                 url : apiUrl,
                 json: true,
                 headers: {
@@ -26,12 +29,14 @@ module.exports = {
 
                 if(!error && response.statusCode === 200){
 
+                    //The request returns an XML file, in order to use it we first need to convert it to JSON
                     parseString(resp, function(err, jSonResp){
 
                         let stringifiedJSonResp = JSON.stringify(jSonResp);
                         
                         let result = [];
 
+                        //Now we can retrieve the data from the JSON
                         for(let i = 0; i < 30; i++){
                             result.push(new NBAPlayer({
                                 playerName: JSON.stringify(jSonResp.FantasyBasketballNerd.Player[i].name),

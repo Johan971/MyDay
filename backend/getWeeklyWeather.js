@@ -8,11 +8,14 @@ const fs = require('fs');
 
 module.exports = {
 
+    //Get weather information for given coordinates
     getWeeklyWeather: (la, lo, callback) => {
 
+        //Setting path of the config file to retrieve API tokens and keys
         let rawData = fs.readFileSync('./backend/config.json');
         let config = JSON.parse(rawData);
 
+        //Setting parameters for API call URL
         let openWeatherParams = querystring.stringify({
             lat: la,
             lon: lo,
@@ -22,9 +25,11 @@ module.exports = {
             appid: config.weather.key
         });
 
+        //Final API call URL
         let apiUrl = "http://api.openweathermap.org/data/2.5/onecall?" + openWeatherParams;
 
-        var req = request({
+        //Making request with final URL
+        let req = request({
                 url : apiUrl,
                 json: true
             }, function (error, response, resp) {
@@ -34,9 +39,6 @@ module.exports = {
                 }
 
                 if(!error && response.statusCode === 200){
-
-                    //console.log(resp.current.weather[0].description);
-                    //console.log(resp.daily[0].temp.morn);
                     let result = [];
 
                     for (const i in resp.daily) {
@@ -60,7 +62,6 @@ module.exports = {
 
                         }));
                     }
-
                     callback(result);
                 }
             }

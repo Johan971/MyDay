@@ -1,4 +1,5 @@
 
+//Making internal API to retrieve vLille stations
 module.exports = function(app){
 
     const vLilleController = require('../controller/vLilleController');

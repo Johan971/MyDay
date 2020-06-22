@@ -1,5 +1,4 @@
-const mongoose = require("mongoose"); // Import mongoose library
-const read=require('./dbControl/read')
+
 const connectdB=require('./dbControl/connectDb')
 const Twit= require('twit')
 const coordinates=require('./models/Coordinates')
@@ -10,20 +9,20 @@ const fs = require('fs');
 //////// WARNING : This is an asyc function working with callback ////////
 // For more infos/understanding : https://stackoverflow.com/questions/14220321/how-do-i-return-the-response-from-an-asynchronous-call
 
+//Setting path of the config file to retrieve API tokens and keys
 let rawData = fs.readFileSync('./backend/config.json');
 let config = JSON.parse(rawData);
 
-
+//Setting API tokens and keys
 const APIkey = config.twitter.key;
 const APIkeySecret = config.twitter.secretKey;
 
 const AccessToken = config.twitter.accessToken;
 const AccessTokenSecret = config.twitter.accessTokenSecret;
 
+//Get Twitter trending topics and tweet volumes per trending topic
 module.exports ={
-
 	newGet: (callback) => {
-		//var result=[]
 
 		const T = new Twit({
 			consumer_key: APIkey,
@@ -36,24 +35,20 @@ module.exports ={
 
 		/*==========================Recherche coordonnées BDD===========================*/
 
-		connectdB()
-		var tabDistance=[]
-		var founde
+		connectdB();
+		let tabDistance=[];
+
 
 		const lectureBDD=(succ,rej)=>{      //Cette fonction sors les coordonnées nécéssaire à l'affichage
 
-			coordinates.find((err,founded)=>{
+			coordinates.find((err,found)=>{
 
 				if(err) rej (err) // error handling
 
-
-				if  (founded) {
-
-
-					succ(founded)
+				if  (found) {
+					succ(found)
 				}
-
-
+				
 				else {
 					console.log("pas de coordonnées")
 					succ({_id:"012d",lat:48.863356,lon:2.343813})
@@ -64,13 +59,14 @@ module.exports ={
 
 		}
 
-		const calculDistance=(founde)=>{   //Quand on a les coord on cherche la ville la plus proche
+		let found;
+
+		const calculDistance=(found)=>{   //Quand on a les coord on cherche la ville la plus proche
 
 			return new Promise(function(res,rej){
-				//console.log("dis:",founde)
 				WOEIDs.forEach((elt)=>{
 
-					tabDistance.push(geolib.getDistance({latitude:founde[0].lat, longitude:founde[0].lon},{latitude:elt.lat,longitude:elt.lon},(err)=>{
+					tabDistance.push(geolib.getDistance({latitude:found[0].lat, longitude:found[0].lon},{latitude:elt.lat,longitude:elt.lon},(err)=>{
 						if (err) rej(err)
 					}))
 
@@ -83,11 +79,11 @@ module.exports ={
 		const PPT=(tab)=>{
 			return new Promise((res,rej)=>{
 
-				var posVilleProche=0
-				var ppt=tab[0]
+				let posVilleProche=0
+				let ppt=tab[0]
 
 
-				for (var j=0;j<tab.length-1;j++){
+				for (let j=0;j<tab.length-1;j++){
 
 					if(ppt>tab[j+1]){
 						ppt=tab[j+1]
@@ -95,11 +91,11 @@ module.exports ={
 					}
 
 					if (tab[j+1]==tab[tab.length-1]){
-						var villePP=WOEIDs[posVilleProche]
-						var result=[]
+						let villePP=WOEIDs[posVilleProche]
+						let result=[]
 						T.get('/trends/place',{id: villePP.WOEID}, (err,data,response)=>{
 							if (err) rej(err)
-							for (var f=0;f<50;f++){ //data[0].length-1
+							for (let f=0;f<50;f++){ //data[0].length-1
 
 								if(data[0].trends[f]==undefined){
 									break
@@ -127,6 +123,5 @@ module.exports ={
 		},(rej)=>{
 			if (rej) throw rej
 		})
-		//lectureBDD().then(calculDistance(tabDistance,nfounde)).catch(err=>console.error(err)).then(PPT(tabDistance)).catch(errx=>{console.error(errx)})
 	},
 }

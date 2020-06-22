@@ -7,9 +7,8 @@ const Coordinates = require('../models/Coordinates');
 
 module.exports = function(model, callback, filter={}){ // filter doc https://mongoosejs.com/docs/api.html#model_Model.find
 
-	model.find(filter, (err, founded)=>{ //find and return all documents inside obj collection
+	model.find(filter, (err, found )=>{ //find and return all documents inside obj collection
 	    if(err) throw err // error handling
-		console.log(founded);
-		callback(); //founded added
+		callback(); //found  added
 	});
 }

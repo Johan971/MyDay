@@ -11,7 +11,6 @@ module.exports = function(model, callback, filter = {}){ // filter doc https://m
 
 	model.deleteMany(filter, (err,doc)=>{
 	    if(err) throw err // error handling
-	    //console.log("Removed")
 	    callback();
 	});
 }

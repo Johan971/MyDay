@@ -8,7 +8,6 @@ module.exports = function(obj, callback) {
 
 	obj.save(err => { // save document inside collection
 	    if(err) throw err // error handling
-	    //console.log("Inserted")
 	    callback();
 	})
 

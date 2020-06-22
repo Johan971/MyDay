@@ -8,22 +8,26 @@ let informationsArray = [];
 
 module.exports = {
 
+    //Get list of all the vLille stations
     getAvailableVLille: (callback) => {
 
+            //Setting parameters for API call URL
             let apiParams = querystring.stringify({
                 apikey: "ffa359ac936aa08ca35fc56bab8ed36a1f2bcd2545e64f80faf3bca4",
             })
 
+            //Final API call URL
             let apiUrl = "https://opendata.lillemetropole.fr/api/records/1.0/search/?dataset=vlille-realtime&" + apiParams + "&q=&rows=268";
 
-            var req = request({
+            //Making request with final URL
+            let req = request({
                     url: apiUrl,
                     json: true
                 }, function (error, response, resp) {
 
                     if (!error && response.statusCode === 200) {
 
-                        var result = [];
+                        let result = [];
                             
                         for(const elt in resp.records){
                             
