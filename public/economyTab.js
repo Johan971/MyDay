@@ -1,6 +1,6 @@
 document.getElementById("economie").onclick = function (){
 
-  var ongletEco = document.querySelector(".economie.tab-div");
+  let ongletEco = document.querySelector(".economie.tab-div");
   ongletEco.innerHTML = "";
 
   getReq('/api/kraken', (result) => {
@@ -35,7 +35,7 @@ function cryptoZone(currency, result){
   let price3M = [];
 
 
-  var ongletEco = document.querySelector(".economie.tab-div")
+  let ongletEco = document.querySelector(".economie.tab-div")
 
   let newZone = addNewzone(economie,1)[0]
   newZone.classList.add("crypto")
@@ -47,7 +47,7 @@ function cryptoZone(currency, result){
 
 
 
-  var infoCurrency = {
+  let infoCurrency = {
     BTC: {
       name: "Bitcoin",
       image: "https://tokensinvaders.com/wp-content/uploads/2018/11/Bitcoin-cest-quoi.png"
@@ -83,13 +83,13 @@ function cryptoZone(currency, result){
   headerZone.appendChild(titleHeader)
 
 
-  //Définition de la couleur (verte || rouge) en fonction des variations du cours de la monnaie
-  let variationColor
+  //Définition de la couleur (verte || rouge) en fonction des letiations du cours de la monnaie
+  let letiationColor
   if (result[result.length-1]["price"+currency]>result[result.length-19]["price"+currency]){
-    variationColor = (opacityColor) => "rgba(39, 174, 96,"+opacityColor+")"
+    letiationColor = (opacityColor) => "rgba(39, 174, 96,"+opacityColor+")"
   }
   else{
-    variationColor = (opacityColor) => "rgba(235, 59, 90,"+opacityColor+")"
+    letiationColor = (opacityColor) => "rgba(235, 59, 90,"+opacityColor+")"
   }
 
   let statsCryptElt = document.createElement("div")
@@ -98,12 +98,12 @@ function cryptoZone(currency, result){
 
   let lastPricePreview = document.createElement("h2")
   lastPricePreview.textContent = result[result.length-1]["price"+currency]+" €"
-  /*lastPricePreview.style.color = variationColor("1.0")*/
+  /*lastPricePreview.style.color = letiationColor("1.0")*/
   statsCryptElt.appendChild(lastPricePreview)
 
   let percentagePreview = document.createElement("h3")
-  percentagePreview.textContent = variationsPercentage(result[result.length-19]["price"+currency],result[result.length-1]["price"+currency])+' %'
-  percentagePreview.style.color = variationColor("1.0")
+  percentagePreview.textContent = letiationsPercentage(result[result.length-19]["price"+currency],result[result.length-1]["price"+currency])+' %'
+  percentagePreview.style.color = letiationColor("1.0")
   statsCryptElt.appendChild(percentagePreview)
 
   //PREVIEW PART
@@ -154,15 +154,6 @@ function cryptoZone(currency, result){
 
   let ctxPV = graphPVElt.getContext('2d')
   let myChartPV = new Chart(ctxPV,configPV)
-
-
-  /*
-  let logoPreview = document.createElement("img")
-  logoPreview.setAttribute("src",infoCurrency[currency].image)
-  logoPreview.setAttribute("height","200px")
-  logoPreview.setAttribute("width","200px")
-  childPreview.appendChild(logoPreview)
-  */
 
   //FULLVIEW PART
 
@@ -255,8 +246,8 @@ function cryptoZone(currency, result){
           labels: date3D,
           datasets: [{
               label: infoCurrency[currency].name+' Price',
-              backgroundColor: variationColor(0.5),
-              borderColor: variationColor(1.0),
+              backgroundColor: letiationColor(0.5),
+              borderColor: letiationColor(1.0),
               data: price3D,
           }]
   }
@@ -320,12 +311,12 @@ function getIndicator(result, since){ // since is a unix timestamp
   return indicators;
 }
 
-function variationsPercentage(initiale,finale){
+function letiationsPercentage(initiale,finale){
   return round((finale-initiale)*100/initiale,2);
 }
 
 function indicatorsZone(result){
-  var ongletEco = document.querySelector(".economie.tab-div")
+  let ongletEco = document.querySelector(".economie.tab-div")
 
   let newZone = addNewzone(economie,1)[0]
 

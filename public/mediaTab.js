@@ -32,8 +32,8 @@ function compareDelta(a, b) {
 }
 
 document.getElementById("media").onclick = function(){
-	var tabNews=[]
-	var ongletMedia=document.querySelector(".media.tab-div")
+	let tabNews=[]
+	let ongletMedia=document.querySelector(".media.tab-div")
     ongletMedia.innerHTML=""
 
 
@@ -45,8 +45,8 @@ document.getElementById("media").onclick = function(){
 		result = result.sort(compare);
 
 		classTwit="twitterZone"
-		var newZone2=addNewzone(media,1,classTwit)
-        var preView=newZone2[0].getElementsByClassName("preview")
+		let newZone2=addNewzone(media,1,classTwit)
+        let preView=newZone2[0].getElementsByClassName("preview")
 		/*
 		let preview = zoneMain[0].children[0]
 		let fullview = zoneMain[0].children[1]
@@ -72,23 +72,23 @@ document.getElementById("media").onclick = function(){
         headerZone.appendChild(titleHeader)
 
         //Twitter content
-		var preview=newZone2[0].getElementsByClassName("preview")[0]
-		var fullview=newZone2[0].getElementsByClassName("fullview")[0]		
+		let preview=newZone2[0].getElementsByClassName("preview")[0]
+		let fullview=newZone2[0].getElementsByClassName("fullview")[0]		
 
 
-		var titlePv = document.createElement("h1")
+		let titlePv = document.createElement("h1")
 		titlePv.setAttribute("class", "titleTwitterTrend")
 		titlePv.appendChild(document.createTextNode("Tendances"))
 		preview.appendChild(titlePv)
 		
-		var titleFv = document.createElement("h1")
+		let titleFv = document.createElement("h1")
 		titleFv.setAttribute("class", "titleTwitterTrend")
 		titleFv.appendChild(document.createTextNode("Tendances"))
 		fullview.appendChild(titleFv)
 		
 		 
 		
-		for (var previewIterator = 0; previewIterator < 3; previewIterator++){
+		for (let previewIterator = 0; previewIterator < 3; previewIterator++){
 			separatorPv=document.createElement("hr")
 			trendNamePv=document.createElement("h2")
 			trendNamePv.appendChild(document.createTextNode(result[previewIterator].name))
@@ -97,7 +97,7 @@ document.getElementById("media").onclick = function(){
 			
 		}
 
-		for(var i = 0; i < 10; i++) {
+		for(let i = 0; i < 10; i++) {
 			
 			separatorFv = document.createElement("hr")			
 
@@ -105,9 +105,9 @@ document.getElementById("media").onclick = function(){
 			trendNameFv.appendChild(document.createTextNode(result[i].name))
 			fullview.appendChild(trendNameFv)
 
-			var explore = document.createElement("p")
+			let explore = document.createElement("p")
 			
-			var link=document.createElement("a")
+			let link=document.createElement("a")
 			link.setAttribute("href", result[i].urlTwitter)
 			link.appendChild(document.createTextNode("Explorez"))
 			explore.appendChild(link)
@@ -116,7 +116,7 @@ document.getElementById("media").onclick = function(){
 			fullview.appendChild(explore)
 
 			if (result[i].tweetVolume != null) {
-				var last24Tweet= document.createElement("p")
+				let last24Tweet= document.createElement("p")
 				last24Tweet.appendChild(document.createTextNode(`${result[i].tweetVolume} tweets durant ces dernières 24 heures`))
 	
 				fullview.appendChild(last24Tweet)
@@ -126,7 +126,7 @@ document.getElementById("media").onclick = function(){
 
 		};
 
-		var newZonePrediction = addNewzone(media, 1,"twitterZone");
+		let newZonePrediction = addNewzone(media, 1,"twitterZone");
 
 		// sort by delta
 		let predictionResult = result.slice(10, result.length - 1).sort(compareDelta);;
@@ -176,7 +176,7 @@ document.getElementById("media").onclick = function(){
 		newZonePrediction[0].appendChild(prediction4);
 
 		ongletMedia.appendChild(newZonePrediction[0]);
-        var preViewPred=newZonePrediction[0].getElementsByClassName("preview")
+        let preViewPred=newZonePrediction[0].getElementsByClassName("preview")
 
         //HEADER ZONEZ TWITTER PREDICTION
         let headerZonePred = document.createElement("div")
@@ -198,8 +198,8 @@ document.getElementById("media").onclick = function(){
 
 
         // Separation Twitter/ News
-        var divSeparator=document.createElement("div")
-        var hrSeparator=document.createElement("hr")
+        let divSeparator=document.createElement("div")
+        let hrSeparator=document.createElement("hr")
         divSeparator.setAttribute("id", "separator")
         hrSeparator.setAttribute("id", "lignSeparator")
         divSeparator.appendChild(hrSeparator);
@@ -209,16 +209,16 @@ document.getElementById("media").onclick = function(){
 		getReq('/api/news', (result) => {
 			
 			tabNews=result;
-			var contenuArticle=""
-			var descriptionArtcicle=""
-			var articleLink=""
-            var classNews="News"
-			var newZone=addNewzone(media,tabNews.length,classNews)// newZone is an array with all the new HTML element "zone"
+			let contenuArticle=""
+			let descriptionArtcicle=""
+			let articleLink=""
+            let classNews="News"
+			let newZone=addNewzone(media,tabNews.length,classNews)// newZone is an array with all the new HTML element "zone"
 
-			for (var i= 0; i<tabNews.length;i++){
+			for (let i= 0; i<tabNews.length;i++){
 
-                var preView=newZone[i].getElementsByClassName("preview")
-                var fullView=newZone[i].getElementsByClassName("fullview")
+                let preView=newZone[i].getElementsByClassName("preview")
+                let fullView=newZone[i].getElementsByClassName("fullview")
                  //HEADERZONE PART
                 let headerZone = document.createElement("div")
                 headerZone.classList.add("header-zone")
@@ -239,13 +239,13 @@ document.getElementById("media").onclick = function(){
 				
 
                 if(tabNews[i].imageUrl!=null){
-                    var imageNode=document.createElement("img")
+                    let imageNode=document.createElement("img")
                     imageNode.setAttribute("src", tabNews[i].imageUrl)
                     imageNode.setAttribute("class", "imgArcticle")
                     preView[0].appendChild(imageNode)
                 }
 
-				var titrePv=document.createElement("h2")//titre preView
+				let titrePv=document.createElement("h2")//titre preView
 				titrePv.appendChild(document.createTextNode(tabNews[i].title))
                 titrePv.setAttribute("class", "articleTitle")
 				preView[0].appendChild(titrePv)
@@ -261,7 +261,7 @@ document.getElementById("media").onclick = function(){
 				
 
 
-				var titreFv=document.createElement("h1")
+				let titreFv=document.createElement("h1")
 				titreFv.appendChild(document.createTextNode(tabNews[i].title))//titre fullView
 				fullView[0].appendChild(titreFv)
 

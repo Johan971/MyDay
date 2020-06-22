@@ -13,9 +13,9 @@ function ChooseDate(timeStamp) {
   this.yearNumber = this.date.getFullYear();
 }
 
-function round(nombre, precision){
-    var precision = precision || 2;
-    var tmp = Math.pow(10, precision);
+function round(nombre, precisionU){
+    let precision = precisionU || 2;
+    let tmp = Math.pow(10, precision);
     return Math.round( nombre*tmp )/tmp;
 }
 
@@ -24,20 +24,20 @@ function typeNum(number) {
 }
 
 function degToRad(degree) {
-  var factor = Math.PI / 180;
+  let factor = Math.PI / 180;
   return degree * factor;
 }
 
 function renderTime(ctx) {
-  var now = new Date();
-  var today = now.toDateString();
-  var time = now.toLocaleTimeString();
-  var hrs = now.getHours();
-  var min = now.getMinutes();
-  var sec = now.getSeconds();
-  var mil = now.getMilliseconds();
-  var smoothsec = sec + (mil / 1000);
-  var smoothmin = min + (smoothsec / 60);
+  let now = new Date();
+  let today = now.toDateString();
+  let time = now.toLocaleTimeString();
+  let hrs = now.getHours();
+  let min = now.getMinutes();
+  let sec = now.getSeconds();
+  let mil = now.getMilliseconds();
+  let smoothsec = sec + (mil / 1000);
+  let smoothmin = min + (smoothsec / 60);
 
   //Background
   gradient = ctx.createRadialGradient(250, 250, 5, 250, 250, 250);
@@ -87,8 +87,8 @@ function clockCreation(){
 
 function clockAnimation(){
 
-  var canvas = document.getElementById("canvas");
-  var ctx = canvas.getContext("2d");
+  let canvas = document.getElementById("canvas");
+  let ctx = canvas.getContext("2d");
 
   ctx.strokeStyle = '#0eac01';
   ctx.lineWidth = 17;
@@ -99,12 +99,12 @@ function clockAnimation(){
 }
 
 function showWeather(){
-  var tabMeteo=[]
+  let tabMeteo=[]
 
-  var ongletMain=document.querySelector(".main.tab-div")
+  let ongletMain=document.querySelector(".main.tab-div")
       ongletMain.innerHTML=""
 
-  var icons =[
+  let icons =[
     {icon : "10",image : "https://www.wallpaperup.com/uploads/wallpapers/2016/09/10/1016328/10f8db464dfdc5d159cbfd88a07ddc5e-700.jpg"},
     {icon : "09",image : "https://bacafanfic.files.wordpress.com/2014/10/tumblr_m6upaz4pvc1qhv7bk.jpg?w=560"},
     {icon : "01",image : "https://wallpapersite.com/images/pages/pic_h/4423.jpg"},
@@ -121,12 +121,12 @@ function showWeather(){
 
   getReq('/api/weeklyWeather', (result) => {
     tabMeteo=result;
-    var newZone=addNewzone(main,1,"zoneMeteoPrincipale")
-    var day = new ChooseDate(tabMeteo[0].timeStamp)
-    var sunset = new ChooseDate(tabMeteo[0].sunset)
-    var sunrise = new ChooseDate(tabMeteo[0].sunrise)
-    var preview = newZone[0].getElementsByClassName("preview")[0]
-    var fullview = newZone[0].getElementsByClassName("fullview")[0]
+    let newZone=addNewzone(main,1,"zoneMeteoPrincipale")
+    let day = new ChooseDate(tabMeteo[0].timeStamp)
+    let sunset = new ChooseDate(tabMeteo[0].sunset)
+    let sunrise = new ChooseDate(tabMeteo[0].sunrise)
+    let preview = newZone[0].getElementsByClassName("preview")[0]
+    let fullview = newZone[0].getElementsByClassName("fullview")[0]
 
 
 
@@ -160,30 +160,30 @@ function showWeather(){
 
       if (adjective=="date"){
 
-        var date = new ChooseDate(tabMeteo[day].timeStamp)
-        var element1 = document.createElement("h1");
+        let date = new ChooseDate(tabMeteo[day].timeStamp)
+        let element1 = document.createElement("h1");
         element1.appendChild(document.createTextNode(date.dayName+" "+date.dayNumber+" "+date.monthName+" "+date.yearNumber))
         addIt(element1)
         return
 
       }
       else if (adjective=="description"){
-        var element2 = document.createElement("p");
+        let element2 = document.createElement("p");
         element2.appendChild(document.createTextNode(titleCase(String(tabMeteo[day].description))));    
         addIt(element2)
         return
       }
       else if (adjective=="temp"){
-        var element3 = document.createElement("p");
+        let element3 = document.createElement("p");
         element3.appendChild(document.createTextNode(round(tabMeteo[day].temp["day"],1)+"°"));     
         addIt(element3)
         return
       }
       else if (adjective=="ressenti"){
-        var element4 = document.createElement("p");
+        let element4 = document.createElement("p");
         element4.appendChild(document.createTextNode(round(tabMeteo[day].temp["dayFl"],1)+"°"));       
         addIt(element4)
-        var element5 = document.createElement("p");
+        let element5 = document.createElement("p");
         element5.appendChild(document.createTextNode("Ressenti"));
         addIt(element5)
         return
@@ -194,14 +194,14 @@ function showWeather(){
         icons.forEach(elm => {
               if (tabMeteo[day].icon.includes(elm.icon)) {
                 if(container==containers){
-                  var WeatherLogo=document.createElement("img")
+                  let WeatherLogo=document.createElement("img")
                   WeatherLogo.setAttribute("src",elm.image)
                   containers.appendChild(WeatherLogo)
                   WeatherLogo.setAttribute("class","WeatherLogo")
                   return
                 }
                 else {
-                  var WeatherLogo=document.createElement("img")
+                  let WeatherLogo=document.createElement("img")
                   WeatherLogo.setAttribute("src",elm.image)
                   containers.appendChild(WeatherLogo)
                   WeatherLogo.setAttribute("class","WeatherLogoFull")
@@ -221,11 +221,11 @@ function showWeather(){
 
 
     fillContainer=(container,day)=>{
-      var image="image"
-      var date="date"
-      var des="description"
-      var temp="temp"
-      var ressenti="ressenti"
+      let image="image"
+      let date="date"
+      let des="description"
+      let temp="temp"
+      let ressenti="ressenti"
 
       createElementContainer(image,container,day)
       createElementContainer(date,container,day)
@@ -239,7 +239,7 @@ function showWeather(){
 
     // -----------------------------+Preview Printing------------------------------//
 
-    var container=document.createElement("div") //Container superposition img text
+    let container=document.createElement("div") //Container superposition img text
     container.setAttribute("class","container")
     preview.appendChild(container)
     fillContainer(container,0)
@@ -247,28 +247,28 @@ function showWeather(){
 //------------------------------- fullview Printing ----------------------------- //
 
 //declare
-    var containerFull0=document.createElement("div") //Container superposition img text
+    let containerFull0=document.createElement("div") //Container superposition img text
     containerFull0.setAttribute("class","containerFull")
     fullview.appendChild(containerFull0)
-    var containerFull1=document.createElement("div") //Container superposition img text
+    let containerFull1=document.createElement("div") //Container superposition img text
     containerFull1.setAttribute("class","containerFull")
     fullview.appendChild(containerFull1)
-    var containerFull2=document.createElement("div") //Container superposition img text
+    let containerFull2=document.createElement("div") //Container superposition img text
     containerFull2.setAttribute("class","containerFull")
     fullview.appendChild(containerFull2)
-    var containerFull3=document.createElement("div") //Container superposition img text
+    let containerFull3=document.createElement("div") //Container superposition img text
     containerFull3.setAttribute("class","containerFull")
     fullview.appendChild(containerFull3)
-    var containerFull4=document.createElement("div") //Container superposition img text
+    let containerFull4=document.createElement("div") //Container superposition img text
     containerFull4.setAttribute("class","containerFull")
     fullview.appendChild(containerFull4)
-    var containerFull5=document.createElement("div") //Container superposition img text
+    let containerFull5=document.createElement("div") //Container superposition img text
     containerFull5.setAttribute("class","containerFull")
     fullview.appendChild(containerFull5)
-    var containerFull6=document.createElement("div") //Container superposition img text
+    let containerFull6=document.createElement("div") //Container superposition img text
     containerFull6.setAttribute("class","containerFull")
     fullview.appendChild(containerFull6)
-    var containerFull7=document.createElement("div") //Container superposition img text
+    let containerFull7=document.createElement("div") //Container superposition img text
     containerFull7.setAttribute("class","containerFull")
     fullview.appendChild(containerFull7)
 
@@ -290,16 +290,16 @@ function showWeather(){
 
 
 // First Transition_______________________________________________________________________
-  var cpt=0
+  let cpt=0
   document.getElementsByClassName("container")[0].addEventListener("click",()=>{
 
     let elmnt=document.getElementsByClassName("WeatherLogoFull")
-    myVar= setInterval(()=>{
+    mylet= setInterval(()=>{
       cpt++
       let advancement=50-cpt
       if (cpt>= 10){
 
-        clearInterval(myVar)
+        clearInterval(mylet)
       }
 
       for(let i=0;i<elmnt.length;i++){
@@ -313,15 +313,15 @@ function showWeather(){
 
 
 //Buttons______________________________
-  var boutonPrev=document.createElement("button")
+  let boutonPrev=document.createElement("button")
   boutonPrev.setAttribute("id","boutonPrev")
   boutonPrev.setAttribute("class","fas fa-angle-left fa-2x")
 
-  var boutonNext=document.createElement("Button")
+  let boutonNext=document.createElement("Button")
   boutonNext.setAttribute("id","boutonNext")
   boutonNext.setAttribute("class","fas fa-angle-right fa-2x")
 
-  var containerBouton=document.createElement("div") //Container superposition img/text
+  let containerBouton=document.createElement("div") //Container superposition img/text
   containerBouton.classList.add("containerBouton")
 
   containerBouton.classList.add("containerClick")
@@ -351,7 +351,7 @@ function showWeather(){
 
 
 // Second Transition_____________________________________________________
-  var cpt2=0
+  let cpt2=0
   clickElmnt=document.getElementsByClassName("containerClick") 
 
   for(let j=0;j<clickElmnt.length;j++){
@@ -359,12 +359,12 @@ function showWeather(){
     clickElmnt[j].addEventListener("click",()=>{    
       let elmnt2=document.getElementsByClassName("WeatherLogo")
 
-      myVar2= setInterval(()=>{
+      mylet2= setInterval(()=>{
         cpt2++
         let advancement2=40+cpt2
 
         if (cpt2>= 10){
-          clearInterval(myVar2)
+          clearInterval(mylet2)
         }
 
         elmnt2[0].style.filter = `brightness(${advancement2}%)`

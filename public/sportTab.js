@@ -1,6 +1,6 @@
 document.getElementById("sport").onclick = function (){
 
-  var sportTab = document.querySelector(".sport.tab-div");
+  let sportTab = document.querySelector(".sport.tab-div");
   sportTab.innerHTML = "";
 
   nbaZone()

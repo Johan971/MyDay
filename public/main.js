@@ -1,20 +1,20 @@
 
-///----------------------------------------------------//
-//                 GEOLOCALISATION                    //
+//----------------------------------------------------//
+//                 GEOLOCATION                        //
 //----------------------------------------------------//
 window.onload = function () {
 
   // Connect to the database
 
-  var startPos;
+  let startPos;
 
-  var geoOptions = {
+  let geoOptions = {
     enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0 
   }
 
-  var geoSuccess = function (position) {
+  let geoSuccess = function (position) {
 
     // Do magic with location
     startPos = position;
@@ -27,7 +27,7 @@ window.onload = function () {
     postReq("/api/coordinates", coord);
   };
 
-  var geoError = function (error) {
+  let geoError = function (error) {
     console.log(error);
   };
 
@@ -36,28 +36,6 @@ window.onload = function () {
   showWeather()
 
 };
-
-document.getElementById("main").onclick = function (){
-
-  /*getReq('/api/weeklyWeather', (result) => {
-    console.log(result);
-    getReq('/api/vLille', (result) => {
-      console.log(result);
-      getReq('/api/nba', (result) => {
-        console.log(result);
-        getReq('/api/kraken', (result) => {
-          console.log(result);
-          getReq('/api/twitter', (result)=>{
-          console.log(result)
-
-          })
-
-        });
-      });
-    });
-  });*/
-
-}
 
 startBar();
 startZone();

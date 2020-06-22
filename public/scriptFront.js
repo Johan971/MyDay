@@ -1,4 +1,4 @@
-var Onglet={
+let Onglet={
   media : ['Twitter','Facebook','LeTelegrame'],
   sport : ['Tennis','Basket','Foot'],
   proximite : ['Velille','Evenement'],
@@ -8,9 +8,9 @@ var Onglet={
 
 /* changement d'onglet via click*/
 
-var onclickNavbar=function(elem){
+let onclickNavbar=function(elem){
   let li=elem.parentNode
-  var nav =elem.parentNode.parentNode
+  let nav =elem.parentNode.parentNode
   if(li.classList.contains("no-selected")){
     let ancienneliAffiche = document.getElementsByClassName("selected")[0]
     li.classList.remove("no-selected");
@@ -45,9 +45,9 @@ function ChooseDate(timeStamp) {
 
 
 function showWeather() {
-  var todayDate = timeStampToDate(jsonResponse[0]["timeStamp"]);
-  var todayTemp = jsonResponse[0]["temp"]["day"];
-  var todayDes = jsonResponse[0]["temp"]["description"];
+  let todayDate = timeStampToDate(jsonResponse[0]["timeStamp"]);
+  let todayTemp = jsonResponse[0]["temp"]["day"];
+  let todayDes = jsonResponse[0]["temp"]["description"];
 }
 
 
@@ -55,7 +55,7 @@ function showWeather() {
 
 function getReq(pathApi, callback) {
 
-  var xhr = new XMLHttpRequest()
+  let xhr = new XMLHttpRequest()
 
   xhr.open("get", pathApi)
   xhr.send();
@@ -64,9 +64,9 @@ function getReq(pathApi, callback) {
   xhr.onreadystatechange = (event) => {
     if (xhr.readyState == 4) {
       //console.log(xhr.response)
-      var data = JSON.parse(xhr.response);
+      let data = JSON.parse(xhr.response);
       callback(data);
-      ///var date = new Date(jsonResponse[0]["timeStamp"]*1000) test date
+      ///let date = new Date(jsonResponse[0]["timeStamp"]*1000) test date
       ///console.log(date);
 
     }
@@ -75,7 +75,7 @@ function getReq(pathApi, callback) {
 
 function postReq(pathApi, obj) {
 
-  var xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
 
   xhr.open("POST", pathApi, true);
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -90,8 +90,8 @@ function postReq(pathApi, obj) {
 
 //recupération de la position de l'élement el
 function getOffset(el) {
-  var _x = 0;
-  var _y = 0;
+  let _x = 0;
+  let _y = 0;
   while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
     _x += el.offsetLeft - el.scrollLeft;
     _y += el.offsetTop - el.scrollTop;
@@ -106,14 +106,14 @@ function getOffset(el) {
 ///////// Scroll Listener /////////
 /*
 function letsScroll(element) {
-  var top = element.scrollTop;
-  var contentWindow=document.getElementsByClassName('affiche')
+  let top = element.scrollTop;
+  let contentWindow=document.getElementsByClassName('affiche')
   console.log(contentWindow);
-  var currentSection=contentWindow.classList[1]
+  let currentSection=contentWindow.classList[1]
   onsole.log(currentWindow);
-  var listAttributs=Onglet[currentSection]
-  var listPos=[]
-  for(var i=0;i<listAttributs.length;i++){
+  let listAttributs=Onglet[currentSection]
+  let listPos=[]
+  for(let i=0;i<listAttributs.length;i++){
     listPos=getOffset( document.getElementById(listAttributs[i]) ).top;
   }
   console.log(listPos);
@@ -130,13 +130,13 @@ function letsScroll(element) {
 
 window.onload = function () {
 
-  var startPos;
+  let startPos;
 
-  var geoOptions = {
+  let geoOptions = {
     enableHighAccuracy: true
   }
 
-  var geoSuccess = function (position) {
+  let geoSuccess = function (position) {
 
     // Do magic with location
     startPos = position;
@@ -149,7 +149,7 @@ window.onload = function () {
     postReq("/api/coordinates", coord);
   };
 
-  var geoError = function (error) {
+  let geoError = function (error) {
     console.log(error);
   };
 
@@ -181,7 +181,7 @@ for (let liens of tableauLiens){                                  //On boucle da
   liens.addEventListener("click",function(event){                 //On regarde si on clique sur liens <a>
     event.preventDefault();
     
-    let nomClasse = liens.parentNode.getAttribute("id");          //On recupere l'id du parent du <a> (soit le <li>) et on le stocke dans une variable
+    let nomClasse = liens.parentNode.getAttribute("id");          //On recupere l'id du parent du <a> (soit le <li>) et on le stocke dans une letiable
     console.log(nomClasse);                                       //A savoir que l'id des <li> correpond a un nom de classe dans les <div>
 
     let divActive = document.getElementsByClassName(nomClasse)[0];  //On recupere donc la div en fonction de son nom de classe (qui est nomClasse)
@@ -204,9 +204,9 @@ for (let liens of tableauLiens){                                  //On boucle da
      
       let sousNavbar=document.querySelectorAll(".sousnavonglet")
       
-      var ecritureOnglet=""
-      var ecritureOngletComplet=""
-      for(var i=0;i<Onglet[nomClasse].length;i++){
+      let ecritureOnglet=""
+      let ecritureOngletComplet=""
+      for(let i=0;i<Onglet[nomClasse].length;i++){
         if(i==0){
           ecritureOnglet="<li  class=\"selected\"><a onclick='onclickNavbar(this)'' class='sousnavlink' href=\'#"+Onglet[nomClasse][i]+"\'</a>"+Onglet[nomClasse][i]+"</li>"
         }else{
@@ -230,14 +230,14 @@ for (let liens of tableauLiens){                                  //On boucle da
 
 /*
 document.onscroll = function(){
-  var contentWindow=document.getElementsByClassName('affiche')
+  let contentWindow=document.getElementsByClassName('affiche')
   console.log(contentWindow);
-  var currentSection=contentWindow.classList[1]
+  let currentSection=contentWindow.classList[1]
   onsole.log(currentWindow);
-  var listAttributs=Onglet[currentSection]
-  var listPos=[]
+  let listAttributs=Onglet[currentSection]
+  let listPos=[]
   /*
-  for(var i=0;i<listAttributs.length;i++){
+  for(let i=0;i<listAttributs.length;i++){
     listPos=getOffset( document.getElementById(listAttributs[i]) ).top;
   }
   console.log(listPos);
@@ -247,21 +247,21 @@ document.onscroll = function(){
 
 /*
 // changement d'onglet via scroll
-var doc = document.documentElement;
+let doc = document.documentElement;
 document.onscroll = function(){
 
   //récupération des positions
-  var PosTennis = getOffset( document.getElementById('tennis') ).top; 
-  var PosBasket = getOffset( document.getElementById('basket') ).top; 
-  var PosFoot = getOffset( document.getElementById('foot') ).top; 
+  let PosTennis = getOffset( document.getElementById('tennis') ).top; 
+  let PosBasket = getOffset( document.getElementById('basket') ).top; 
+  let PosFoot = getOffset( document.getElementById('foot') ).top; 
 
   //récupération de la position de la barre de scroll
-  var top = (window.pageYOffset||doc.scrollTop)  - (doc.clientTop || 0);
+  let top = (window.pageYOffset||doc.scrollTop)  - (doc.clientTop || 0);
 
   //on établit quel onglet est actif en fonction de la position du scroll
   if (top<PosFoot&&top>PosBasket){
-    var div = tabs[1].parentNode.parentNode.parentNode
-    var li = tabs[1].parentNode
+    let div = tabs[1].parentNode.parentNode.parentNode
+    let li = tabs[1].parentNode
     if(li.classList.contains('selected')){
       return false
     }
@@ -271,8 +271,8 @@ document.onscroll = function(){
     console.log(li.classList)
   
   }else if(top>PosBasket){
-    var div = tabs[2].parentNode.parentNode.parentNode
-    var li = tabs[2].parentNode
+    let div = tabs[2].parentNode.parentNode.parentNode
+    let li = tabs[2].parentNode
     if(li.classList.contains('active')){
       return false
     }
@@ -281,8 +281,8 @@ document.onscroll = function(){
     li.classList.add('active')
     console.log(li.classList)
   }else if(top<PosFoot){
-    var div = tabs[0].parentNode.parentNode.parentNode
-    var li = tabs[0].parentNode
+    let div = tabs[0].parentNode.parentNode.parentNode
+    let li = tabs[0].parentNode
     if(li.classList.contains('active')){
       return false
     }

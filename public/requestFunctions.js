@@ -3,7 +3,7 @@
 
 function getReq(pathApi, callback) {
 
-  var xhr = new XMLHttpRequest()
+  let xhr = new XMLHttpRequest()
 
   xhr.open("get", pathApi)
   xhr.send();
@@ -12,9 +12,9 @@ function getReq(pathApi, callback) {
   xhr.onreadystatechange = (event) => {
     if (xhr.readyState == 4) {
       //console.log(xhr.response)
-      var data = JSON.parse(xhr.response);
+      let data = JSON.parse(xhr.response);
       callback(data);
-      ///var date = new Date(jsonResponse[0]["timeStamp"]*1000) test date
+      ///let date = new Date(jsonResponse[0]["timeStamp"]*1000) test date
       ///console.log(date);
 
     }
@@ -23,7 +23,7 @@ function getReq(pathApi, callback) {
 
 function postReq(pathApi, obj) {
 
-  var xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
 
   xhr.open("POST", pathApi, true);
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
