@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 
 					///// Routes /////
 const dailyWeatherRoutes = require('./backend/routes/weeklyWeatherRoutes');
+const coordinateRoutes = require('./backend/routes/coordinateRoutes');
 const vLilleRoutes = require('./backend/routes/vLilleRoutes');
 const newsRoutes = require('./backend/routes/newsRoutes');
 const krakenRoutes = require('./backend/routes/krakenRoutes');
@@ -48,6 +49,7 @@ app.use("/",routeur)
 
 					///// Internal Api Calls /////
 dailyWeatherRoutes(app);
+coordinateRoutes(app);
 vLilleRoutes(app);
 newsRoutes(app);
 krakenRoutes(app);
