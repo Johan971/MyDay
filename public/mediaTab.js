@@ -39,7 +39,7 @@ document.getElementById("media").onclick = function(){
 
 	getReq('/api/twitter', (result)=>{
 
-		console.log(result)
+		//console.log(result)
 
 		// sort again
 		result = result.sort(compare);
@@ -94,7 +94,14 @@ document.getElementById("media").onclick = function(){
 			separatorPv=document.createElement("hr")
             divSepPv.appendChild(separatorPv)
 			trendNamePv=document.createElement("h2")
-			trendNamePv.appendChild(document.createTextNode(result[previewIterator].name))
+
+			if (result[previewIterator].name[0] != '#') {
+				trendNamePv.appendChild(document.createTextNode('#'+result[previewIterator].name));
+			}
+			else {
+				trendNamePv.appendChild(document.createTextNode(result[previewIterator].name));
+			}
+
 			preview.appendChild(trendNamePv)
 			preview.appendChild(divSepPv)
 			
@@ -106,7 +113,13 @@ document.getElementById("media").onclick = function(){
 			separatorFv = document.createElement("hr")			
             divSepFv.appendChild(separatorFv)
 			trendNameFv = document.createElement("h2")//titre preView
-			trendNameFv.appendChild(document.createTextNode(result[i].name))
+
+			if (result[i].name[0] != '#') {
+				trendNameFv.appendChild(document.createTextNode('#'+result[i].name));
+			} else {
+				trendNameFv.appendChild(document.createTextNode(result[i].name));
+			}
+			
 			fullview.appendChild(trendNameFv)
 
 			let explore = document.createElement("p")
