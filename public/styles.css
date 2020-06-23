@@ -333,6 +333,10 @@ body{
 .separatorTwitterpv{
   width: 100%;
 }
+.linkTwitter{
+  color : rgba(0,233,69,0.8970938717283788);
+  font-size : 0.75rem;
+}
 /*/////////////////////////////ZONE PROXIMITE///////////////////////*/
 /*
 .zone.proximite{
@@ -464,9 +468,12 @@ body{
 
 
 /*/////////////////////////////ZONE MAIN//////////////////////////////*/
+
 .zone.main{
   width:375px;
   height:300px;
+  margin-left :12%;
+  
 }
 
 /*élargissement de la zone sur click*/

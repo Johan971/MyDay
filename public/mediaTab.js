@@ -114,6 +114,7 @@ document.getElementById("media").onclick = function(){
 			let link=document.createElement("a")
 			link.setAttribute("href", result[i].urlTwitter)
             link.setAttribute("target", "_blank");
+            link.setAttribute("class","linkTwitter")
 			link.appendChild(document.createTextNode("Explorez"))
             
 			explore.appendChild(link)
