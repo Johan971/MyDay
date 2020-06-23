@@ -265,6 +265,7 @@ document.getElementById("media").onclick = function(){
                     let imageNode=document.createElement("img")
                     imageNode.setAttribute("src", tabNews[i].imageUrl)
                     imageNode.setAttribute("class", "imgArcticle")
+                    imageNode.setAttribute("alt", "Image non disponible")
                     preView[0].appendChild(imageNode)
                 }
 
@@ -299,6 +300,7 @@ document.getElementById("media").onclick = function(){
 				
 
 				articleLink.setAttribute("target", "_blank");
+                articleLink.setAttribute("class", "linkMedia");
 				articleLink.appendChild(document.createTextNode(tabNews[i].articleUrl))
 				fullView[0].appendChild(articleLink)
 
