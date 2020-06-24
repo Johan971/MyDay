@@ -1,10 +1,37 @@
 # MyDay,l'assistant web qu'il vous faut !
 
-## Présentation
+## Introduction
 
-Une application web qui sera un HUB à informations pour l'utilisateur, possédant des onglets qui seront spécialisés sur un contenu.
+This app have been built in 1 month for an engineering school project at ISEN Lille by 6 students :
 
-Notre application possèdera 5 onglets : Main, Sport, Social Media, Proximité et Economie.
+- Alex CAPOEN
+- Hugo ERAUD-BERTHAUD
+- Victor JUNG
+- Loucas RODRIGUES
+- Johan ROUX
+- Louis WILLEMS
 
-PLus particulièrement, l'onglet **Main** regroupera plusieurs informations qui résumerons les différents onglets. (Ex : il y aura affiché la météo du jour dans le **Main** et dans l'onglet Météo on retrouvera les prévisions de la semaine avec plus de détails).L'onglet **Main** permettra à l'utilisateur d'avoir les informations principales d'un simple coup d'oeil.
+The app needs mongoDb and NodeJs to work properly, once you get the project you can start the app by running index.js with node.
+
+```
+node index.js
+```
+
+Then the app will be host in localhost:4200.
+
+## Visuals
+
+Here some visuals of the app.
+
+![MainOnglet](./visuals/MainOnglet.png)
+
+![EcoOnglet](./visuals/EcoOnglet.png)
+
+![OngletMedia](./visuals/OngletMedia.png)
+
+![ProxiOnglet](./visuals/ProxiOnglet.png)
+
+![SportOnglet](./visuals/SportOnglet.png)
+
+
 
