@@ -13,7 +13,7 @@
     "express": "^4.17.1",
     "geolib": "^3.3.1",
     "google-trends-api": "^4.9.0",
-    "mkcert": "^1.2.0",
+    "mkcert": "^1.4.0",
     "mongoose": "^5.11.17",
     "node-fetch": "^2.6.0",
     "passport": "^0.4.1",
