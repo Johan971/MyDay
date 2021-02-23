@@ -12,7 +12,7 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "geolib": "^3.3.1",
-    "google-trends-api": "^4.9.0",
+    "google-trends-api": "^4.9.2",
     "mkcert": "^1.2.0",
     "mongoose": "^5.11.17",
     "node-fetch": "^2.6.0",
